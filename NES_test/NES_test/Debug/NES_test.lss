@@ -1,0 +1,724 @@
+
+NES_test.elf:     file format elf32-avr
+
+Sections:
+Idx Name          Size      VMA       LMA       File off  Algn
+  0 .text         000003f6  00000000  00000000  00000094  2**1
+                  CONTENTS, ALLOC, LOAD, READONLY, CODE
+  1 .data         00000020  00800060  000003f6  0000048a  2**0
+                  CONTENTS, ALLOC, LOAD, DATA
+  2 .bss          0000000e  00800080  00800080  000004aa  2**0
+                  ALLOC
+  3 .stab         000006cc  00000000  00000000  000004ac  2**2
+                  CONTENTS, READONLY, DEBUGGING
+  4 .stabstr      00000085  00000000  00000000  00000b78  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  5 .debug_aranges 000000a0  00000000  00000000  00000c00  2**3
+                  CONTENTS, READONLY, DEBUGGING
+  6 .debug_info   000007e9  00000000  00000000  00000ca0  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  7 .debug_abbrev 000001b3  00000000  00000000  00001489  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  8 .debug_line   000003c0  00000000  00000000  0000163c  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  9 .debug_frame  0000012c  00000000  00000000  000019fc  2**2
+                  CONTENTS, READONLY, DEBUGGING
+ 10 .debug_str    000001da  00000000  00000000  00001b28  2**0
+                  CONTENTS, READONLY, DEBUGGING
+ 11 .debug_loc    0000011e  00000000  00000000  00001d02  2**0
+                  CONTENTS, READONLY, DEBUGGING
+
+Disassembly of section .text:
+
+00000000 <__vectors>:
+   0:	0c 94 2a 00 	jmp	0x54	; 0x54 <__ctors_end>
+   4:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+   8:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+   c:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+  10:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+  14:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+  18:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+  1c:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+  20:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+  24:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+  28:	0c 94 6a 00 	jmp	0xd4	; 0xd4 <__vector_10>
+  2c:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+  30:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+  34:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+  38:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+  3c:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+  40:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+  44:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+  48:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+  4c:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+  50:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+
+00000054 <__ctors_end>:
+  54:	11 24       	eor	r1, r1
+  56:	1f be       	out	0x3f, r1	; 63
+  58:	cf e5       	ldi	r28, 0x5F	; 95
+  5a:	d8 e0       	ldi	r29, 0x08	; 8
+  5c:	de bf       	out	0x3e, r29	; 62
+  5e:	cd bf       	out	0x3d, r28	; 61
+
+00000060 <__do_copy_data>:
+  60:	10 e0       	ldi	r17, 0x00	; 0
+  62:	a0 e6       	ldi	r26, 0x60	; 96
+  64:	b0 e0       	ldi	r27, 0x00	; 0
+  66:	e6 ef       	ldi	r30, 0xF6	; 246
+  68:	f3 e0       	ldi	r31, 0x03	; 3
+  6a:	02 c0       	rjmp	.+4      	; 0x70 <__do_copy_data+0x10>
+  6c:	05 90       	lpm	r0, Z+
+  6e:	0d 92       	st	X+, r0
+  70:	a0 38       	cpi	r26, 0x80	; 128
+  72:	b1 07       	cpc	r27, r17
+  74:	d9 f7       	brne	.-10     	; 0x6c <__do_copy_data+0xc>
+
+00000076 <__do_clear_bss>:
+  76:	10 e0       	ldi	r17, 0x00	; 0
+  78:	a0 e8       	ldi	r26, 0x80	; 128
+  7a:	b0 e0       	ldi	r27, 0x00	; 0
+  7c:	01 c0       	rjmp	.+2      	; 0x80 <.do_clear_bss_start>
+
+0000007e <.do_clear_bss_loop>:
+  7e:	1d 92       	st	X+, r1
+
+00000080 <.do_clear_bss_start>:
+  80:	ae 38       	cpi	r26, 0x8E	; 142
+  82:	b1 07       	cpc	r27, r17
+  84:	e1 f7       	brne	.-8      	; 0x7e <.do_clear_bss_loop>
+  86:	0e 94 c9 01 	call	0x392	; 0x392 <main>
+  8a:	0c 94 f9 01 	jmp	0x3f2	; 0x3f2 <_exit>
+
+0000008e <__bad_interrupt>:
+  8e:	0c 94 00 00 	jmp	0	; 0x0 <__vectors>
+
+00000092 <TimerOn>:
+volatile unsigned short lp = 300, bp = 1000, lt = 300, bt = 1000,
+	sp = 2, st = 2;
+
+void TimerOn() {
+	// AVR timer/counter controller register TCCR0
+	TCCR0 = 0x0B;	// bit3bit6=10: CTC mode (clear timer on compare)
+  92:	8b e0       	ldi	r24, 0x0B	; 11
+  94:	83 bf       	out	0x33, r24	; 51
+	// 00001011: 0x0B
+	// SO, 8 MHz clock or 8,000,000 /64 = 125,000 ticks/s
+	// Thus, TCNT0 register will count at 125,000 ticks/s
+
+	// AVR output compare register OCR0.
+	OCR0 = 25;	// Timer interrupt will be generated when TCNT0==OCR0
+  96:	89 e1       	ldi	r24, 0x19	; 25
+  98:	8c bf       	out	0x3c, r24	; 60
+	// We want a 1 ms tick. 0.001 s * 125,000 ticks/s = 125
+	// So when TCNT0 register equals 125,
+	// 1 ms has passed. Thus, we compare to 125.
+	// AVR timer interrupt mask register
+	TIMSK = 0x02; // bit1: OCIE0 -- enables compare match interrupt
+  9a:	82 e0       	ldi	r24, 0x02	; 2
+  9c:	89 bf       	out	0x39, r24	; 57
+
+	//Initialize avr counter
+	TCNT0=0;
+  9e:	12 be       	out	0x32, r1	; 50
+
+	_avr_timer_cntcurr = _avr_timer_M;
+  a0:	80 91 6c 00 	lds	r24, 0x006C
+  a4:	90 91 6d 00 	lds	r25, 0x006D
+  a8:	a0 91 6e 00 	lds	r26, 0x006E
+  ac:	b0 91 6f 00 	lds	r27, 0x006F
+  b0:	80 93 82 00 	sts	0x0082, r24
+  b4:	90 93 83 00 	sts	0x0083, r25
+  b8:	a0 93 84 00 	sts	0x0084, r26
+  bc:	b0 93 85 00 	sts	0x0085, r27
+	// TimerISR will be called every _avr_timer_cntcurr milliseconds
+
+	//Enable global interrupts
+	SREG |= 0x80; // 0x80: 1000000
+  c0:	8f b7       	in	r24, 0x3f	; 63
+  c2:	80 68       	ori	r24, 0x80	; 128
+  c4:	8f bf       	out	0x3f, r24	; 63
+}
+  c6:	08 95       	ret
+
+000000c8 <TimerOff>:
+
+void TimerOff() {
+	TCCR0 = 0x00; // bit2bit1bit0=000: timer off
+  c8:	13 be       	out	0x33, r1	; 51
+}
+  ca:	08 95       	ret
+
+000000cc <TimerISR>:
+
+void TimerISR() {
+	TimerFlag = 1;
+  cc:	81 e0       	ldi	r24, 0x01	; 1
+  ce:	80 93 86 00 	sts	0x0086, r24
+}
+  d2:	08 95       	ret
+
+000000d4 <__vector_10>:
+
+// In our approach, the C programmer does not touch this ISR, but rather TimerISR()
+ISR(TIMER0_COMP_vect) {
+  d4:	1f 92       	push	r1
+  d6:	0f 92       	push	r0
+  d8:	0f b6       	in	r0, 0x3f	; 63
+  da:	0f 92       	push	r0
+  dc:	11 24       	eor	r1, r1
+  de:	2f 93       	push	r18
+  e0:	3f 93       	push	r19
+  e2:	4f 93       	push	r20
+  e4:	5f 93       	push	r21
+  e6:	6f 93       	push	r22
+  e8:	7f 93       	push	r23
+  ea:	8f 93       	push	r24
+  ec:	9f 93       	push	r25
+  ee:	af 93       	push	r26
+  f0:	bf 93       	push	r27
+  f2:	ef 93       	push	r30
+  f4:	ff 93       	push	r31
+	// CPU automatically calls when TCNT0 == OCR0 (every 1 ms per TimerOn settings)
+	--_avr_timer_cntcurr; // Count down to 0 rather than up to TOP
+  f6:	80 91 82 00 	lds	r24, 0x0082
+  fa:	90 91 83 00 	lds	r25, 0x0083
+  fe:	a0 91 84 00 	lds	r26, 0x0084
+ 102:	b0 91 85 00 	lds	r27, 0x0085
+ 106:	01 97       	sbiw	r24, 0x01	; 1
+ 108:	a1 09       	sbc	r26, r1
+ 10a:	b1 09       	sbc	r27, r1
+ 10c:	80 93 82 00 	sts	0x0082, r24
+ 110:	90 93 83 00 	sts	0x0083, r25
+ 114:	a0 93 84 00 	sts	0x0084, r26
+ 118:	b0 93 85 00 	sts	0x0085, r27
+	if (_avr_timer_cntcurr == 0) { // results in a more efficient compare
+ 11c:	00 97       	sbiw	r24, 0x00	; 0
+ 11e:	a1 05       	cpc	r26, r1
+ 120:	b1 05       	cpc	r27, r1
+ 122:	91 f4       	brne	.+36     	; 0x148 <__vector_10+0x74>
+	TimerISR(); // Call the ISR that the user uses
+ 124:	0e 94 66 00 	call	0xcc	; 0xcc <TimerISR>
+	_avr_timer_cntcurr = _avr_timer_M;
+ 128:	80 91 6c 00 	lds	r24, 0x006C
+ 12c:	90 91 6d 00 	lds	r25, 0x006D
+ 130:	a0 91 6e 00 	lds	r26, 0x006E
+ 134:	b0 91 6f 00 	lds	r27, 0x006F
+ 138:	80 93 82 00 	sts	0x0082, r24
+ 13c:	90 93 83 00 	sts	0x0083, r25
+ 140:	a0 93 84 00 	sts	0x0084, r26
+ 144:	b0 93 85 00 	sts	0x0085, r27
+}
+}
+ 148:	ff 91       	pop	r31
+ 14a:	ef 91       	pop	r30
+ 14c:	bf 91       	pop	r27
+ 14e:	af 91       	pop	r26
+ 150:	9f 91       	pop	r25
+ 152:	8f 91       	pop	r24
+ 154:	7f 91       	pop	r23
+ 156:	6f 91       	pop	r22
+ 158:	5f 91       	pop	r21
+ 15a:	4f 91       	pop	r20
+ 15c:	3f 91       	pop	r19
+ 15e:	2f 91       	pop	r18
+ 160:	0f 90       	pop	r0
+ 162:	0f be       	out	0x3f, r0	; 63
+ 164:	0f 90       	pop	r0
+ 166:	1f 90       	pop	r1
+ 168:	18 95       	reti
+
+0000016a <TimerSet>:
+
+// Set TimerISR() to tick every M ms
+void TimerSet(unsigned long M) {
+ 16a:	dc 01       	movw	r26, r24
+ 16c:	cb 01       	movw	r24, r22
+	_avr_timer_M = M;
+ 16e:	80 93 6c 00 	sts	0x006C, r24
+ 172:	90 93 6d 00 	sts	0x006D, r25
+ 176:	a0 93 6e 00 	sts	0x006E, r26
+ 17a:	b0 93 6f 00 	sts	0x006F, r27
+	_avr_timer_cntcurr = _avr_timer_M;
+ 17e:	80 93 82 00 	sts	0x0082, r24
+ 182:	90 93 83 00 	sts	0x0083, r25
+ 186:	a0 93 84 00 	sts	0x0084, r26
+ 18a:	b0 93 85 00 	sts	0x0085, r27
+}
+ 18e:	08 95       	ret
+
+00000190 <Write7Seg>:
+	0x77, 0x4C, //0111 0111, 0100 1100, //6, 7
+	0x7F, 0x6F, //0111 1111, 0111 1111, //8, 9
+	0x5F, 0x73, //0101 1111, 0111 0011, //A, B
+	0x36, 0x79, //0111 0110, 0111 1001, //C, D
+0x37, 0x17};//0011 0111, 0001 0111};//E, F
+PORTC = ~Seg7[x%16];
+ 190:	e8 2f       	mov	r30, r24
+ 192:	f0 e0       	ldi	r31, 0x00	; 0
+ 194:	ef 70       	andi	r30, 0x0F	; 15
+ 196:	f0 70       	andi	r31, 0x00	; 0
+ 198:	e0 59       	subi	r30, 0x90	; 144
+ 19a:	ff 4f       	sbci	r31, 0xFF	; 255
+ 19c:	80 81       	ld	r24, Z
+ 19e:	80 95       	com	r24
+ 1a0:	85 bb       	out	0x15, r24	; 21
+}
+ 1a2:	08 95       	ret
+
+000001a4 <LED_TICK>:
+unsigned char led_states;
+	
+void LED_TICK()
+{
+	//transitions
+	switch(l_state)
+ 1a4:	80 91 8c 00 	lds	r24, 0x008C
+ 1a8:	81 30       	cpi	r24, 0x01	; 1
+ 1aa:	79 f0       	breq	.+30     	; 0x1ca <LED_TICK+0x26>
+ 1ac:	81 30       	cpi	r24, 0x01	; 1
+ 1ae:	30 f0       	brcs	.+12     	; 0x1bc <LED_TICK+0x18>
+		break;
+	case L1:
+	    l_state = L2;
+		break;
+	case L2:
+	    l_state = L0;
+ 1b0:	10 92 8c 00 	sts	0x008C, r1
+	
+	//
+	switch(l_state)
+	{
+	case L0:
+	    led_states = 0x01;
+ 1b4:	81 e0       	ldi	r24, 0x01	; 1
+ 1b6:	80 93 89 00 	sts	0x0089, r24
+		break;
+ 1ba:	08 95       	ret
+	{
+	case INIT:
+	    l_state = L0;
+		break;
+	case L0:
+	    l_state = L1;
+ 1bc:	81 e0       	ldi	r24, 0x01	; 1
+ 1be:	80 93 8c 00 	sts	0x008C, r24
+	{
+	case L0:
+	    led_states = 0x01;
+		break;
+	case L1:
+	    led_states = 0x02;
+ 1c2:	82 e0       	ldi	r24, 0x02	; 2
+ 1c4:	80 93 89 00 	sts	0x0089, r24
+		break;
+ 1c8:	08 95       	ret
+		break;
+	case L0:
+	    l_state = L1;
+		break;
+	case L1:
+	    l_state = L2;
+ 1ca:	82 e0       	ldi	r24, 0x02	; 2
+ 1cc:	80 93 8c 00 	sts	0x008C, r24
+		break;
+	case L1:
+	    led_states = 0x02;
+		break;
+	case L2:
+	    led_states = 0x04;
+ 1d0:	84 e0       	ldi	r24, 0x04	; 4
+ 1d2:	80 93 89 00 	sts	0x0089, r24
+ 1d6:	08 95       	ret
+
+000001d8 <BLINK_TICK>:
+
+unsigned char blink_state = 0;
+
+void BLINK_TICK()
+{
+	switch(b_state)
+ 1d8:	80 91 87 00 	lds	r24, 0x0087
+ 1dc:	88 23       	and	r24, r24
+ 1de:	19 f0       	breq	.+6      	; 0x1e6 <BLINK_TICK+0xe>
+ 1e0:	81 30       	cpi	r24, 0x01	; 1
+ 1e2:	41 f4       	brne	.+16     	; 0x1f4 <BLINK_TICK+0x1c>
+ 1e4:	04 c0       	rjmp	.+8      	; 0x1ee <BLINK_TICK+0x16>
+	{
+	case INIT: b_state = B0; break;
+	case B0: b_state = B1; break;
+ 1e6:	81 e0       	ldi	r24, 0x01	; 1
+ 1e8:	80 93 87 00 	sts	0x0087, r24
+ 1ec:	0b c0       	rjmp	.+22     	; 0x204 <BLINK_TICK+0x2c>
+	case B1: b_state = B0;
+ 1ee:	10 92 87 00 	sts	0x0087, r1
+ 1f2:	05 c0       	rjmp	.+10     	; 0x1fe <BLINK_TICK+0x26>
+	default: break; 
+	}
+	
+	switch(b_state)
+ 1f4:	88 23       	and	r24, r24
+ 1f6:	19 f0       	breq	.+6      	; 0x1fe <BLINK_TICK+0x26>
+ 1f8:	81 30       	cpi	r24, 0x01	; 1
+ 1fa:	39 f4       	brne	.+14     	; 0x20a <BLINK_TICK+0x32>
+ 1fc:	03 c0       	rjmp	.+6      	; 0x204 <BLINK_TICK+0x2c>
+	{
+	case B0: blink_state = 0x00; break;
+ 1fe:	10 92 81 00 	sts	0x0081, r1
+ 202:	08 95       	ret
+	case B1: blink_state = 0x08; break;
+ 204:	88 e0       	ldi	r24, 0x08	; 8
+ 206:	80 93 81 00 	sts	0x0081, r24
+ 20a:	08 95       	ret
+
+0000020c <SOUND_TICK>:
+}
+
+unsigned char sound_state = 0;
+void SOUND_TICK()
+{
+	if(~PINA & 4)
+ 20c:	ca 99       	sbic	0x19, 2	; 25
+ 20e:	06 c0       	rjmp	.+12     	; 0x21c <SOUND_TICK+0x10>
+	    sound_state ^= 0x10;
+ 210:	90 91 80 00 	lds	r25, 0x0080
+ 214:	80 e1       	ldi	r24, 0x10	; 16
+ 216:	89 27       	eor	r24, r25
+ 218:	80 93 80 00 	sts	0x0080, r24
+ 21c:	08 95       	ret
+
+0000021e <ADJUST_TICK>:
+
+enum {WAITING, UP, DOWN, PUSHED} a_state;
+
+void ADJUST_TICK()
+{
+	unsigned char input = ~PINA & 0x03; //0000 0011
+ 21e:	99 b3       	in	r25, 0x19	; 25
+ 220:	90 95       	com	r25
+ 222:	93 70       	andi	r25, 0x03	; 3
+	switch(a_state)
+ 224:	80 91 88 00 	lds	r24, 0x0088
+ 228:	81 30       	cpi	r24, 0x01	; 1
+ 22a:	39 f0       	breq	.+14     	; 0x23a <ADJUST_TICK+0x1c>
+ 22c:	81 30       	cpi	r24, 0x01	; 1
+ 22e:	e8 f0       	brcs	.+58     	; 0x26a <ADJUST_TICK+0x4c>
+ 230:	82 30       	cpi	r24, 0x02	; 2
+ 232:	59 f0       	breq	.+22     	; 0x24a <ADJUST_TICK+0x2c>
+ 234:	83 30       	cpi	r24, 0x03	; 3
+ 236:	71 f5       	brne	.+92     	; 0x294 <ADJUST_TICK+0x76>
+ 238:	10 c0       	rjmp	.+32     	; 0x25a <ADJUST_TICK+0x3c>
+	{
+		case INIT: a_state = WAITING; break;
+		case UP: a_state = (input)?PUSHED:WAITING; break;
+ 23a:	99 23       	and	r25, r25
+ 23c:	11 f0       	breq	.+4      	; 0x242 <ADJUST_TICK+0x24>
+ 23e:	83 e0       	ldi	r24, 0x03	; 3
+ 240:	01 c0       	rjmp	.+2      	; 0x244 <ADJUST_TICK+0x26>
+ 242:	80 e0       	ldi	r24, 0x00	; 0
+ 244:	80 93 88 00 	sts	0x0088, r24
+ 248:	25 c0       	rjmp	.+74     	; 0x294 <ADJUST_TICK+0x76>
+		case DOWN: a_state = (input)?PUSHED:WAITING; break;
+ 24a:	99 23       	and	r25, r25
+ 24c:	11 f0       	breq	.+4      	; 0x252 <ADJUST_TICK+0x34>
+ 24e:	83 e0       	ldi	r24, 0x03	; 3
+ 250:	01 c0       	rjmp	.+2      	; 0x254 <ADJUST_TICK+0x36>
+ 252:	80 e0       	ldi	r24, 0x00	; 0
+ 254:	80 93 88 00 	sts	0x0088, r24
+ 258:	1d c0       	rjmp	.+58     	; 0x294 <ADJUST_TICK+0x76>
+		case PUSHED: a_state = (input)?PUSHED:WAITING; break;
+ 25a:	99 23       	and	r25, r25
+ 25c:	11 f0       	breq	.+4      	; 0x262 <ADJUST_TICK+0x44>
+ 25e:	83 e0       	ldi	r24, 0x03	; 3
+ 260:	01 c0       	rjmp	.+2      	; 0x264 <ADJUST_TICK+0x46>
+ 262:	80 e0       	ldi	r24, 0x00	; 0
+ 264:	80 93 88 00 	sts	0x0088, r24
+ 268:	15 c0       	rjmp	.+42     	; 0x294 <ADJUST_TICK+0x76>
+		case WAITING: 
+		    switch(input)
+ 26a:	91 30       	cpi	r25, 0x01	; 1
+ 26c:	39 f0       	breq	.+14     	; 0x27c <ADJUST_TICK+0x5e>
+ 26e:	91 30       	cpi	r25, 0x01	; 1
+ 270:	c8 f1       	brcs	.+114    	; 0x2e4 <ADJUST_TICK+0xc6>
+ 272:	92 30       	cpi	r25, 0x02	; 2
+ 274:	39 f0       	breq	.+14     	; 0x284 <ADJUST_TICK+0x66>
+ 276:	93 30       	cpi	r25, 0x03	; 3
+ 278:	69 f4       	brne	.+26     	; 0x294 <ADJUST_TICK+0x76>
+ 27a:	08 c0       	rjmp	.+16     	; 0x28c <ADJUST_TICK+0x6e>
+			{
+				case 0x00: a_state = WAITING; break;
+				case 0x01: a_state = UP; break;
+ 27c:	81 e0       	ldi	r24, 0x01	; 1
+ 27e:	80 93 88 00 	sts	0x0088, r24
+ 282:	0f c0       	rjmp	.+30     	; 0x2a2 <ADJUST_TICK+0x84>
+				case 0x02: a_state = DOWN; break;
+ 284:	82 e0       	ldi	r24, 0x02	; 2
+ 286:	80 93 88 00 	sts	0x0088, r24
+ 28a:	1c c0       	rjmp	.+56     	; 0x2c4 <ADJUST_TICK+0xa6>
+				case 0x03: a_state = PUSHED; break;
+ 28c:	83 e0       	ldi	r24, 0x03	; 3
+ 28e:	80 93 88 00 	sts	0x0088, r24
+ 292:	08 95       	ret
+				default: break;
+			}
+		default: break;
+	}
+	
+	switch(a_state)
+ 294:	80 91 88 00 	lds	r24, 0x0088
+ 298:	81 30       	cpi	r24, 0x01	; 1
+ 29a:	19 f0       	breq	.+6      	; 0x2a2 <ADJUST_TICK+0x84>
+ 29c:	82 30       	cpi	r24, 0x02	; 2
+ 29e:	11 f5       	brne	.+68     	; 0x2e4 <ADJUST_TICK+0xc6>
+ 2a0:	11 c0       	rjmp	.+34     	; 0x2c4 <ADJUST_TICK+0xa6>
+	{
+		case WAITING: break;
+		case UP: 
+		    if(sp < 250)
+ 2a2:	80 91 62 00 	lds	r24, 0x0062
+ 2a6:	90 91 63 00 	lds	r25, 0x0063
+ 2aa:	8a 3f       	cpi	r24, 0xFA	; 250
+ 2ac:	91 05       	cpc	r25, r1
+ 2ae:	d0 f4       	brcc	.+52     	; 0x2e4 <ADJUST_TICK+0xc6>
+				++sp;
+ 2b0:	80 91 62 00 	lds	r24, 0x0062
+ 2b4:	90 91 63 00 	lds	r25, 0x0063
+ 2b8:	01 96       	adiw	r24, 0x01	; 1
+ 2ba:	90 93 63 00 	sts	0x0063, r25
+ 2be:	80 93 62 00 	sts	0x0062, r24
+ 2c2:	08 95       	ret
+			break;
+		case DOWN:
+			if(sp > 1)
+ 2c4:	80 91 62 00 	lds	r24, 0x0062
+ 2c8:	90 91 63 00 	lds	r25, 0x0063
+ 2cc:	82 30       	cpi	r24, 0x02	; 2
+ 2ce:	91 05       	cpc	r25, r1
+ 2d0:	48 f0       	brcs	.+18     	; 0x2e4 <ADJUST_TICK+0xc6>
+				--sp;
+ 2d2:	80 91 62 00 	lds	r24, 0x0062
+ 2d6:	90 91 63 00 	lds	r25, 0x0063
+ 2da:	01 97       	sbiw	r24, 0x01	; 1
+ 2dc:	90 93 63 00 	sts	0x0063, r25
+ 2e0:	80 93 62 00 	sts	0x0062, r24
+ 2e4:	08 95       	ret
+
+000002e6 <gcd>:
+		default: break;
+	}
+}
+
+unsigned short gcd(unsigned short a, unsigned short b)
+{
+ 2e6:	9b 01       	movw	r18, r22
+	if(b == 0)
+ 2e8:	61 15       	cp	r22, r1
+ 2ea:	71 05       	cpc	r23, r1
+ 2ec:	39 f0       	breq	.+14     	; 0x2fc <gcd+0x16>
+	    return a;
+	else
+	    return gcd(b, a % b);
+ 2ee:	0e 94 e5 01 	call	0x3ca	; 0x3ca <__udivmodhi4>
+ 2f2:	68 2f       	mov	r22, r24
+ 2f4:	79 2f       	mov	r23, r25
+ 2f6:	c9 01       	movw	r24, r18
+ 2f8:	0e 94 73 01 	call	0x2e6	; 0x2e6 <gcd>
+}
+ 2fc:	08 95       	ret
+
+000002fe <NES_tick>:
+enum NES_States{LATCH, UNLATCH, PULSE, READ, WRITE} NES_State;
+	unsigned char pulse, keys;
+	
+void NES_tick()
+{
+	switch(NES_State)
+ 2fe:	80 91 8a 00 	lds	r24, 0x008A
+ 302:	82 30       	cpi	r24, 0x02	; 2
+ 304:	a9 f0       	breq	.+42     	; 0x330 <NES_tick+0x32>
+ 306:	83 30       	cpi	r24, 0x03	; 3
+ 308:	28 f4       	brcc	.+10     	; 0x314 <NES_tick+0x16>
+ 30a:	88 23       	and	r24, r24
+ 30c:	41 f0       	breq	.+16     	; 0x31e <NES_tick+0x20>
+ 30e:	81 30       	cpi	r24, 0x01	; 1
+ 310:	21 f5       	brne	.+72     	; 0x35a <NES_tick+0x5c>
+ 312:	0a c0       	rjmp	.+20     	; 0x328 <NES_tick+0x2a>
+ 314:	83 30       	cpi	r24, 0x03	; 3
+ 316:	81 f0       	breq	.+32     	; 0x338 <NES_tick+0x3a>
+ 318:	84 30       	cpi	r24, 0x04	; 4
+ 31a:	f9 f4       	brne	.+62     	; 0x35a <NES_tick+0x5c>
+ 31c:	1b c0       	rjmp	.+54     	; 0x354 <NES_tick+0x56>
+	{
+		case INIT: NES_State = LATCH; pulse = 0; keys = 0; break;
+		case LATCH: NES_State = UNLATCH; break;
+ 31e:	81 e0       	ldi	r24, 0x01	; 1
+ 320:	80 93 8a 00 	sts	0x008A, r24
+	}
+	
+	switch(NES_State)
+	{
+		case LATCH: PORTA |= 2; pulse = 0; break; // latch
+		case UNLATCH: PORTA &= ~2; break; //unlatch 
+ 324:	d9 98       	cbi	0x1b, 1	; 27
+ 326:	08 95       	ret
+{
+	switch(NES_State)
+	{
+		case INIT: NES_State = LATCH; pulse = 0; keys = 0; break;
+		case LATCH: NES_State = UNLATCH; break;
+		case UNLATCH: NES_State = READ; break;
+ 328:	83 e0       	ldi	r24, 0x03	; 3
+ 32a:	80 93 8a 00 	sts	0x008A, r24
+ 32e:	18 c0       	rjmp	.+48     	; 0x360 <NES_tick+0x62>
+		case PULSE: NES_State = READ; break;
+ 330:	83 e0       	ldi	r24, 0x03	; 3
+ 332:	80 93 8a 00 	sts	0x008A, r24
+ 336:	14 c0       	rjmp	.+40     	; 0x360 <NES_tick+0x62>
+		case READ: NES_State = (pulse == 7)?WRITE:PULSE; break;
+ 338:	80 91 8b 00 	lds	r24, 0x008B
+ 33c:	87 30       	cpi	r24, 0x07	; 7
+ 33e:	f9 f4       	brne	.+62     	; 0x37e <NES_tick+0x80>
+ 340:	84 e0       	ldi	r24, 0x04	; 4
+ 342:	80 93 8a 00 	sts	0x008A, r24
+	{
+		case LATCH: PORTA |= 2; pulse = 0; break; // latch
+		case UNLATCH: PORTA &= ~2; break; //unlatch 
+		case PULSE: PORTA |= 1; ++pulse; break; //clock high
+		case READ: keys = (keys << 1) | ((PINA & 4)==0);  PORTA &= ~1; break; //read, clock low
+		case WRITE: PORTC = keys; keys = 0xFF; break;
+ 346:	80 91 8d 00 	lds	r24, 0x008D
+ 34a:	85 bb       	out	0x15, r24	; 21
+ 34c:	8f ef       	ldi	r24, 0xFF	; 255
+ 34e:	80 93 8d 00 	sts	0x008D, r24
+ 352:	08 95       	ret
+		case INIT: NES_State = LATCH; pulse = 0; keys = 0; break;
+		case LATCH: NES_State = UNLATCH; break;
+		case UNLATCH: NES_State = READ; break;
+		case PULSE: NES_State = READ; break;
+		case READ: NES_State = (pulse == 7)?WRITE:PULSE; break;
+		case WRITE: NES_State = LATCH; break;
+ 354:	10 92 8a 00 	sts	0x008A, r1
+ 358:	0e c0       	rjmp	.+28     	; 0x376 <NES_tick+0x78>
+		default: NES_State = LATCH;
+ 35a:	10 92 8a 00 	sts	0x008A, r1
+ 35e:	0b c0       	rjmp	.+22     	; 0x376 <NES_tick+0x78>
+	switch(NES_State)
+	{
+		case LATCH: PORTA |= 2; pulse = 0; break; // latch
+		case UNLATCH: PORTA &= ~2; break; //unlatch 
+		case PULSE: PORTA |= 1; ++pulse; break; //clock high
+		case READ: keys = (keys << 1) | ((PINA & 4)==0);  PORTA &= ~1; break; //read, clock low
+ 360:	81 e0       	ldi	r24, 0x01	; 1
+ 362:	ca 99       	sbic	0x19, 2	; 25
+ 364:	80 e0       	ldi	r24, 0x00	; 0
+ 366:	90 91 8d 00 	lds	r25, 0x008D
+ 36a:	99 0f       	add	r25, r25
+ 36c:	89 2b       	or	r24, r25
+ 36e:	80 93 8d 00 	sts	0x008D, r24
+ 372:	d8 98       	cbi	0x1b, 0	; 27
+ 374:	08 95       	ret
+		default: NES_State = LATCH;
+	}
+	
+	switch(NES_State)
+	{
+		case LATCH: PORTA |= 2; pulse = 0; break; // latch
+ 376:	d9 9a       	sbi	0x1b, 1	; 27
+ 378:	10 92 8b 00 	sts	0x008B, r1
+ 37c:	08 95       	ret
+	{
+		case INIT: NES_State = LATCH; pulse = 0; keys = 0; break;
+		case LATCH: NES_State = UNLATCH; break;
+		case UNLATCH: NES_State = READ; break;
+		case PULSE: NES_State = READ; break;
+		case READ: NES_State = (pulse == 7)?WRITE:PULSE; break;
+ 37e:	82 e0       	ldi	r24, 0x02	; 2
+ 380:	80 93 8a 00 	sts	0x008A, r24
+	
+	switch(NES_State)
+	{
+		case LATCH: PORTA |= 2; pulse = 0; break; // latch
+		case UNLATCH: PORTA &= ~2; break; //unlatch 
+		case PULSE: PORTA |= 1; ++pulse; break; //clock high
+ 384:	d8 9a       	sbi	0x1b, 0	; 27
+ 386:	80 91 8b 00 	lds	r24, 0x008B
+ 38a:	8f 5f       	subi	r24, 0xFF	; 255
+ 38c:	80 93 8b 00 	sts	0x008B, r24
+ 390:	08 95       	ret
+
+00000392 <main>:
+	}
+}
+
+void main()
+{
+	DDRA = 0x03; PORTA = 0xFC;
+ 392:	83 e0       	ldi	r24, 0x03	; 3
+ 394:	8a bb       	out	0x1a, r24	; 26
+ 396:	8c ef       	ldi	r24, 0xFC	; 252
+ 398:	8b bb       	out	0x1b, r24	; 27
+	DDRB = 0xFF; PORTB = 0x00;
+ 39a:	cf ef       	ldi	r28, 0xFF	; 255
+ 39c:	c7 bb       	out	0x17, r28	; 23
+ 39e:	18 ba       	out	0x18, r1	; 24
+	DDRC = 0xFF; PORTC = 0xFF;
+ 3a0:	c4 bb       	out	0x14, r28	; 20
+ 3a2:	c5 bb       	out	0x15, r28	; 21
+	
+	TimerSet(1);//250 * TICKS_PER_MS);
+ 3a4:	61 e0       	ldi	r22, 0x01	; 1
+ 3a6:	70 e0       	ldi	r23, 0x00	; 0
+ 3a8:	80 e0       	ldi	r24, 0x00	; 0
+ 3aa:	90 e0       	ldi	r25, 0x00	; 0
+ 3ac:	0e 94 b5 00 	call	0x16a	; 0x16a <TimerSet>
+	TimerOn();
+ 3b0:	0e 94 49 00 	call	0x92	; 0x92 <TimerOn>
+	
+	NES_State = INIT;
+ 3b4:	c0 93 8a 00 	sts	0x008A, r28
+	
+	while(1) {
+		NES_tick();
+ 3b8:	0e 94 7f 01 	call	0x2fe	; 0x2fe <NES_tick>
+		//PORTB = led_states | blink_state | sound_state;
+		
+        while (!TimerFlag);	// Wait 1 sec
+ 3bc:	80 91 86 00 	lds	r24, 0x0086
+ 3c0:	88 23       	and	r24, r24
+ 3c2:	e1 f3       	breq	.-8      	; 0x3bc <main+0x2a>
+		TimerFlag = 0;
+ 3c4:	10 92 86 00 	sts	0x0086, r1
+	}
+ 3c8:	f7 cf       	rjmp	.-18     	; 0x3b8 <main+0x26>
+
+000003ca <__udivmodhi4>:
+ 3ca:	aa 1b       	sub	r26, r26
+ 3cc:	bb 1b       	sub	r27, r27
+ 3ce:	51 e1       	ldi	r21, 0x11	; 17
+ 3d0:	07 c0       	rjmp	.+14     	; 0x3e0 <__udivmodhi4_ep>
+
+000003d2 <__udivmodhi4_loop>:
+ 3d2:	aa 1f       	adc	r26, r26
+ 3d4:	bb 1f       	adc	r27, r27
+ 3d6:	a6 17       	cp	r26, r22
+ 3d8:	b7 07       	cpc	r27, r23
+ 3da:	10 f0       	brcs	.+4      	; 0x3e0 <__udivmodhi4_ep>
+ 3dc:	a6 1b       	sub	r26, r22
+ 3de:	b7 0b       	sbc	r27, r23
+
+000003e0 <__udivmodhi4_ep>:
+ 3e0:	88 1f       	adc	r24, r24
+ 3e2:	99 1f       	adc	r25, r25
+ 3e4:	5a 95       	dec	r21
+ 3e6:	a9 f7       	brne	.-22     	; 0x3d2 <__udivmodhi4_loop>
+ 3e8:	80 95       	com	r24
+ 3ea:	90 95       	com	r25
+ 3ec:	bc 01       	movw	r22, r24
+ 3ee:	cd 01       	movw	r24, r26
+ 3f0:	08 95       	ret
+
+000003f2 <_exit>:
+ 3f2:	f8 94       	cli
+
+000003f4 <__stop_program>:
+ 3f4:	ff cf       	rjmp	.-2      	; 0x3f4 <__stop_program>

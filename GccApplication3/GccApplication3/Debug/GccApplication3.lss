@@ -1,0 +1,252 @@
+
+GccApplication3.elf:     file format elf32-avr
+
+Sections:
+Idx Name          Size      VMA       LMA       File off  Algn
+  0 .text         0000015a  00000000  00000000  00000094  2**1
+                  CONTENTS, ALLOC, LOAD, READONLY, CODE
+  1 .data         00000010  00800060  0000015a  000001ee  2**0
+                  CONTENTS, ALLOC, LOAD, DATA
+  2 .bss          00000002  00800070  00800070  000001fe  2**0
+                  ALLOC
+  3 .stab         000006cc  00000000  00000000  00000200  2**2
+                  CONTENTS, READONLY, DEBUGGING
+  4 .stabstr      00000085  00000000  00000000  000008cc  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  5 .debug_aranges 00000080  00000000  00000000  00000958  2**3
+                  CONTENTS, READONLY, DEBUGGING
+  6 .debug_info   000003e4  00000000  00000000  000009d8  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  7 .debug_abbrev 00000138  00000000  00000000  00000dbc  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  8 .debug_line   000002a9  00000000  00000000  00000ef4  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  9 .debug_frame  0000004c  00000000  00000000  000011a0  2**2
+                  CONTENTS, READONLY, DEBUGGING
+ 10 .debug_str    000000d1  00000000  00000000  000011ec  2**0
+                  CONTENTS, READONLY, DEBUGGING
+ 11 .debug_loc    00000053  00000000  00000000  000012bd  2**0
+                  CONTENTS, READONLY, DEBUGGING
+
+Disassembly of section .text:
+
+00000000 <__vectors>:
+   0:	0c 94 2a 00 	jmp	0x54	; 0x54 <__ctors_end>
+   4:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+   8:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+   c:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+  10:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+  14:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+  18:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+  1c:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+  20:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+  24:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+  28:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+  2c:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+  30:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+  34:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+  38:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+  3c:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+  40:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+  44:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+  48:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+  4c:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+  50:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+
+00000054 <__ctors_end>:
+  54:	11 24       	eor	r1, r1
+  56:	1f be       	out	0x3f, r1	; 63
+  58:	cf e5       	ldi	r28, 0x5F	; 95
+  5a:	d8 e0       	ldi	r29, 0x08	; 8
+  5c:	de bf       	out	0x3e, r29	; 62
+  5e:	cd bf       	out	0x3d, r28	; 61
+
+00000060 <__do_copy_data>:
+  60:	10 e0       	ldi	r17, 0x00	; 0
+  62:	a0 e6       	ldi	r26, 0x60	; 96
+  64:	b0 e0       	ldi	r27, 0x00	; 0
+  66:	ea e5       	ldi	r30, 0x5A	; 90
+  68:	f1 e0       	ldi	r31, 0x01	; 1
+  6a:	02 c0       	rjmp	.+4      	; 0x70 <__do_copy_data+0x10>
+  6c:	05 90       	lpm	r0, Z+
+  6e:	0d 92       	st	X+, r0
+  70:	a0 37       	cpi	r26, 0x70	; 112
+  72:	b1 07       	cpc	r27, r17
+  74:	d9 f7       	brne	.-10     	; 0x6c <__do_copy_data+0xc>
+
+00000076 <__do_clear_bss>:
+  76:	10 e0       	ldi	r17, 0x00	; 0
+  78:	a0 e7       	ldi	r26, 0x70	; 112
+  7a:	b0 e0       	ldi	r27, 0x00	; 0
+  7c:	01 c0       	rjmp	.+2      	; 0x80 <.do_clear_bss_start>
+
+0000007e <.do_clear_bss_loop>:
+  7e:	1d 92       	st	X+, r1
+
+00000080 <.do_clear_bss_start>:
+  80:	a2 37       	cpi	r26, 0x72	; 114
+  82:	b1 07       	cpc	r27, r17
+  84:	e1 f7       	brne	.-8      	; 0x7e <.do_clear_bss_loop>
+  86:	0e 94 9e 00 	call	0x13c	; 0x13c <main>
+  8a:	0c 94 ab 00 	jmp	0x156	; 0x156 <_exit>
+
+0000008e <__bad_interrupt>:
+  8e:	0c 94 00 00 	jmp	0	; 0x0 <__vectors>
+
+00000092 <Write7Seg>:
+	0x77, 0x4C, //0111 0111, 0100 1100, //6, 7
+	0x7F, 0x6F, //0111 1111, 0111 1111, //8, 9
+	0x5F, 0x73, //0101 1111, 0111 0011, //A, B
+	0x36, 0x79, //0111 0110, 0111 1001, //C, D
+0x37, 0x17};//0011 0111, 0001 0111};//E, F
+PORTC = ~Seg7[x%16];
+  92:	e8 2f       	mov	r30, r24
+  94:	f0 e0       	ldi	r31, 0x00	; 0
+  96:	ef 70       	andi	r30, 0x0F	; 15
+  98:	f0 70       	andi	r31, 0x00	; 0
+  9a:	e0 5a       	subi	r30, 0xA0	; 160
+  9c:	ff 4f       	sbci	r31, 0xFF	; 255
+  9e:	80 81       	ld	r24, Z
+  a0:	80 95       	com	r24
+  a2:	85 bb       	out	0x15, r24	; 21
+}
+  a4:	08 95       	ret
+
+000000a6 <smTick>:
+
+ void smTick(unsigned char input)
+ {
+  a6:	cf 93       	push	r28
+  a8:	c8 2f       	mov	r28, r24
+   switch(state)
+  aa:	80 91 70 00 	lds	r24, 0x0070
+  ae:	81 30       	cpi	r24, 0x01	; 1
+  b0:	61 f1       	breq	.+88     	; 0x10a <smTick+0x64>
+  b2:	81 30       	cpi	r24, 0x01	; 1
+  b4:	38 f0       	brcs	.+14     	; 0xc4 <smTick+0x1e>
+  b6:	8f 3f       	cpi	r24, 0xFF	; 255
+  b8:	89 f5       	brne	.+98     	; 0x11c <smTick+0x76>
+   {
+      case (unsigned char)(-1): //move to initial state
+         state = s0;
+  ba:	10 92 70 00 	sts	0x0070, r1
+         count = 0;
+  be:	10 92 71 00 	sts	0x0071, r1
+         break;
+  c2:	3a c0       	rjmp	.+116    	; 0x138 <smTick+0x92>
+      case s0: //initial state, and only state
+         {
+            switch(input)
+  c4:	c2 30       	cpi	r28, 0x02	; 2
+  c6:	61 f0       	breq	.+24     	; 0xe0 <smTick+0x3a>
+  c8:	c3 30       	cpi	r28, 0x03	; 3
+  ca:	91 f0       	breq	.+36     	; 0xf0 <smTick+0x4a>
+  cc:	c1 30       	cpi	r28, 0x01	; 1
+  ce:	99 f4       	brne	.+38     	; 0xf6 <smTick+0x50>
+            {
+               case 0:
+                  break;
+               case 1: //P0
+                  if(count != 9)
+  d0:	80 91 71 00 	lds	r24, 0x0071
+  d4:	89 30       	cpi	r24, 0x09	; 9
+  d6:	59 f1       	breq	.+86     	; 0x12e <smTick+0x88>
+                     ++count;
+  d8:	8f 5f       	subi	r24, 0xFF	; 255
+  da:	80 93 71 00 	sts	0x0071, r24
+  de:	22 c0       	rjmp	.+68     	; 0x124 <smTick+0x7e>
+                  break;
+               case 2: //P1
+                  if(count != 0)
+  e0:	80 91 71 00 	lds	r24, 0x0071
+  e4:	88 23       	and	r24, r24
+  e6:	19 f1       	breq	.+70     	; 0x12e <smTick+0x88>
+                     --count;
+  e8:	81 50       	subi	r24, 0x01	; 1
+  ea:	80 93 71 00 	sts	0x0071, r24
+  ee:	1a c0       	rjmp	.+52     	; 0x124 <smTick+0x7e>
+                  break;
+               case 3: //P0 && P1
+                  count = 0;
+  f0:	10 92 71 00 	sts	0x0071, r1
+  f4:	17 c0       	rjmp	.+46     	; 0x124 <smTick+0x7e>
+
+            }
+            Write7Seg(count);//PORTC = count;
+  f6:	80 91 71 00 	lds	r24, 0x0071
+  fa:	0e 94 49 00 	call	0x92	; 0x92 <Write7Seg>
+            if(input)
+  fe:	cc 23       	and	r28, r28
+ 100:	d9 f0       	breq	.+54     	; 0x138 <smTick+0x92>
+               state = s1;
+ 102:	81 e0       	ldi	r24, 0x01	; 1
+ 104:	80 93 70 00 	sts	0x0070, r24
+ 108:	17 c0       	rjmp	.+46     	; 0x138 <smTick+0x92>
+         }
+         break;
+      case s1:
+         if(input == 3)
+ 10a:	c3 30       	cpi	r28, 0x03	; 3
+ 10c:	19 f4       	brne	.+6      	; 0x114 <smTick+0x6e>
+             count = 0;
+ 10e:	10 92 71 00 	sts	0x0071, r1
+ 112:	04 c0       	rjmp	.+8      	; 0x11c <smTick+0x76>
+         if(!input)
+ 114:	cc 23       	and	r28, r28
+ 116:	11 f4       	brne	.+4      	; 0x11c <smTick+0x76>
+             state = s0;
+ 118:	10 92 70 00 	sts	0x0070, r1
+      default:
+         PORTB = state;
+ 11c:	80 91 70 00 	lds	r24, 0x0070
+ 120:	88 bb       	out	0x18, r24	; 24
+ 122:	0a c0       	rjmp	.+20     	; 0x138 <smTick+0x92>
+                  break;
+               case 3: //P0 && P1
+                  count = 0;
+
+            }
+            Write7Seg(count);//PORTC = count;
+ 124:	80 91 71 00 	lds	r24, 0x0071
+ 128:	0e 94 49 00 	call	0x92	; 0x92 <Write7Seg>
+ 12c:	ea cf       	rjmp	.-44     	; 0x102 <smTick+0x5c>
+ 12e:	80 91 71 00 	lds	r24, 0x0071
+ 132:	0e 94 49 00 	call	0x92	; 0x92 <Write7Seg>
+ 136:	e5 cf       	rjmp	.-54     	; 0x102 <smTick+0x5c>
+             state = s0;
+      default:
+         PORTB = state;
+         ;//error!
+   }
+ }
+ 138:	cf 91       	pop	r28
+ 13a:	08 95       	ret
+
+0000013c <main>:
+
+ int main(void)
+ {
+   DDRA = 0x00; PORTA = 0xFF;
+ 13c:	1a ba       	out	0x1a, r1	; 26
+ 13e:	8f ef       	ldi	r24, 0xFF	; 255
+ 140:	8b bb       	out	0x1b, r24	; 27
+   DDRC = 0xFF; PORTC = 0x00;
+ 142:	84 bb       	out	0x14, r24	; 20
+ 144:	15 ba       	out	0x15, r1	; 21
+   state = -1;
+ 146:	80 93 70 00 	sts	0x0070, r24
+   while(1)
+   {
+
+      smTick (~PINA & 0x03);
+ 14a:	89 b3       	in	r24, 0x19	; 25
+ 14c:	80 95       	com	r24
+ 14e:	83 70       	andi	r24, 0x03	; 3
+ 150:	0e 94 53 00 	call	0xa6	; 0xa6 <smTick>
+ 154:	fa cf       	rjmp	.-12     	; 0x14a <main+0xe>
+
+00000156 <_exit>:
+ 156:	f8 94       	cli
+
+00000158 <__stop_program>:
+ 158:	ff cf       	rjmp	.-2      	; 0x158 <__stop_program>

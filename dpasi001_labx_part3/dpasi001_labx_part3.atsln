@@ -1,0 +1,20 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 11.00
+# Atmel Studio Solution File, Format Version 11.00
+Project("{54F91283-7BC4-4236-8FF9-10F437C3AD48}") = "dpasi001_labx_part3", "dpasi001_labx_part3\dpasi001_labx_part3.cproj", "{6378A03D-91A2-49EB-A3C2-850899450FFF}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|AVR = Debug|AVR
+		Release|AVR = Release|AVR
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{6378A03D-91A2-49EB-A3C2-850899450FFF}.Debug|AVR.ActiveCfg = Debug|AVR
+		{6378A03D-91A2-49EB-A3C2-850899450FFF}.Debug|AVR.Build.0 = Debug|AVR
+		{6378A03D-91A2-49EB-A3C2-850899450FFF}.Release|AVR.ActiveCfg = Release|AVR
+		{6378A03D-91A2-49EB-A3C2-850899450FFF}.Release|AVR.Build.0 = Release|AVR
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

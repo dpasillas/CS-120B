@@ -1,0 +1,2771 @@
+
+dpasi001_sound.elf:     file format elf32-avr
+
+Sections:
+Idx Name          Size      VMA       LMA       File off  Algn
+  0 .text         00001626  00000000  00000000  00000094  2**1
+                  CONTENTS, ALLOC, LOAD, READONLY, CODE
+  1 .data         00000004  00800060  00001626  000016ba  2**0
+                  CONTENTS, ALLOC, LOAD, DATA
+  2 .bss          00000004  00800064  00800064  000016be  2**0
+                  ALLOC
+  3 .stab         000006cc  00000000  00000000  000016c0  2**2
+                  CONTENTS, READONLY, DEBUGGING
+  4 .stabstr      00000085  00000000  00000000  00001d8c  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  5 .debug_aranges 00000080  00000000  00000000  00001e18  2**3
+                  CONTENTS, READONLY, DEBUGGING
+  6 .debug_info   000006f9  00000000  00000000  00001e98  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  7 .debug_abbrev 000001e5  00000000  00000000  00002591  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  8 .debug_line   00000477  00000000  00000000  00002776  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  9 .debug_frame  000000a8  00000000  00000000  00002bf0  2**2
+                  CONTENTS, READONLY, DEBUGGING
+ 10 .debug_str    0000013e  00000000  00000000  00002c98  2**0
+                  CONTENTS, READONLY, DEBUGGING
+ 11 .debug_loc    00000387  00000000  00000000  00002dd6  2**0
+                  CONTENTS, READONLY, DEBUGGING
+
+Disassembly of section .text:
+
+00000000 <__vectors>:
+       0:	0c 94 2a 00 	jmp	0x54	; 0x54 <__ctors_end>
+       4:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+       8:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+       c:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+      10:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+      14:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+      18:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+      1c:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+      20:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+      24:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+      28:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+      2c:	0c 94 49 00 	jmp	0x92	; 0x92 <__vector_11>
+      30:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+      34:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+      38:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+      3c:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+      40:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+      44:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+      48:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+      4c:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+      50:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+
+00000054 <__ctors_end>:
+      54:	11 24       	eor	r1, r1
+      56:	1f be       	out	0x3f, r1	; 63
+      58:	cf e5       	ldi	r28, 0x5F	; 95
+      5a:	d8 e0       	ldi	r29, 0x08	; 8
+      5c:	de bf       	out	0x3e, r29	; 62
+      5e:	cd bf       	out	0x3d, r28	; 61
+
+00000060 <__do_copy_data>:
+      60:	10 e0       	ldi	r17, 0x00	; 0
+      62:	a0 e6       	ldi	r26, 0x60	; 96
+      64:	b0 e0       	ldi	r27, 0x00	; 0
+      66:	e6 e2       	ldi	r30, 0x26	; 38
+      68:	f6 e1       	ldi	r31, 0x16	; 22
+      6a:	02 c0       	rjmp	.+4      	; 0x70 <__do_copy_data+0x10>
+      6c:	05 90       	lpm	r0, Z+
+      6e:	0d 92       	st	X+, r0
+      70:	a4 36       	cpi	r26, 0x64	; 100
+      72:	b1 07       	cpc	r27, r17
+      74:	d9 f7       	brne	.-10     	; 0x6c <__do_copy_data+0xc>
+
+00000076 <__do_clear_bss>:
+      76:	10 e0       	ldi	r17, 0x00	; 0
+      78:	a4 e6       	ldi	r26, 0x64	; 100
+      7a:	b0 e0       	ldi	r27, 0x00	; 0
+      7c:	01 c0       	rjmp	.+2      	; 0x80 <.do_clear_bss_start>
+
+0000007e <.do_clear_bss_loop>:
+      7e:	1d 92       	st	X+, r1
+
+00000080 <.do_clear_bss_start>:
+      80:	a8 36       	cpi	r26, 0x68	; 104
+      82:	b1 07       	cpc	r27, r17
+      84:	e1 f7       	brne	.-8      	; 0x7e <.do_clear_bss_loop>
+      86:	0e 94 f2 00 	call	0x1e4	; 0x1e4 <main>
+      8a:	0c 94 11 0b 	jmp	0x1622	; 0x1622 <_exit>
+
+0000008e <__bad_interrupt>:
+      8e:	0c 94 00 00 	jmp	0	; 0x0 <__vectors>
+
+00000092 <__vector_11>:
+volatile uint32_t intrs = 0;
+volatile int32_t curNote = REST;
+
+// TIMER0 overflow
+ISR(TIMER0_OVF_vect)
+{
+      92:	1f 92       	push	r1
+      94:	0f 92       	push	r0
+      96:	0f b6       	in	r0, 0x3f	; 63
+      98:	0f 92       	push	r0
+      9a:	11 24       	eor	r1, r1
+      9c:	2f 93       	push	r18
+      9e:	4f 93       	push	r20
+      a0:	5f 93       	push	r21
+      a2:	6f 93       	push	r22
+      a4:	7f 93       	push	r23
+      a6:	8f 93       	push	r24
+      a8:	9f 93       	push	r25
+      aa:	af 93       	push	r26
+      ac:	bf 93       	push	r27
+    if (curNote == REST)
+      ae:	80 91 60 00 	lds	r24, 0x0060
+      b2:	90 91 61 00 	lds	r25, 0x0061
+      b6:	a0 91 62 00 	lds	r26, 0x0062
+      ba:	b0 91 63 00 	lds	r27, 0x0063
+      be:	8f 3f       	cpi	r24, 0xFF	; 255
+      c0:	2f ef       	ldi	r18, 0xFF	; 255
+      c2:	92 07       	cpc	r25, r18
+      c4:	2f ef       	ldi	r18, 0xFF	; 255
+      c6:	a2 07       	cpc	r26, r18
+      c8:	2f ef       	ldi	r18, 0xFF	; 255
+      ca:	b2 07       	cpc	r27, r18
+      cc:	49 f4       	brne	.+18     	; 0xe0 <__vector_11+0x4e>
+        intrs = 0;
+      ce:	10 92 64 00 	sts	0x0064, r1
+      d2:	10 92 65 00 	sts	0x0065, r1
+      d6:	10 92 66 00 	sts	0x0066, r1
+      da:	10 92 67 00 	sts	0x0067, r1
+      de:	34 c0       	rjmp	.+104    	; 0x148 <__vector_11+0xb6>
+    else
+    {
+        intrs++;
+      e0:	80 91 64 00 	lds	r24, 0x0064
+      e4:	90 91 65 00 	lds	r25, 0x0065
+      e8:	a0 91 66 00 	lds	r26, 0x0066
+      ec:	b0 91 67 00 	lds	r27, 0x0067
+      f0:	01 96       	adiw	r24, 0x01	; 1
+      f2:	a1 1d       	adc	r26, r1
+      f4:	b1 1d       	adc	r27, r1
+      f6:	80 93 64 00 	sts	0x0064, r24
+      fa:	90 93 65 00 	sts	0x0065, r25
+      fe:	a0 93 66 00 	sts	0x0066, r26
+     102:	b0 93 67 00 	sts	0x0067, r27
+        if (intrs >= curNote)
+     106:	40 91 60 00 	lds	r20, 0x0060
+     10a:	50 91 61 00 	lds	r21, 0x0061
+     10e:	60 91 62 00 	lds	r22, 0x0062
+     112:	70 91 63 00 	lds	r23, 0x0063
+     116:	80 91 64 00 	lds	r24, 0x0064
+     11a:	90 91 65 00 	lds	r25, 0x0065
+     11e:	a0 91 66 00 	lds	r26, 0x0066
+     122:	b0 91 67 00 	lds	r27, 0x0067
+     126:	84 17       	cp	r24, r20
+     128:	95 07       	cpc	r25, r21
+     12a:	a6 07       	cpc	r26, r22
+     12c:	b7 07       	cpc	r27, r23
+     12e:	60 f0       	brcs	.+24     	; 0x148 <__vector_11+0xb6>
+        {
+            PORTA ^= 1;//_BV(PD4);
+     130:	9b b3       	in	r25, 0x1b	; 27
+     132:	81 e0       	ldi	r24, 0x01	; 1
+     134:	89 27       	eor	r24, r25
+     136:	8b bb       	out	0x1b, r24	; 27
+            intrs = 0;
+     138:	10 92 64 00 	sts	0x0064, r1
+     13c:	10 92 65 00 	sts	0x0065, r1
+     140:	10 92 66 00 	sts	0x0066, r1
+     144:	10 92 67 00 	sts	0x0067, r1
+        }
+    }
+}
+     148:	bf 91       	pop	r27
+     14a:	af 91       	pop	r26
+     14c:	9f 91       	pop	r25
+     14e:	8f 91       	pop	r24
+     150:	7f 91       	pop	r23
+     152:	6f 91       	pop	r22
+     154:	5f 91       	pop	r21
+     156:	4f 91       	pop	r20
+     158:	2f 91       	pop	r18
+     15a:	0f 90       	pop	r0
+     15c:	0f be       	out	0x3f, r0	; 63
+     15e:	0f 90       	pop	r0
+     160:	1f 90       	pop	r1
+     162:	18 95       	reti
+
+00000164 <play>:
+
+
+void play(int32_t note, uint32_t len)
+{
+     164:	0f 93       	push	r16
+     166:	1f 93       	push	r17
+     168:	dc 01       	movw	r26, r24
+     16a:	cb 01       	movw	r24, r22
+     16c:	ba 01       	movw	r22, r20
+     16e:	a9 01       	movw	r20, r18
+    int i;
+    curNote = note;
+     170:	80 93 60 00 	sts	0x0060, r24
+     174:	90 93 61 00 	sts	0x0061, r25
+     178:	a0 93 62 00 	sts	0x0062, r26
+     17c:	b0 93 63 00 	sts	0x0063, r27
+    for (i = 0; i< len; i++)
+     180:	41 15       	cp	r20, r1
+     182:	51 05       	cpc	r21, r1
+     184:	61 05       	cpc	r22, r1
+     186:	71 05       	cpc	r23, r1
+     188:	b1 f0       	breq	.+44     	; 0x1b6 <play+0x52>
+     18a:	80 e0       	ldi	r24, 0x00	; 0
+     18c:	90 e0       	ldi	r25, 0x00	; 0
+	#else
+		//round up by default
+		__ticks_dc = (uint32_t)(ceil(fabs(__tmp)));
+	#endif
+
+	__builtin_avr_delay_cycles(__ticks_dc);
+     18e:	0f ef       	ldi	r16, 0xFF	; 255
+     190:	1d ee       	ldi	r17, 0xED	; 237
+     192:	22 e0       	ldi	r18, 0x02	; 2
+     194:	01 50       	subi	r16, 0x01	; 1
+     196:	10 40       	sbci	r17, 0x00	; 0
+     198:	20 40       	sbci	r18, 0x00	; 0
+     19a:	e1 f7       	brne	.-8      	; 0x194 <play+0x30>
+     19c:	00 c0       	rjmp	.+0      	; 0x19e <play+0x3a>
+     19e:	00 00       	nop
+     1a0:	01 96       	adiw	r24, 0x01	; 1
+     1a2:	8c 01       	movw	r16, r24
+     1a4:	22 27       	eor	r18, r18
+     1a6:	17 fd       	sbrc	r17, 7
+     1a8:	20 95       	com	r18
+     1aa:	32 2f       	mov	r19, r18
+     1ac:	04 17       	cp	r16, r20
+     1ae:	15 07       	cpc	r17, r21
+     1b0:	26 07       	cpc	r18, r22
+     1b2:	37 07       	cpc	r19, r23
+     1b4:	60 f3       	brcs	.-40     	; 0x18e <play+0x2a>
+	{
+        _delay_ms(SEMIQUAVER_TIME);
+	}		
+    curNote = REST;
+     1b6:	8f ef       	ldi	r24, 0xFF	; 255
+     1b8:	9f ef       	ldi	r25, 0xFF	; 255
+     1ba:	dc 01       	movw	r26, r24
+     1bc:	80 93 60 00 	sts	0x0060, r24
+     1c0:	90 93 61 00 	sts	0x0061, r25
+     1c4:	a0 93 62 00 	sts	0x0062, r26
+     1c8:	b0 93 63 00 	sts	0x0063, r27
+     1cc:	8f ef       	ldi	r24, 0xFF	; 255
+     1ce:	99 ef       	ldi	r25, 0xF9	; 249
+     1d0:	a0 e0       	ldi	r26, 0x00	; 0
+     1d2:	81 50       	subi	r24, 0x01	; 1
+     1d4:	90 40       	sbci	r25, 0x00	; 0
+     1d6:	a0 40       	sbci	r26, 0x00	; 0
+     1d8:	e1 f7       	brne	.-8      	; 0x1d2 <play+0x6e>
+     1da:	00 c0       	rjmp	.+0      	; 0x1dc <play+0x78>
+     1dc:	00 00       	nop
+    _delay_ms(BREATH_TIME);
+}
+     1de:	1f 91       	pop	r17
+     1e0:	0f 91       	pop	r16
+     1e2:	08 95       	ret
+
+000001e4 <main>:
+int main(void)
+{
+    /* setup clock divider. Timer0 overflows on counting to 256.
+     * 8Mhz / 1 (CS0=1) = 16000000 increments/sec. Overflows every 256, so 31250
+     * overflow interrupts/sec */
+    TCCR0 |= _BV(CS00);
+     1e4:	83 b7       	in	r24, 0x33	; 51
+     1e6:	81 60       	ori	r24, 0x01	; 1
+     1e8:	83 bf       	out	0x33, r24	; 51
+
+    // enable overflow interrupts
+    TIMSK |= _BV(TOIE0);
+     1ea:	89 b7       	in	r24, 0x39	; 57
+     1ec:	81 60       	ori	r24, 0x01	; 1
+     1ee:	89 bf       	out	0x39, r24	; 57
+
+    // PD4 as output
+    DDRA = 0xFF;//_BV(PD4);
+     1f0:	8f ef       	ldi	r24, 0xFF	; 255
+     1f2:	8a bb       	out	0x1a, r24	; 26
+
+    TCNT0 = 0;
+     1f4:	12 be       	out	0x32, r1	; 50
+    intrs = 0;
+     1f6:	10 92 64 00 	sts	0x0064, r1
+     1fa:	10 92 65 00 	sts	0x0065, r1
+     1fe:	10 92 66 00 	sts	0x0066, r1
+     202:	10 92 67 00 	sts	0x0067, r1
+
+    curNote = REST;
+     206:	8f ef       	ldi	r24, 0xFF	; 255
+     208:	9f ef       	ldi	r25, 0xFF	; 255
+     20a:	dc 01       	movw	r26, r24
+     20c:	80 93 60 00 	sts	0x0060, r24
+     210:	90 93 61 00 	sts	0x0061, r25
+     214:	a0 93 62 00 	sts	0x0062, r26
+     218:	b0 93 63 00 	sts	0x0063, r27
+
+    // enable interrupts
+    sei();
+     21c:	78 94       	sei
+
+    while (1)
+    {
+        // Axel F
+		//loop();
+        play(FSH_4, 2);
+     21e:	64 e5       	ldi	r22, 0x54	; 84
+     220:	70 e0       	ldi	r23, 0x00	; 0
+     222:	80 e0       	ldi	r24, 0x00	; 0
+     224:	90 e0       	ldi	r25, 0x00	; 0
+     226:	22 e0       	ldi	r18, 0x02	; 2
+     228:	30 e0       	ldi	r19, 0x00	; 0
+     22a:	40 e0       	ldi	r20, 0x00	; 0
+     22c:	50 e0       	ldi	r21, 0x00	; 0
+     22e:	0e 94 b2 00 	call	0x164	; 0x164 <play>
+        play(REST, 2);
+     232:	6f ef       	ldi	r22, 0xFF	; 255
+     234:	7f ef       	ldi	r23, 0xFF	; 255
+     236:	cb 01       	movw	r24, r22
+     238:	22 e0       	ldi	r18, 0x02	; 2
+     23a:	30 e0       	ldi	r19, 0x00	; 0
+     23c:	40 e0       	ldi	r20, 0x00	; 0
+     23e:	50 e0       	ldi	r21, 0x00	; 0
+     240:	0e 94 b2 00 	call	0x164	; 0x164 <play>
+        play(A_4, 3);
+     244:	67 e4       	ldi	r22, 0x47	; 71
+     246:	70 e0       	ldi	r23, 0x00	; 0
+     248:	80 e0       	ldi	r24, 0x00	; 0
+     24a:	90 e0       	ldi	r25, 0x00	; 0
+     24c:	23 e0       	ldi	r18, 0x03	; 3
+     24e:	30 e0       	ldi	r19, 0x00	; 0
+     250:	40 e0       	ldi	r20, 0x00	; 0
+     252:	50 e0       	ldi	r21, 0x00	; 0
+     254:	0e 94 b2 00 	call	0x164	; 0x164 <play>
+        play(FSH_4, 2);
+     258:	64 e5       	ldi	r22, 0x54	; 84
+     25a:	70 e0       	ldi	r23, 0x00	; 0
+     25c:	80 e0       	ldi	r24, 0x00	; 0
+     25e:	90 e0       	ldi	r25, 0x00	; 0
+     260:	22 e0       	ldi	r18, 0x02	; 2
+     262:	30 e0       	ldi	r19, 0x00	; 0
+     264:	40 e0       	ldi	r20, 0x00	; 0
+     266:	50 e0       	ldi	r21, 0x00	; 0
+     268:	0e 94 b2 00 	call	0x164	; 0x164 <play>
+        play(FSH_4, 1);
+     26c:	64 e5       	ldi	r22, 0x54	; 84
+     26e:	70 e0       	ldi	r23, 0x00	; 0
+     270:	80 e0       	ldi	r24, 0x00	; 0
+     272:	90 e0       	ldi	r25, 0x00	; 0
+     274:	21 e0       	ldi	r18, 0x01	; 1
+     276:	30 e0       	ldi	r19, 0x00	; 0
+     278:	40 e0       	ldi	r20, 0x00	; 0
+     27a:	50 e0       	ldi	r21, 0x00	; 0
+     27c:	0e 94 b2 00 	call	0x164	; 0x164 <play>
+        play(B_4, 2);
+     280:	6f e3       	ldi	r22, 0x3F	; 63
+     282:	70 e0       	ldi	r23, 0x00	; 0
+     284:	80 e0       	ldi	r24, 0x00	; 0
+     286:	90 e0       	ldi	r25, 0x00	; 0
+     288:	22 e0       	ldi	r18, 0x02	; 2
+     28a:	30 e0       	ldi	r19, 0x00	; 0
+     28c:	40 e0       	ldi	r20, 0x00	; 0
+     28e:	50 e0       	ldi	r21, 0x00	; 0
+     290:	0e 94 b2 00 	call	0x164	; 0x164 <play>
+        play(FSH_4, 2);
+     294:	64 e5       	ldi	r22, 0x54	; 84
+     296:	70 e0       	ldi	r23, 0x00	; 0
+     298:	80 e0       	ldi	r24, 0x00	; 0
+     29a:	90 e0       	ldi	r25, 0x00	; 0
+     29c:	22 e0       	ldi	r18, 0x02	; 2
+     29e:	30 e0       	ldi	r19, 0x00	; 0
+     2a0:	40 e0       	ldi	r20, 0x00	; 0
+     2a2:	50 e0       	ldi	r21, 0x00	; 0
+     2a4:	0e 94 b2 00 	call	0x164	; 0x164 <play>
+        play(E_4, 2);
+     2a8:	6e e5       	ldi	r22, 0x5E	; 94
+     2aa:	70 e0       	ldi	r23, 0x00	; 0
+     2ac:	80 e0       	ldi	r24, 0x00	; 0
+     2ae:	90 e0       	ldi	r25, 0x00	; 0
+     2b0:	22 e0       	ldi	r18, 0x02	; 2
+     2b2:	30 e0       	ldi	r19, 0x00	; 0
+     2b4:	40 e0       	ldi	r20, 0x00	; 0
+     2b6:	50 e0       	ldi	r21, 0x00	; 0
+     2b8:	0e 94 b2 00 	call	0x164	; 0x164 <play>
+        play(FSH_4, 2);
+     2bc:	64 e5       	ldi	r22, 0x54	; 84
+     2be:	70 e0       	ldi	r23, 0x00	; 0
+     2c0:	80 e0       	ldi	r24, 0x00	; 0
+     2c2:	90 e0       	ldi	r25, 0x00	; 0
+     2c4:	22 e0       	ldi	r18, 0x02	; 2
+     2c6:	30 e0       	ldi	r19, 0x00	; 0
+     2c8:	40 e0       	ldi	r20, 0x00	; 0
+     2ca:	50 e0       	ldi	r21, 0x00	; 0
+     2cc:	0e 94 b2 00 	call	0x164	; 0x164 <play>
+        play(REST, 2);
+     2d0:	6f ef       	ldi	r22, 0xFF	; 255
+     2d2:	7f ef       	ldi	r23, 0xFF	; 255
+     2d4:	cb 01       	movw	r24, r22
+     2d6:	22 e0       	ldi	r18, 0x02	; 2
+     2d8:	30 e0       	ldi	r19, 0x00	; 0
+     2da:	40 e0       	ldi	r20, 0x00	; 0
+     2dc:	50 e0       	ldi	r21, 0x00	; 0
+     2de:	0e 94 b2 00 	call	0x164	; 0x164 <play>
+        play(CSH_5, 3);
+     2e2:	68 e3       	ldi	r22, 0x38	; 56
+     2e4:	70 e0       	ldi	r23, 0x00	; 0
+     2e6:	80 e0       	ldi	r24, 0x00	; 0
+     2e8:	90 e0       	ldi	r25, 0x00	; 0
+     2ea:	23 e0       	ldi	r18, 0x03	; 3
+     2ec:	30 e0       	ldi	r19, 0x00	; 0
+     2ee:	40 e0       	ldi	r20, 0x00	; 0
+     2f0:	50 e0       	ldi	r21, 0x00	; 0
+     2f2:	0e 94 b2 00 	call	0x164	; 0x164 <play>
+        play(FSH_4, 2);
+     2f6:	64 e5       	ldi	r22, 0x54	; 84
+     2f8:	70 e0       	ldi	r23, 0x00	; 0
+     2fa:	80 e0       	ldi	r24, 0x00	; 0
+     2fc:	90 e0       	ldi	r25, 0x00	; 0
+     2fe:	22 e0       	ldi	r18, 0x02	; 2
+     300:	30 e0       	ldi	r19, 0x00	; 0
+     302:	40 e0       	ldi	r20, 0x00	; 0
+     304:	50 e0       	ldi	r21, 0x00	; 0
+     306:	0e 94 b2 00 	call	0x164	; 0x164 <play>
+        play(FSH_4, 1);
+     30a:	64 e5       	ldi	r22, 0x54	; 84
+     30c:	70 e0       	ldi	r23, 0x00	; 0
+     30e:	80 e0       	ldi	r24, 0x00	; 0
+     310:	90 e0       	ldi	r25, 0x00	; 0
+     312:	21 e0       	ldi	r18, 0x01	; 1
+     314:	30 e0       	ldi	r19, 0x00	; 0
+     316:	40 e0       	ldi	r20, 0x00	; 0
+     318:	50 e0       	ldi	r21, 0x00	; 0
+     31a:	0e 94 b2 00 	call	0x164	; 0x164 <play>
+        play(D_5, 2);
+     31e:	65 e3       	ldi	r22, 0x35	; 53
+     320:	70 e0       	ldi	r23, 0x00	; 0
+     322:	80 e0       	ldi	r24, 0x00	; 0
+     324:	90 e0       	ldi	r25, 0x00	; 0
+     326:	22 e0       	ldi	r18, 0x02	; 2
+     328:	30 e0       	ldi	r19, 0x00	; 0
+     32a:	40 e0       	ldi	r20, 0x00	; 0
+     32c:	50 e0       	ldi	r21, 0x00	; 0
+     32e:	0e 94 b2 00 	call	0x164	; 0x164 <play>
+        play(CSH_5, 2);
+     332:	68 e3       	ldi	r22, 0x38	; 56
+     334:	70 e0       	ldi	r23, 0x00	; 0
+     336:	80 e0       	ldi	r24, 0x00	; 0
+     338:	90 e0       	ldi	r25, 0x00	; 0
+     33a:	22 e0       	ldi	r18, 0x02	; 2
+     33c:	30 e0       	ldi	r19, 0x00	; 0
+     33e:	40 e0       	ldi	r20, 0x00	; 0
+     340:	50 e0       	ldi	r21, 0x00	; 0
+     342:	0e 94 b2 00 	call	0x164	; 0x164 <play>
+        play(A_4, 2);
+     346:	67 e4       	ldi	r22, 0x47	; 71
+     348:	70 e0       	ldi	r23, 0x00	; 0
+     34a:	80 e0       	ldi	r24, 0x00	; 0
+     34c:	90 e0       	ldi	r25, 0x00	; 0
+     34e:	22 e0       	ldi	r18, 0x02	; 2
+     350:	30 e0       	ldi	r19, 0x00	; 0
+     352:	40 e0       	ldi	r20, 0x00	; 0
+     354:	50 e0       	ldi	r21, 0x00	; 0
+     356:	0e 94 b2 00 	call	0x164	; 0x164 <play>
+        play(FSH_4, 2);
+     35a:	64 e5       	ldi	r22, 0x54	; 84
+     35c:	70 e0       	ldi	r23, 0x00	; 0
+     35e:	80 e0       	ldi	r24, 0x00	; 0
+     360:	90 e0       	ldi	r25, 0x00	; 0
+     362:	22 e0       	ldi	r18, 0x02	; 2
+     364:	30 e0       	ldi	r19, 0x00	; 0
+     366:	40 e0       	ldi	r20, 0x00	; 0
+     368:	50 e0       	ldi	r21, 0x00	; 0
+     36a:	0e 94 b2 00 	call	0x164	; 0x164 <play>
+        play(CSH_5, 2);
+     36e:	68 e3       	ldi	r22, 0x38	; 56
+     370:	70 e0       	ldi	r23, 0x00	; 0
+     372:	80 e0       	ldi	r24, 0x00	; 0
+     374:	90 e0       	ldi	r25, 0x00	; 0
+     376:	22 e0       	ldi	r18, 0x02	; 2
+     378:	30 e0       	ldi	r19, 0x00	; 0
+     37a:	40 e0       	ldi	r20, 0x00	; 0
+     37c:	50 e0       	ldi	r21, 0x00	; 0
+     37e:	0e 94 b2 00 	call	0x164	; 0x164 <play>
+        play(FSH_5, 2);
+     382:	6a e2       	ldi	r22, 0x2A	; 42
+     384:	70 e0       	ldi	r23, 0x00	; 0
+     386:	80 e0       	ldi	r24, 0x00	; 0
+     388:	90 e0       	ldi	r25, 0x00	; 0
+     38a:	22 e0       	ldi	r18, 0x02	; 2
+     38c:	30 e0       	ldi	r19, 0x00	; 0
+     38e:	40 e0       	ldi	r20, 0x00	; 0
+     390:	50 e0       	ldi	r21, 0x00	; 0
+     392:	0e 94 b2 00 	call	0x164	; 0x164 <play>
+        play(FSH_4, 1);
+     396:	64 e5       	ldi	r22, 0x54	; 84
+     398:	70 e0       	ldi	r23, 0x00	; 0
+     39a:	80 e0       	ldi	r24, 0x00	; 0
+     39c:	90 e0       	ldi	r25, 0x00	; 0
+     39e:	21 e0       	ldi	r18, 0x01	; 1
+     3a0:	30 e0       	ldi	r19, 0x00	; 0
+     3a2:	40 e0       	ldi	r20, 0x00	; 0
+     3a4:	50 e0       	ldi	r21, 0x00	; 0
+     3a6:	0e 94 b2 00 	call	0x164	; 0x164 <play>
+        play(E_4, 2);
+     3aa:	6e e5       	ldi	r22, 0x5E	; 94
+     3ac:	70 e0       	ldi	r23, 0x00	; 0
+     3ae:	80 e0       	ldi	r24, 0x00	; 0
+     3b0:	90 e0       	ldi	r25, 0x00	; 0
+     3b2:	22 e0       	ldi	r18, 0x02	; 2
+     3b4:	30 e0       	ldi	r19, 0x00	; 0
+     3b6:	40 e0       	ldi	r20, 0x00	; 0
+     3b8:	50 e0       	ldi	r21, 0x00	; 0
+     3ba:	0e 94 b2 00 	call	0x164	; 0x164 <play>
+        play(E_4, 1);
+     3be:	6e e5       	ldi	r22, 0x5E	; 94
+     3c0:	70 e0       	ldi	r23, 0x00	; 0
+     3c2:	80 e0       	ldi	r24, 0x00	; 0
+     3c4:	90 e0       	ldi	r25, 0x00	; 0
+     3c6:	21 e0       	ldi	r18, 0x01	; 1
+     3c8:	30 e0       	ldi	r19, 0x00	; 0
+     3ca:	40 e0       	ldi	r20, 0x00	; 0
+     3cc:	50 e0       	ldi	r21, 0x00	; 0
+     3ce:	0e 94 b2 00 	call	0x164	; 0x164 <play>
+        play(CSH_4, 2);
+     3d2:	60 e7       	ldi	r22, 0x70	; 112
+     3d4:	70 e0       	ldi	r23, 0x00	; 0
+     3d6:	80 e0       	ldi	r24, 0x00	; 0
+     3d8:	90 e0       	ldi	r25, 0x00	; 0
+     3da:	22 e0       	ldi	r18, 0x02	; 2
+     3dc:	30 e0       	ldi	r19, 0x00	; 0
+     3de:	40 e0       	ldi	r20, 0x00	; 0
+     3e0:	50 e0       	ldi	r21, 0x00	; 0
+     3e2:	0e 94 b2 00 	call	0x164	; 0x164 <play>
+        play(GSH_4, 2);
+     3e6:	6b e4       	ldi	r22, 0x4B	; 75
+     3e8:	70 e0       	ldi	r23, 0x00	; 0
+     3ea:	80 e0       	ldi	r24, 0x00	; 0
+     3ec:	90 e0       	ldi	r25, 0x00	; 0
+     3ee:	22 e0       	ldi	r18, 0x02	; 2
+     3f0:	30 e0       	ldi	r19, 0x00	; 0
+     3f2:	40 e0       	ldi	r20, 0x00	; 0
+     3f4:	50 e0       	ldi	r21, 0x00	; 0
+     3f6:	0e 94 b2 00 	call	0x164	; 0x164 <play>
+        play(FSH_4, 6);
+     3fa:	64 e5       	ldi	r22, 0x54	; 84
+     3fc:	70 e0       	ldi	r23, 0x00	; 0
+     3fe:	80 e0       	ldi	r24, 0x00	; 0
+     400:	90 e0       	ldi	r25, 0x00	; 0
+     402:	26 e0       	ldi	r18, 0x06	; 6
+     404:	30 e0       	ldi	r19, 0x00	; 0
+     406:	40 e0       	ldi	r20, 0x00	; 0
+     408:	50 e0       	ldi	r21, 0x00	; 0
+     40a:	0e 94 b2 00 	call	0x164	; 0x164 <play>
+        play(REST, 12);
+     40e:	6f ef       	ldi	r22, 0xFF	; 255
+     410:	7f ef       	ldi	r23, 0xFF	; 255
+     412:	cb 01       	movw	r24, r22
+     414:	2c e0       	ldi	r18, 0x0C	; 12
+     416:	30 e0       	ldi	r19, 0x00	; 0
+     418:	40 e0       	ldi	r20, 0x00	; 0
+     41a:	50 e0       	ldi	r21, 0x00	; 0
+     41c:	0e 94 b2 00 	call	0x164	; 0x164 <play>
+     420:	fe ce       	rjmp	.-516    	; 0x21e <main+0x3a>
+
+00000422 <delay>:
+    }
+}
+
+void delay(int32_t d)
+{
+     422:	ab 01       	movw	r20, r22
+     424:	bc 01       	movw	r22, r24
+	int32_t i;
+	for(i = 0; i < d; i++)
+     426:	14 16       	cp	r1, r20
+     428:	15 06       	cpc	r1, r21
+     42a:	16 06       	cpc	r1, r22
+     42c:	17 06       	cpc	r1, r23
+     42e:	ac f5       	brge	.+106    	; 0x49a <delay+0x78>
+     430:	80 e0       	ldi	r24, 0x00	; 0
+     432:	90 e0       	ldi	r25, 0x00	; 0
+     434:	dc 01       	movw	r26, r24
+	#else
+		//round up by default
+		__ticks_dc = (uint32_t)(ceil(fabs(__tmp)));
+	#endif
+
+	__builtin_avr_delay_cycles(__ticks_dc);
+     436:	ef e8       	ldi	r30, 0x8F	; 143
+     438:	f1 e0       	ldi	r31, 0x01	; 1
+     43a:	31 97       	sbiw	r30, 0x01	; 1
+     43c:	f1 f7       	brne	.-4      	; 0x43a <delay+0x18>
+     43e:	00 c0       	rjmp	.+0      	; 0x440 <delay+0x1e>
+     440:	00 00       	nop
+     442:	ef e8       	ldi	r30, 0x8F	; 143
+     444:	f1 e0       	ldi	r31, 0x01	; 1
+     446:	31 97       	sbiw	r30, 0x01	; 1
+     448:	f1 f7       	brne	.-4      	; 0x446 <delay+0x24>
+     44a:	00 c0       	rjmp	.+0      	; 0x44c <delay+0x2a>
+     44c:	00 00       	nop
+     44e:	ef e8       	ldi	r30, 0x8F	; 143
+     450:	f1 e0       	ldi	r31, 0x01	; 1
+     452:	31 97       	sbiw	r30, 0x01	; 1
+     454:	f1 f7       	brne	.-4      	; 0x452 <delay+0x30>
+     456:	00 c0       	rjmp	.+0      	; 0x458 <delay+0x36>
+     458:	00 00       	nop
+     45a:	ef e8       	ldi	r30, 0x8F	; 143
+     45c:	f1 e0       	ldi	r31, 0x01	; 1
+     45e:	31 97       	sbiw	r30, 0x01	; 1
+     460:	f1 f7       	brne	.-4      	; 0x45e <delay+0x3c>
+     462:	00 c0       	rjmp	.+0      	; 0x464 <delay+0x42>
+     464:	00 00       	nop
+     466:	ef e8       	ldi	r30, 0x8F	; 143
+     468:	f1 e0       	ldi	r31, 0x01	; 1
+     46a:	31 97       	sbiw	r30, 0x01	; 1
+     46c:	f1 f7       	brne	.-4      	; 0x46a <delay+0x48>
+     46e:	00 c0       	rjmp	.+0      	; 0x470 <delay+0x4e>
+     470:	00 00       	nop
+     472:	ef e8       	ldi	r30, 0x8F	; 143
+     474:	f1 e0       	ldi	r31, 0x01	; 1
+     476:	31 97       	sbiw	r30, 0x01	; 1
+     478:	f1 f7       	brne	.-4      	; 0x476 <delay+0x54>
+     47a:	00 c0       	rjmp	.+0      	; 0x47c <delay+0x5a>
+     47c:	00 00       	nop
+     47e:	ef e8       	ldi	r30, 0x8F	; 143
+     480:	f1 e0       	ldi	r31, 0x01	; 1
+     482:	31 97       	sbiw	r30, 0x01	; 1
+     484:	f1 f7       	brne	.-4      	; 0x482 <delay+0x60>
+     486:	00 c0       	rjmp	.+0      	; 0x488 <delay+0x66>
+     488:	00 00       	nop
+     48a:	01 96       	adiw	r24, 0x01	; 1
+     48c:	a1 1d       	adc	r26, r1
+     48e:	b1 1d       	adc	r27, r1
+     490:	84 17       	cp	r24, r20
+     492:	95 07       	cpc	r25, r21
+     494:	a6 07       	cpc	r26, r22
+     496:	b7 07       	cpc	r27, r23
+     498:	71 f6       	brne	.-100    	; 0x436 <delay+0x14>
+     49a:	08 95       	ret
+
+0000049c <loop>:
+		_delay_us(100);
+	}		
+}
+void loop()
+{
+	play(INT_PER_SEC/660,100);
+     49c:	6f e2       	ldi	r22, 0x2F	; 47
+     49e:	70 e0       	ldi	r23, 0x00	; 0
+     4a0:	80 e0       	ldi	r24, 0x00	; 0
+     4a2:	90 e0       	ldi	r25, 0x00	; 0
+     4a4:	24 e6       	ldi	r18, 0x64	; 100
+     4a6:	30 e0       	ldi	r19, 0x00	; 0
+     4a8:	40 e0       	ldi	r20, 0x00	; 0
+     4aa:	50 e0       	ldi	r21, 0x00	; 0
+     4ac:	0e 94 b2 00 	call	0x164	; 0x164 <play>
+	delay(75);play(INT_PER_SEC/660,100);
+     4b0:	6b e4       	ldi	r22, 0x4B	; 75
+     4b2:	70 e0       	ldi	r23, 0x00	; 0
+     4b4:	80 e0       	ldi	r24, 0x00	; 0
+     4b6:	90 e0       	ldi	r25, 0x00	; 0
+     4b8:	0e 94 11 02 	call	0x422	; 0x422 <delay>
+     4bc:	6f e2       	ldi	r22, 0x2F	; 47
+     4be:	70 e0       	ldi	r23, 0x00	; 0
+     4c0:	80 e0       	ldi	r24, 0x00	; 0
+     4c2:	90 e0       	ldi	r25, 0x00	; 0
+     4c4:	24 e6       	ldi	r18, 0x64	; 100
+     4c6:	30 e0       	ldi	r19, 0x00	; 0
+     4c8:	40 e0       	ldi	r20, 0x00	; 0
+     4ca:	50 e0       	ldi	r21, 0x00	; 0
+     4cc:	0e 94 b2 00 	call	0x164	; 0x164 <play>
+	delay(150);play(INT_PER_SEC/660,100);
+     4d0:	66 e9       	ldi	r22, 0x96	; 150
+     4d2:	70 e0       	ldi	r23, 0x00	; 0
+     4d4:	80 e0       	ldi	r24, 0x00	; 0
+     4d6:	90 e0       	ldi	r25, 0x00	; 0
+     4d8:	0e 94 11 02 	call	0x422	; 0x422 <delay>
+     4dc:	6f e2       	ldi	r22, 0x2F	; 47
+     4de:	70 e0       	ldi	r23, 0x00	; 0
+     4e0:	80 e0       	ldi	r24, 0x00	; 0
+     4e2:	90 e0       	ldi	r25, 0x00	; 0
+     4e4:	24 e6       	ldi	r18, 0x64	; 100
+     4e6:	30 e0       	ldi	r19, 0x00	; 0
+     4e8:	40 e0       	ldi	r20, 0x00	; 0
+     4ea:	50 e0       	ldi	r21, 0x00	; 0
+     4ec:	0e 94 b2 00 	call	0x164	; 0x164 <play>
+	delay(150);play(INT_PER_SEC/510,100);
+     4f0:	66 e9       	ldi	r22, 0x96	; 150
+     4f2:	70 e0       	ldi	r23, 0x00	; 0
+     4f4:	80 e0       	ldi	r24, 0x00	; 0
+     4f6:	90 e0       	ldi	r25, 0x00	; 0
+     4f8:	0e 94 11 02 	call	0x422	; 0x422 <delay>
+     4fc:	6d e3       	ldi	r22, 0x3D	; 61
+     4fe:	70 e0       	ldi	r23, 0x00	; 0
+     500:	80 e0       	ldi	r24, 0x00	; 0
+     502:	90 e0       	ldi	r25, 0x00	; 0
+     504:	24 e6       	ldi	r18, 0x64	; 100
+     506:	30 e0       	ldi	r19, 0x00	; 0
+     508:	40 e0       	ldi	r20, 0x00	; 0
+     50a:	50 e0       	ldi	r21, 0x00	; 0
+     50c:	0e 94 b2 00 	call	0x164	; 0x164 <play>
+	delay(50);play(INT_PER_SEC/660,100);
+     510:	62 e3       	ldi	r22, 0x32	; 50
+     512:	70 e0       	ldi	r23, 0x00	; 0
+     514:	80 e0       	ldi	r24, 0x00	; 0
+     516:	90 e0       	ldi	r25, 0x00	; 0
+     518:	0e 94 11 02 	call	0x422	; 0x422 <delay>
+     51c:	6f e2       	ldi	r22, 0x2F	; 47
+     51e:	70 e0       	ldi	r23, 0x00	; 0
+     520:	80 e0       	ldi	r24, 0x00	; 0
+     522:	90 e0       	ldi	r25, 0x00	; 0
+     524:	24 e6       	ldi	r18, 0x64	; 100
+     526:	30 e0       	ldi	r19, 0x00	; 0
+     528:	40 e0       	ldi	r20, 0x00	; 0
+     52a:	50 e0       	ldi	r21, 0x00	; 0
+     52c:	0e 94 b2 00 	call	0x164	; 0x164 <play>
+	delay(150);play(INT_PER_SEC/770,100);
+     530:	66 e9       	ldi	r22, 0x96	; 150
+     532:	70 e0       	ldi	r23, 0x00	; 0
+     534:	80 e0       	ldi	r24, 0x00	; 0
+     536:	90 e0       	ldi	r25, 0x00	; 0
+     538:	0e 94 11 02 	call	0x422	; 0x422 <delay>
+     53c:	68 e2       	ldi	r22, 0x28	; 40
+     53e:	70 e0       	ldi	r23, 0x00	; 0
+     540:	80 e0       	ldi	r24, 0x00	; 0
+     542:	90 e0       	ldi	r25, 0x00	; 0
+     544:	24 e6       	ldi	r18, 0x64	; 100
+     546:	30 e0       	ldi	r19, 0x00	; 0
+     548:	40 e0       	ldi	r20, 0x00	; 0
+     54a:	50 e0       	ldi	r21, 0x00	; 0
+     54c:	0e 94 b2 00 	call	0x164	; 0x164 <play>
+	delay(275);play(INT_PER_SEC/380,100);
+     550:	63 e1       	ldi	r22, 0x13	; 19
+     552:	71 e0       	ldi	r23, 0x01	; 1
+     554:	80 e0       	ldi	r24, 0x00	; 0
+     556:	90 e0       	ldi	r25, 0x00	; 0
+     558:	0e 94 11 02 	call	0x422	; 0x422 <delay>
+     55c:	62 e5       	ldi	r22, 0x52	; 82
+     55e:	70 e0       	ldi	r23, 0x00	; 0
+     560:	80 e0       	ldi	r24, 0x00	; 0
+     562:	90 e0       	ldi	r25, 0x00	; 0
+     564:	24 e6       	ldi	r18, 0x64	; 100
+     566:	30 e0       	ldi	r19, 0x00	; 0
+     568:	40 e0       	ldi	r20, 0x00	; 0
+     56a:	50 e0       	ldi	r21, 0x00	; 0
+     56c:	0e 94 b2 00 	call	0x164	; 0x164 <play>
+	delay(287);play(INT_PER_SEC/510,100);
+     570:	6f e1       	ldi	r22, 0x1F	; 31
+     572:	71 e0       	ldi	r23, 0x01	; 1
+     574:	80 e0       	ldi	r24, 0x00	; 0
+     576:	90 e0       	ldi	r25, 0x00	; 0
+     578:	0e 94 11 02 	call	0x422	; 0x422 <delay>
+     57c:	6d e3       	ldi	r22, 0x3D	; 61
+     57e:	70 e0       	ldi	r23, 0x00	; 0
+     580:	80 e0       	ldi	r24, 0x00	; 0
+     582:	90 e0       	ldi	r25, 0x00	; 0
+     584:	24 e6       	ldi	r18, 0x64	; 100
+     586:	30 e0       	ldi	r19, 0x00	; 0
+     588:	40 e0       	ldi	r20, 0x00	; 0
+     58a:	50 e0       	ldi	r21, 0x00	; 0
+     58c:	0e 94 b2 00 	call	0x164	; 0x164 <play>
+	delay(225);play(INT_PER_SEC/380,100);
+     590:	61 ee       	ldi	r22, 0xE1	; 225
+     592:	70 e0       	ldi	r23, 0x00	; 0
+     594:	80 e0       	ldi	r24, 0x00	; 0
+     596:	90 e0       	ldi	r25, 0x00	; 0
+     598:	0e 94 11 02 	call	0x422	; 0x422 <delay>
+     59c:	62 e5       	ldi	r22, 0x52	; 82
+     59e:	70 e0       	ldi	r23, 0x00	; 0
+     5a0:	80 e0       	ldi	r24, 0x00	; 0
+     5a2:	90 e0       	ldi	r25, 0x00	; 0
+     5a4:	24 e6       	ldi	r18, 0x64	; 100
+     5a6:	30 e0       	ldi	r19, 0x00	; 0
+     5a8:	40 e0       	ldi	r20, 0x00	; 0
+     5aa:	50 e0       	ldi	r21, 0x00	; 0
+     5ac:	0e 94 b2 00 	call	0x164	; 0x164 <play>
+	delay(200);play(INT_PER_SEC/320,100);
+     5b0:	68 ec       	ldi	r22, 0xC8	; 200
+     5b2:	70 e0       	ldi	r23, 0x00	; 0
+     5b4:	80 e0       	ldi	r24, 0x00	; 0
+     5b6:	90 e0       	ldi	r25, 0x00	; 0
+     5b8:	0e 94 11 02 	call	0x422	; 0x422 <delay>
+     5bc:	61 e6       	ldi	r22, 0x61	; 97
+     5be:	70 e0       	ldi	r23, 0x00	; 0
+     5c0:	80 e0       	ldi	r24, 0x00	; 0
+     5c2:	90 e0       	ldi	r25, 0x00	; 0
+     5c4:	24 e6       	ldi	r18, 0x64	; 100
+     5c6:	30 e0       	ldi	r19, 0x00	; 0
+     5c8:	40 e0       	ldi	r20, 0x00	; 0
+     5ca:	50 e0       	ldi	r21, 0x00	; 0
+     5cc:	0e 94 b2 00 	call	0x164	; 0x164 <play>
+	delay(250);play(INT_PER_SEC/440,100);
+     5d0:	6a ef       	ldi	r22, 0xFA	; 250
+     5d2:	70 e0       	ldi	r23, 0x00	; 0
+     5d4:	80 e0       	ldi	r24, 0x00	; 0
+     5d6:	90 e0       	ldi	r25, 0x00	; 0
+     5d8:	0e 94 11 02 	call	0x422	; 0x422 <delay>
+     5dc:	67 e4       	ldi	r22, 0x47	; 71
+     5de:	70 e0       	ldi	r23, 0x00	; 0
+     5e0:	80 e0       	ldi	r24, 0x00	; 0
+     5e2:	90 e0       	ldi	r25, 0x00	; 0
+     5e4:	24 e6       	ldi	r18, 0x64	; 100
+     5e6:	30 e0       	ldi	r19, 0x00	; 0
+     5e8:	40 e0       	ldi	r20, 0x00	; 0
+     5ea:	50 e0       	ldi	r21, 0x00	; 0
+     5ec:	0e 94 b2 00 	call	0x164	; 0x164 <play>
+	delay(150);play(INT_PER_SEC/480,80);
+     5f0:	66 e9       	ldi	r22, 0x96	; 150
+     5f2:	70 e0       	ldi	r23, 0x00	; 0
+     5f4:	80 e0       	ldi	r24, 0x00	; 0
+     5f6:	90 e0       	ldi	r25, 0x00	; 0
+     5f8:	0e 94 11 02 	call	0x422	; 0x422 <delay>
+     5fc:	61 e4       	ldi	r22, 0x41	; 65
+     5fe:	70 e0       	ldi	r23, 0x00	; 0
+     600:	80 e0       	ldi	r24, 0x00	; 0
+     602:	90 e0       	ldi	r25, 0x00	; 0
+     604:	20 e5       	ldi	r18, 0x50	; 80
+     606:	30 e0       	ldi	r19, 0x00	; 0
+     608:	40 e0       	ldi	r20, 0x00	; 0
+     60a:	50 e0       	ldi	r21, 0x00	; 0
+     60c:	0e 94 b2 00 	call	0x164	; 0x164 <play>
+	delay(165);play(INT_PER_SEC/450,100);
+     610:	65 ea       	ldi	r22, 0xA5	; 165
+     612:	70 e0       	ldi	r23, 0x00	; 0
+     614:	80 e0       	ldi	r24, 0x00	; 0
+     616:	90 e0       	ldi	r25, 0x00	; 0
+     618:	0e 94 11 02 	call	0x422	; 0x422 <delay>
+     61c:	65 e4       	ldi	r22, 0x45	; 69
+     61e:	70 e0       	ldi	r23, 0x00	; 0
+     620:	80 e0       	ldi	r24, 0x00	; 0
+     622:	90 e0       	ldi	r25, 0x00	; 0
+     624:	24 e6       	ldi	r18, 0x64	; 100
+     626:	30 e0       	ldi	r19, 0x00	; 0
+     628:	40 e0       	ldi	r20, 0x00	; 0
+     62a:	50 e0       	ldi	r21, 0x00	; 0
+     62c:	0e 94 b2 00 	call	0x164	; 0x164 <play>
+	delay(75);play(INT_PER_SEC/430,100);
+     630:	6b e4       	ldi	r22, 0x4B	; 75
+     632:	70 e0       	ldi	r23, 0x00	; 0
+     634:	80 e0       	ldi	r24, 0x00	; 0
+     636:	90 e0       	ldi	r25, 0x00	; 0
+     638:	0e 94 11 02 	call	0x422	; 0x422 <delay>
+     63c:	68 e4       	ldi	r22, 0x48	; 72
+     63e:	70 e0       	ldi	r23, 0x00	; 0
+     640:	80 e0       	ldi	r24, 0x00	; 0
+     642:	90 e0       	ldi	r25, 0x00	; 0
+     644:	24 e6       	ldi	r18, 0x64	; 100
+     646:	30 e0       	ldi	r19, 0x00	; 0
+     648:	40 e0       	ldi	r20, 0x00	; 0
+     64a:	50 e0       	ldi	r21, 0x00	; 0
+     64c:	0e 94 b2 00 	call	0x164	; 0x164 <play>
+	delay(150);play(INT_PER_SEC/380,100);
+     650:	66 e9       	ldi	r22, 0x96	; 150
+     652:	70 e0       	ldi	r23, 0x00	; 0
+     654:	80 e0       	ldi	r24, 0x00	; 0
+     656:	90 e0       	ldi	r25, 0x00	; 0
+     658:	0e 94 11 02 	call	0x422	; 0x422 <delay>
+     65c:	62 e5       	ldi	r22, 0x52	; 82
+     65e:	70 e0       	ldi	r23, 0x00	; 0
+     660:	80 e0       	ldi	r24, 0x00	; 0
+     662:	90 e0       	ldi	r25, 0x00	; 0
+     664:	24 e6       	ldi	r18, 0x64	; 100
+     666:	30 e0       	ldi	r19, 0x00	; 0
+     668:	40 e0       	ldi	r20, 0x00	; 0
+     66a:	50 e0       	ldi	r21, 0x00	; 0
+     66c:	0e 94 b2 00 	call	0x164	; 0x164 <play>
+	delay(100);play(INT_PER_SEC/660,80);
+     670:	64 e6       	ldi	r22, 0x64	; 100
+     672:	70 e0       	ldi	r23, 0x00	; 0
+     674:	80 e0       	ldi	r24, 0x00	; 0
+     676:	90 e0       	ldi	r25, 0x00	; 0
+     678:	0e 94 11 02 	call	0x422	; 0x422 <delay>
+     67c:	6f e2       	ldi	r22, 0x2F	; 47
+     67e:	70 e0       	ldi	r23, 0x00	; 0
+     680:	80 e0       	ldi	r24, 0x00	; 0
+     682:	90 e0       	ldi	r25, 0x00	; 0
+     684:	20 e5       	ldi	r18, 0x50	; 80
+     686:	30 e0       	ldi	r19, 0x00	; 0
+     688:	40 e0       	ldi	r20, 0x00	; 0
+     68a:	50 e0       	ldi	r21, 0x00	; 0
+     68c:	0e 94 b2 00 	call	0x164	; 0x164 <play>
+	delay(100);play(INT_PER_SEC/760,50);
+     690:	64 e6       	ldi	r22, 0x64	; 100
+     692:	70 e0       	ldi	r23, 0x00	; 0
+     694:	80 e0       	ldi	r24, 0x00	; 0
+     696:	90 e0       	ldi	r25, 0x00	; 0
+     698:	0e 94 11 02 	call	0x422	; 0x422 <delay>
+     69c:	69 e2       	ldi	r22, 0x29	; 41
+     69e:	70 e0       	ldi	r23, 0x00	; 0
+     6a0:	80 e0       	ldi	r24, 0x00	; 0
+     6a2:	90 e0       	ldi	r25, 0x00	; 0
+     6a4:	22 e3       	ldi	r18, 0x32	; 50
+     6a6:	30 e0       	ldi	r19, 0x00	; 0
+     6a8:	40 e0       	ldi	r20, 0x00	; 0
+     6aa:	50 e0       	ldi	r21, 0x00	; 0
+     6ac:	0e 94 b2 00 	call	0x164	; 0x164 <play>
+	delay(75);play(INT_PER_SEC/860,100);
+     6b0:	6b e4       	ldi	r22, 0x4B	; 75
+     6b2:	70 e0       	ldi	r23, 0x00	; 0
+     6b4:	80 e0       	ldi	r24, 0x00	; 0
+     6b6:	90 e0       	ldi	r25, 0x00	; 0
+     6b8:	0e 94 11 02 	call	0x422	; 0x422 <delay>
+     6bc:	64 e2       	ldi	r22, 0x24	; 36
+     6be:	70 e0       	ldi	r23, 0x00	; 0
+     6c0:	80 e0       	ldi	r24, 0x00	; 0
+     6c2:	90 e0       	ldi	r25, 0x00	; 0
+     6c4:	24 e6       	ldi	r18, 0x64	; 100
+     6c6:	30 e0       	ldi	r19, 0x00	; 0
+     6c8:	40 e0       	ldi	r20, 0x00	; 0
+     6ca:	50 e0       	ldi	r21, 0x00	; 0
+     6cc:	0e 94 b2 00 	call	0x164	; 0x164 <play>
+	delay(150);play(INT_PER_SEC/700,80);
+     6d0:	66 e9       	ldi	r22, 0x96	; 150
+     6d2:	70 e0       	ldi	r23, 0x00	; 0
+     6d4:	80 e0       	ldi	r24, 0x00	; 0
+     6d6:	90 e0       	ldi	r25, 0x00	; 0
+     6d8:	0e 94 11 02 	call	0x422	; 0x422 <delay>
+     6dc:	6c e2       	ldi	r22, 0x2C	; 44
+     6de:	70 e0       	ldi	r23, 0x00	; 0
+     6e0:	80 e0       	ldi	r24, 0x00	; 0
+     6e2:	90 e0       	ldi	r25, 0x00	; 0
+     6e4:	20 e5       	ldi	r18, 0x50	; 80
+     6e6:	30 e0       	ldi	r19, 0x00	; 0
+     6e8:	40 e0       	ldi	r20, 0x00	; 0
+     6ea:	50 e0       	ldi	r21, 0x00	; 0
+     6ec:	0e 94 b2 00 	call	0x164	; 0x164 <play>
+	delay(75);play(INT_PER_SEC/760,50);
+     6f0:	6b e4       	ldi	r22, 0x4B	; 75
+     6f2:	70 e0       	ldi	r23, 0x00	; 0
+     6f4:	80 e0       	ldi	r24, 0x00	; 0
+     6f6:	90 e0       	ldi	r25, 0x00	; 0
+     6f8:	0e 94 11 02 	call	0x422	; 0x422 <delay>
+     6fc:	69 e2       	ldi	r22, 0x29	; 41
+     6fe:	70 e0       	ldi	r23, 0x00	; 0
+     700:	80 e0       	ldi	r24, 0x00	; 0
+     702:	90 e0       	ldi	r25, 0x00	; 0
+     704:	22 e3       	ldi	r18, 0x32	; 50
+     706:	30 e0       	ldi	r19, 0x00	; 0
+     708:	40 e0       	ldi	r20, 0x00	; 0
+     70a:	50 e0       	ldi	r21, 0x00	; 0
+     70c:	0e 94 b2 00 	call	0x164	; 0x164 <play>
+	delay(175);play(INT_PER_SEC/660,80);
+     710:	6f ea       	ldi	r22, 0xAF	; 175
+     712:	70 e0       	ldi	r23, 0x00	; 0
+     714:	80 e0       	ldi	r24, 0x00	; 0
+     716:	90 e0       	ldi	r25, 0x00	; 0
+     718:	0e 94 11 02 	call	0x422	; 0x422 <delay>
+     71c:	6f e2       	ldi	r22, 0x2F	; 47
+     71e:	70 e0       	ldi	r23, 0x00	; 0
+     720:	80 e0       	ldi	r24, 0x00	; 0
+     722:	90 e0       	ldi	r25, 0x00	; 0
+     724:	20 e5       	ldi	r18, 0x50	; 80
+     726:	30 e0       	ldi	r19, 0x00	; 0
+     728:	40 e0       	ldi	r20, 0x00	; 0
+     72a:	50 e0       	ldi	r21, 0x00	; 0
+     72c:	0e 94 b2 00 	call	0x164	; 0x164 <play>
+	delay(150);play(INT_PER_SEC/520,80);
+     730:	66 e9       	ldi	r22, 0x96	; 150
+     732:	70 e0       	ldi	r23, 0x00	; 0
+     734:	80 e0       	ldi	r24, 0x00	; 0
+     736:	90 e0       	ldi	r25, 0x00	; 0
+     738:	0e 94 11 02 	call	0x422	; 0x422 <delay>
+     73c:	6c e3       	ldi	r22, 0x3C	; 60
+     73e:	70 e0       	ldi	r23, 0x00	; 0
+     740:	80 e0       	ldi	r24, 0x00	; 0
+     742:	90 e0       	ldi	r25, 0x00	; 0
+     744:	20 e5       	ldi	r18, 0x50	; 80
+     746:	30 e0       	ldi	r19, 0x00	; 0
+     748:	40 e0       	ldi	r20, 0x00	; 0
+     74a:	50 e0       	ldi	r21, 0x00	; 0
+     74c:	0e 94 b2 00 	call	0x164	; 0x164 <play>
+	delay(75);play(INT_PER_SEC/580,80);
+     750:	6b e4       	ldi	r22, 0x4B	; 75
+     752:	70 e0       	ldi	r23, 0x00	; 0
+     754:	80 e0       	ldi	r24, 0x00	; 0
+     756:	90 e0       	ldi	r25, 0x00	; 0
+     758:	0e 94 11 02 	call	0x422	; 0x422 <delay>
+     75c:	65 e3       	ldi	r22, 0x35	; 53
+     75e:	70 e0       	ldi	r23, 0x00	; 0
+     760:	80 e0       	ldi	r24, 0x00	; 0
+     762:	90 e0       	ldi	r25, 0x00	; 0
+     764:	20 e5       	ldi	r18, 0x50	; 80
+     766:	30 e0       	ldi	r19, 0x00	; 0
+     768:	40 e0       	ldi	r20, 0x00	; 0
+     76a:	50 e0       	ldi	r21, 0x00	; 0
+     76c:	0e 94 b2 00 	call	0x164	; 0x164 <play>
+	delay(75);play(INT_PER_SEC/480,80);
+     770:	6b e4       	ldi	r22, 0x4B	; 75
+     772:	70 e0       	ldi	r23, 0x00	; 0
+     774:	80 e0       	ldi	r24, 0x00	; 0
+     776:	90 e0       	ldi	r25, 0x00	; 0
+     778:	0e 94 11 02 	call	0x422	; 0x422 <delay>
+     77c:	61 e4       	ldi	r22, 0x41	; 65
+     77e:	70 e0       	ldi	r23, 0x00	; 0
+     780:	80 e0       	ldi	r24, 0x00	; 0
+     782:	90 e0       	ldi	r25, 0x00	; 0
+     784:	20 e5       	ldi	r18, 0x50	; 80
+     786:	30 e0       	ldi	r19, 0x00	; 0
+     788:	40 e0       	ldi	r20, 0x00	; 0
+     78a:	50 e0       	ldi	r21, 0x00	; 0
+     78c:	0e 94 b2 00 	call	0x164	; 0x164 <play>
+	delay(175);play(INT_PER_SEC/510,100);
+     790:	6f ea       	ldi	r22, 0xAF	; 175
+     792:	70 e0       	ldi	r23, 0x00	; 0
+     794:	80 e0       	ldi	r24, 0x00	; 0
+     796:	90 e0       	ldi	r25, 0x00	; 0
+     798:	0e 94 11 02 	call	0x422	; 0x422 <delay>
+     79c:	6d e3       	ldi	r22, 0x3D	; 61
+     79e:	70 e0       	ldi	r23, 0x00	; 0
+     7a0:	80 e0       	ldi	r24, 0x00	; 0
+     7a2:	90 e0       	ldi	r25, 0x00	; 0
+     7a4:	24 e6       	ldi	r18, 0x64	; 100
+     7a6:	30 e0       	ldi	r19, 0x00	; 0
+     7a8:	40 e0       	ldi	r20, 0x00	; 0
+     7aa:	50 e0       	ldi	r21, 0x00	; 0
+     7ac:	0e 94 b2 00 	call	0x164	; 0x164 <play>
+	delay(275);play(INT_PER_SEC/380,100);
+     7b0:	63 e1       	ldi	r22, 0x13	; 19
+     7b2:	71 e0       	ldi	r23, 0x01	; 1
+     7b4:	80 e0       	ldi	r24, 0x00	; 0
+     7b6:	90 e0       	ldi	r25, 0x00	; 0
+     7b8:	0e 94 11 02 	call	0x422	; 0x422 <delay>
+     7bc:	62 e5       	ldi	r22, 0x52	; 82
+     7be:	70 e0       	ldi	r23, 0x00	; 0
+     7c0:	80 e0       	ldi	r24, 0x00	; 0
+     7c2:	90 e0       	ldi	r25, 0x00	; 0
+     7c4:	24 e6       	ldi	r18, 0x64	; 100
+     7c6:	30 e0       	ldi	r19, 0x00	; 0
+     7c8:	40 e0       	ldi	r20, 0x00	; 0
+     7ca:	50 e0       	ldi	r21, 0x00	; 0
+     7cc:	0e 94 b2 00 	call	0x164	; 0x164 <play>
+	delay(200);play(INT_PER_SEC/320,100);
+     7d0:	68 ec       	ldi	r22, 0xC8	; 200
+     7d2:	70 e0       	ldi	r23, 0x00	; 0
+     7d4:	80 e0       	ldi	r24, 0x00	; 0
+     7d6:	90 e0       	ldi	r25, 0x00	; 0
+     7d8:	0e 94 11 02 	call	0x422	; 0x422 <delay>
+     7dc:	61 e6       	ldi	r22, 0x61	; 97
+     7de:	70 e0       	ldi	r23, 0x00	; 0
+     7e0:	80 e0       	ldi	r24, 0x00	; 0
+     7e2:	90 e0       	ldi	r25, 0x00	; 0
+     7e4:	24 e6       	ldi	r18, 0x64	; 100
+     7e6:	30 e0       	ldi	r19, 0x00	; 0
+     7e8:	40 e0       	ldi	r20, 0x00	; 0
+     7ea:	50 e0       	ldi	r21, 0x00	; 0
+     7ec:	0e 94 b2 00 	call	0x164	; 0x164 <play>
+	delay(250);play(INT_PER_SEC/440,100);
+     7f0:	6a ef       	ldi	r22, 0xFA	; 250
+     7f2:	70 e0       	ldi	r23, 0x00	; 0
+     7f4:	80 e0       	ldi	r24, 0x00	; 0
+     7f6:	90 e0       	ldi	r25, 0x00	; 0
+     7f8:	0e 94 11 02 	call	0x422	; 0x422 <delay>
+     7fc:	67 e4       	ldi	r22, 0x47	; 71
+     7fe:	70 e0       	ldi	r23, 0x00	; 0
+     800:	80 e0       	ldi	r24, 0x00	; 0
+     802:	90 e0       	ldi	r25, 0x00	; 0
+     804:	24 e6       	ldi	r18, 0x64	; 100
+     806:	30 e0       	ldi	r19, 0x00	; 0
+     808:	40 e0       	ldi	r20, 0x00	; 0
+     80a:	50 e0       	ldi	r21, 0x00	; 0
+     80c:	0e 94 b2 00 	call	0x164	; 0x164 <play>
+	delay(150);play(INT_PER_SEC/480,80);
+     810:	66 e9       	ldi	r22, 0x96	; 150
+     812:	70 e0       	ldi	r23, 0x00	; 0
+     814:	80 e0       	ldi	r24, 0x00	; 0
+     816:	90 e0       	ldi	r25, 0x00	; 0
+     818:	0e 94 11 02 	call	0x422	; 0x422 <delay>
+     81c:	61 e4       	ldi	r22, 0x41	; 65
+     81e:	70 e0       	ldi	r23, 0x00	; 0
+     820:	80 e0       	ldi	r24, 0x00	; 0
+     822:	90 e0       	ldi	r25, 0x00	; 0
+     824:	20 e5       	ldi	r18, 0x50	; 80
+     826:	30 e0       	ldi	r19, 0x00	; 0
+     828:	40 e0       	ldi	r20, 0x00	; 0
+     82a:	50 e0       	ldi	r21, 0x00	; 0
+     82c:	0e 94 b2 00 	call	0x164	; 0x164 <play>
+	delay(165);play(INT_PER_SEC/450,100);
+     830:	65 ea       	ldi	r22, 0xA5	; 165
+     832:	70 e0       	ldi	r23, 0x00	; 0
+     834:	80 e0       	ldi	r24, 0x00	; 0
+     836:	90 e0       	ldi	r25, 0x00	; 0
+     838:	0e 94 11 02 	call	0x422	; 0x422 <delay>
+     83c:	65 e4       	ldi	r22, 0x45	; 69
+     83e:	70 e0       	ldi	r23, 0x00	; 0
+     840:	80 e0       	ldi	r24, 0x00	; 0
+     842:	90 e0       	ldi	r25, 0x00	; 0
+     844:	24 e6       	ldi	r18, 0x64	; 100
+     846:	30 e0       	ldi	r19, 0x00	; 0
+     848:	40 e0       	ldi	r20, 0x00	; 0
+     84a:	50 e0       	ldi	r21, 0x00	; 0
+     84c:	0e 94 b2 00 	call	0x164	; 0x164 <play>
+	delay(75);play(INT_PER_SEC/430,100);
+     850:	6b e4       	ldi	r22, 0x4B	; 75
+     852:	70 e0       	ldi	r23, 0x00	; 0
+     854:	80 e0       	ldi	r24, 0x00	; 0
+     856:	90 e0       	ldi	r25, 0x00	; 0
+     858:	0e 94 11 02 	call	0x422	; 0x422 <delay>
+     85c:	68 e4       	ldi	r22, 0x48	; 72
+     85e:	70 e0       	ldi	r23, 0x00	; 0
+     860:	80 e0       	ldi	r24, 0x00	; 0
+     862:	90 e0       	ldi	r25, 0x00	; 0
+     864:	24 e6       	ldi	r18, 0x64	; 100
+     866:	30 e0       	ldi	r19, 0x00	; 0
+     868:	40 e0       	ldi	r20, 0x00	; 0
+     86a:	50 e0       	ldi	r21, 0x00	; 0
+     86c:	0e 94 b2 00 	call	0x164	; 0x164 <play>
+	delay(150);play(INT_PER_SEC/380,100);
+     870:	66 e9       	ldi	r22, 0x96	; 150
+     872:	70 e0       	ldi	r23, 0x00	; 0
+     874:	80 e0       	ldi	r24, 0x00	; 0
+     876:	90 e0       	ldi	r25, 0x00	; 0
+     878:	0e 94 11 02 	call	0x422	; 0x422 <delay>
+     87c:	62 e5       	ldi	r22, 0x52	; 82
+     87e:	70 e0       	ldi	r23, 0x00	; 0
+     880:	80 e0       	ldi	r24, 0x00	; 0
+     882:	90 e0       	ldi	r25, 0x00	; 0
+     884:	24 e6       	ldi	r18, 0x64	; 100
+     886:	30 e0       	ldi	r19, 0x00	; 0
+     888:	40 e0       	ldi	r20, 0x00	; 0
+     88a:	50 e0       	ldi	r21, 0x00	; 0
+     88c:	0e 94 b2 00 	call	0x164	; 0x164 <play>
+	delay(100);play(INT_PER_SEC/660,80);
+     890:	64 e6       	ldi	r22, 0x64	; 100
+     892:	70 e0       	ldi	r23, 0x00	; 0
+     894:	80 e0       	ldi	r24, 0x00	; 0
+     896:	90 e0       	ldi	r25, 0x00	; 0
+     898:	0e 94 11 02 	call	0x422	; 0x422 <delay>
+     89c:	6f e2       	ldi	r22, 0x2F	; 47
+     89e:	70 e0       	ldi	r23, 0x00	; 0
+     8a0:	80 e0       	ldi	r24, 0x00	; 0
+     8a2:	90 e0       	ldi	r25, 0x00	; 0
+     8a4:	20 e5       	ldi	r18, 0x50	; 80
+     8a6:	30 e0       	ldi	r19, 0x00	; 0
+     8a8:	40 e0       	ldi	r20, 0x00	; 0
+     8aa:	50 e0       	ldi	r21, 0x00	; 0
+     8ac:	0e 94 b2 00 	call	0x164	; 0x164 <play>
+	delay(100);play(INT_PER_SEC/760,50);
+     8b0:	64 e6       	ldi	r22, 0x64	; 100
+     8b2:	70 e0       	ldi	r23, 0x00	; 0
+     8b4:	80 e0       	ldi	r24, 0x00	; 0
+     8b6:	90 e0       	ldi	r25, 0x00	; 0
+     8b8:	0e 94 11 02 	call	0x422	; 0x422 <delay>
+     8bc:	69 e2       	ldi	r22, 0x29	; 41
+     8be:	70 e0       	ldi	r23, 0x00	; 0
+     8c0:	80 e0       	ldi	r24, 0x00	; 0
+     8c2:	90 e0       	ldi	r25, 0x00	; 0
+     8c4:	22 e3       	ldi	r18, 0x32	; 50
+     8c6:	30 e0       	ldi	r19, 0x00	; 0
+     8c8:	40 e0       	ldi	r20, 0x00	; 0
+     8ca:	50 e0       	ldi	r21, 0x00	; 0
+     8cc:	0e 94 b2 00 	call	0x164	; 0x164 <play>
+	delay(75);play(INT_PER_SEC/860,100);
+     8d0:	6b e4       	ldi	r22, 0x4B	; 75
+     8d2:	70 e0       	ldi	r23, 0x00	; 0
+     8d4:	80 e0       	ldi	r24, 0x00	; 0
+     8d6:	90 e0       	ldi	r25, 0x00	; 0
+     8d8:	0e 94 11 02 	call	0x422	; 0x422 <delay>
+     8dc:	64 e2       	ldi	r22, 0x24	; 36
+     8de:	70 e0       	ldi	r23, 0x00	; 0
+     8e0:	80 e0       	ldi	r24, 0x00	; 0
+     8e2:	90 e0       	ldi	r25, 0x00	; 0
+     8e4:	24 e6       	ldi	r18, 0x64	; 100
+     8e6:	30 e0       	ldi	r19, 0x00	; 0
+     8e8:	40 e0       	ldi	r20, 0x00	; 0
+     8ea:	50 e0       	ldi	r21, 0x00	; 0
+     8ec:	0e 94 b2 00 	call	0x164	; 0x164 <play>
+	delay(150);play(INT_PER_SEC/700,80);
+     8f0:	66 e9       	ldi	r22, 0x96	; 150
+     8f2:	70 e0       	ldi	r23, 0x00	; 0
+     8f4:	80 e0       	ldi	r24, 0x00	; 0
+     8f6:	90 e0       	ldi	r25, 0x00	; 0
+     8f8:	0e 94 11 02 	call	0x422	; 0x422 <delay>
+     8fc:	6c e2       	ldi	r22, 0x2C	; 44
+     8fe:	70 e0       	ldi	r23, 0x00	; 0
+     900:	80 e0       	ldi	r24, 0x00	; 0
+     902:	90 e0       	ldi	r25, 0x00	; 0
+     904:	20 e5       	ldi	r18, 0x50	; 80
+     906:	30 e0       	ldi	r19, 0x00	; 0
+     908:	40 e0       	ldi	r20, 0x00	; 0
+     90a:	50 e0       	ldi	r21, 0x00	; 0
+     90c:	0e 94 b2 00 	call	0x164	; 0x164 <play>
+	delay(75);play(INT_PER_SEC/760,50);
+     910:	6b e4       	ldi	r22, 0x4B	; 75
+     912:	70 e0       	ldi	r23, 0x00	; 0
+     914:	80 e0       	ldi	r24, 0x00	; 0
+     916:	90 e0       	ldi	r25, 0x00	; 0
+     918:	0e 94 11 02 	call	0x422	; 0x422 <delay>
+     91c:	69 e2       	ldi	r22, 0x29	; 41
+     91e:	70 e0       	ldi	r23, 0x00	; 0
+     920:	80 e0       	ldi	r24, 0x00	; 0
+     922:	90 e0       	ldi	r25, 0x00	; 0
+     924:	22 e3       	ldi	r18, 0x32	; 50
+     926:	30 e0       	ldi	r19, 0x00	; 0
+     928:	40 e0       	ldi	r20, 0x00	; 0
+     92a:	50 e0       	ldi	r21, 0x00	; 0
+     92c:	0e 94 b2 00 	call	0x164	; 0x164 <play>
+	delay(175);play(INT_PER_SEC/660,80);
+     930:	6f ea       	ldi	r22, 0xAF	; 175
+     932:	70 e0       	ldi	r23, 0x00	; 0
+     934:	80 e0       	ldi	r24, 0x00	; 0
+     936:	90 e0       	ldi	r25, 0x00	; 0
+     938:	0e 94 11 02 	call	0x422	; 0x422 <delay>
+     93c:	6f e2       	ldi	r22, 0x2F	; 47
+     93e:	70 e0       	ldi	r23, 0x00	; 0
+     940:	80 e0       	ldi	r24, 0x00	; 0
+     942:	90 e0       	ldi	r25, 0x00	; 0
+     944:	20 e5       	ldi	r18, 0x50	; 80
+     946:	30 e0       	ldi	r19, 0x00	; 0
+     948:	40 e0       	ldi	r20, 0x00	; 0
+     94a:	50 e0       	ldi	r21, 0x00	; 0
+     94c:	0e 94 b2 00 	call	0x164	; 0x164 <play>
+	delay(150);play(INT_PER_SEC/520,80);
+     950:	66 e9       	ldi	r22, 0x96	; 150
+     952:	70 e0       	ldi	r23, 0x00	; 0
+     954:	80 e0       	ldi	r24, 0x00	; 0
+     956:	90 e0       	ldi	r25, 0x00	; 0
+     958:	0e 94 11 02 	call	0x422	; 0x422 <delay>
+     95c:	6c e3       	ldi	r22, 0x3C	; 60
+     95e:	70 e0       	ldi	r23, 0x00	; 0
+     960:	80 e0       	ldi	r24, 0x00	; 0
+     962:	90 e0       	ldi	r25, 0x00	; 0
+     964:	20 e5       	ldi	r18, 0x50	; 80
+     966:	30 e0       	ldi	r19, 0x00	; 0
+     968:	40 e0       	ldi	r20, 0x00	; 0
+     96a:	50 e0       	ldi	r21, 0x00	; 0
+     96c:	0e 94 b2 00 	call	0x164	; 0x164 <play>
+	delay(75);play(INT_PER_SEC/580,80);
+     970:	6b e4       	ldi	r22, 0x4B	; 75
+     972:	70 e0       	ldi	r23, 0x00	; 0
+     974:	80 e0       	ldi	r24, 0x00	; 0
+     976:	90 e0       	ldi	r25, 0x00	; 0
+     978:	0e 94 11 02 	call	0x422	; 0x422 <delay>
+     97c:	65 e3       	ldi	r22, 0x35	; 53
+     97e:	70 e0       	ldi	r23, 0x00	; 0
+     980:	80 e0       	ldi	r24, 0x00	; 0
+     982:	90 e0       	ldi	r25, 0x00	; 0
+     984:	20 e5       	ldi	r18, 0x50	; 80
+     986:	30 e0       	ldi	r19, 0x00	; 0
+     988:	40 e0       	ldi	r20, 0x00	; 0
+     98a:	50 e0       	ldi	r21, 0x00	; 0
+     98c:	0e 94 b2 00 	call	0x164	; 0x164 <play>
+	delay(75);play(INT_PER_SEC/480,80);
+     990:	6b e4       	ldi	r22, 0x4B	; 75
+     992:	70 e0       	ldi	r23, 0x00	; 0
+     994:	80 e0       	ldi	r24, 0x00	; 0
+     996:	90 e0       	ldi	r25, 0x00	; 0
+     998:	0e 94 11 02 	call	0x422	; 0x422 <delay>
+     99c:	61 e4       	ldi	r22, 0x41	; 65
+     99e:	70 e0       	ldi	r23, 0x00	; 0
+     9a0:	80 e0       	ldi	r24, 0x00	; 0
+     9a2:	90 e0       	ldi	r25, 0x00	; 0
+     9a4:	20 e5       	ldi	r18, 0x50	; 80
+     9a6:	30 e0       	ldi	r19, 0x00	; 0
+     9a8:	40 e0       	ldi	r20, 0x00	; 0
+     9aa:	50 e0       	ldi	r21, 0x00	; 0
+     9ac:	0e 94 b2 00 	call	0x164	; 0x164 <play>
+	delay(250);play(INT_PER_SEC/500,100);
+     9b0:	6a ef       	ldi	r22, 0xFA	; 250
+     9b2:	70 e0       	ldi	r23, 0x00	; 0
+     9b4:	80 e0       	ldi	r24, 0x00	; 0
+     9b6:	90 e0       	ldi	r25, 0x00	; 0
+     9b8:	0e 94 11 02 	call	0x422	; 0x422 <delay>
+     9bc:	6e e3       	ldi	r22, 0x3E	; 62
+     9be:	70 e0       	ldi	r23, 0x00	; 0
+     9c0:	80 e0       	ldi	r24, 0x00	; 0
+     9c2:	90 e0       	ldi	r25, 0x00	; 0
+     9c4:	24 e6       	ldi	r18, 0x64	; 100
+     9c6:	30 e0       	ldi	r19, 0x00	; 0
+     9c8:	40 e0       	ldi	r20, 0x00	; 0
+     9ca:	50 e0       	ldi	r21, 0x00	; 0
+     9cc:	0e 94 b2 00 	call	0x164	; 0x164 <play>
+	delay(150);play(INT_PER_SEC/760,100);
+     9d0:	66 e9       	ldi	r22, 0x96	; 150
+     9d2:	70 e0       	ldi	r23, 0x00	; 0
+     9d4:	80 e0       	ldi	r24, 0x00	; 0
+     9d6:	90 e0       	ldi	r25, 0x00	; 0
+     9d8:	0e 94 11 02 	call	0x422	; 0x422 <delay>
+     9dc:	69 e2       	ldi	r22, 0x29	; 41
+     9de:	70 e0       	ldi	r23, 0x00	; 0
+     9e0:	80 e0       	ldi	r24, 0x00	; 0
+     9e2:	90 e0       	ldi	r25, 0x00	; 0
+     9e4:	24 e6       	ldi	r18, 0x64	; 100
+     9e6:	30 e0       	ldi	r19, 0x00	; 0
+     9e8:	40 e0       	ldi	r20, 0x00	; 0
+     9ea:	50 e0       	ldi	r21, 0x00	; 0
+     9ec:	0e 94 b2 00 	call	0x164	; 0x164 <play>
+	delay(50);play(INT_PER_SEC/720,100);
+     9f0:	62 e3       	ldi	r22, 0x32	; 50
+     9f2:	70 e0       	ldi	r23, 0x00	; 0
+     9f4:	80 e0       	ldi	r24, 0x00	; 0
+     9f6:	90 e0       	ldi	r25, 0x00	; 0
+     9f8:	0e 94 11 02 	call	0x422	; 0x422 <delay>
+     9fc:	6b e2       	ldi	r22, 0x2B	; 43
+     9fe:	70 e0       	ldi	r23, 0x00	; 0
+     a00:	80 e0       	ldi	r24, 0x00	; 0
+     a02:	90 e0       	ldi	r25, 0x00	; 0
+     a04:	24 e6       	ldi	r18, 0x64	; 100
+     a06:	30 e0       	ldi	r19, 0x00	; 0
+     a08:	40 e0       	ldi	r20, 0x00	; 0
+     a0a:	50 e0       	ldi	r21, 0x00	; 0
+     a0c:	0e 94 b2 00 	call	0x164	; 0x164 <play>
+	delay(75);play(INT_PER_SEC/680,100);
+     a10:	6b e4       	ldi	r22, 0x4B	; 75
+     a12:	70 e0       	ldi	r23, 0x00	; 0
+     a14:	80 e0       	ldi	r24, 0x00	; 0
+     a16:	90 e0       	ldi	r25, 0x00	; 0
+     a18:	0e 94 11 02 	call	0x422	; 0x422 <delay>
+     a1c:	6d e2       	ldi	r22, 0x2D	; 45
+     a1e:	70 e0       	ldi	r23, 0x00	; 0
+     a20:	80 e0       	ldi	r24, 0x00	; 0
+     a22:	90 e0       	ldi	r25, 0x00	; 0
+     a24:	24 e6       	ldi	r18, 0x64	; 100
+     a26:	30 e0       	ldi	r19, 0x00	; 0
+     a28:	40 e0       	ldi	r20, 0x00	; 0
+     a2a:	50 e0       	ldi	r21, 0x00	; 0
+     a2c:	0e 94 b2 00 	call	0x164	; 0x164 <play>
+	delay(75);play(INT_PER_SEC/620,150);
+     a30:	6b e4       	ldi	r22, 0x4B	; 75
+     a32:	70 e0       	ldi	r23, 0x00	; 0
+     a34:	80 e0       	ldi	r24, 0x00	; 0
+     a36:	90 e0       	ldi	r25, 0x00	; 0
+     a38:	0e 94 11 02 	call	0x422	; 0x422 <delay>
+     a3c:	62 e3       	ldi	r22, 0x32	; 50
+     a3e:	70 e0       	ldi	r23, 0x00	; 0
+     a40:	80 e0       	ldi	r24, 0x00	; 0
+     a42:	90 e0       	ldi	r25, 0x00	; 0
+     a44:	26 e9       	ldi	r18, 0x96	; 150
+     a46:	30 e0       	ldi	r19, 0x00	; 0
+     a48:	40 e0       	ldi	r20, 0x00	; 0
+     a4a:	50 e0       	ldi	r21, 0x00	; 0
+     a4c:	0e 94 b2 00 	call	0x164	; 0x164 <play>
+	delay(150);play(INT_PER_SEC/650,150);
+     a50:	66 e9       	ldi	r22, 0x96	; 150
+     a52:	70 e0       	ldi	r23, 0x00	; 0
+     a54:	80 e0       	ldi	r24, 0x00	; 0
+     a56:	90 e0       	ldi	r25, 0x00	; 0
+     a58:	0e 94 11 02 	call	0x422	; 0x422 <delay>
+     a5c:	60 e3       	ldi	r22, 0x30	; 48
+     a5e:	70 e0       	ldi	r23, 0x00	; 0
+     a60:	80 e0       	ldi	r24, 0x00	; 0
+     a62:	90 e0       	ldi	r25, 0x00	; 0
+     a64:	26 e9       	ldi	r18, 0x96	; 150
+     a66:	30 e0       	ldi	r19, 0x00	; 0
+     a68:	40 e0       	ldi	r20, 0x00	; 0
+     a6a:	50 e0       	ldi	r21, 0x00	; 0
+     a6c:	0e 94 b2 00 	call	0x164	; 0x164 <play>
+	delay(150);play(INT_PER_SEC/380,100);
+     a70:	66 e9       	ldi	r22, 0x96	; 150
+     a72:	70 e0       	ldi	r23, 0x00	; 0
+     a74:	80 e0       	ldi	r24, 0x00	; 0
+     a76:	90 e0       	ldi	r25, 0x00	; 0
+     a78:	0e 94 11 02 	call	0x422	; 0x422 <delay>
+     a7c:	62 e5       	ldi	r22, 0x52	; 82
+     a7e:	70 e0       	ldi	r23, 0x00	; 0
+     a80:	80 e0       	ldi	r24, 0x00	; 0
+     a82:	90 e0       	ldi	r25, 0x00	; 0
+     a84:	24 e6       	ldi	r18, 0x64	; 100
+     a86:	30 e0       	ldi	r19, 0x00	; 0
+     a88:	40 e0       	ldi	r20, 0x00	; 0
+     a8a:	50 e0       	ldi	r21, 0x00	; 0
+     a8c:	0e 94 b2 00 	call	0x164	; 0x164 <play>
+	delay(75);play(INT_PER_SEC/430,100);
+     a90:	6b e4       	ldi	r22, 0x4B	; 75
+     a92:	70 e0       	ldi	r23, 0x00	; 0
+     a94:	80 e0       	ldi	r24, 0x00	; 0
+     a96:	90 e0       	ldi	r25, 0x00	; 0
+     a98:	0e 94 11 02 	call	0x422	; 0x422 <delay>
+     a9c:	68 e4       	ldi	r22, 0x48	; 72
+     a9e:	70 e0       	ldi	r23, 0x00	; 0
+     aa0:	80 e0       	ldi	r24, 0x00	; 0
+     aa2:	90 e0       	ldi	r25, 0x00	; 0
+     aa4:	24 e6       	ldi	r18, 0x64	; 100
+     aa6:	30 e0       	ldi	r19, 0x00	; 0
+     aa8:	40 e0       	ldi	r20, 0x00	; 0
+     aaa:	50 e0       	ldi	r21, 0x00	; 0
+     aac:	0e 94 b2 00 	call	0x164	; 0x164 <play>
+	delay(75);play(INT_PER_SEC/500,100);
+     ab0:	6b e4       	ldi	r22, 0x4B	; 75
+     ab2:	70 e0       	ldi	r23, 0x00	; 0
+     ab4:	80 e0       	ldi	r24, 0x00	; 0
+     ab6:	90 e0       	ldi	r25, 0x00	; 0
+     ab8:	0e 94 11 02 	call	0x422	; 0x422 <delay>
+     abc:	6e e3       	ldi	r22, 0x3E	; 62
+     abe:	70 e0       	ldi	r23, 0x00	; 0
+     ac0:	80 e0       	ldi	r24, 0x00	; 0
+     ac2:	90 e0       	ldi	r25, 0x00	; 0
+     ac4:	24 e6       	ldi	r18, 0x64	; 100
+     ac6:	30 e0       	ldi	r19, 0x00	; 0
+     ac8:	40 e0       	ldi	r20, 0x00	; 0
+     aca:	50 e0       	ldi	r21, 0x00	; 0
+     acc:	0e 94 b2 00 	call	0x164	; 0x164 <play>
+	delay(150);play(INT_PER_SEC/430,100);
+     ad0:	66 e9       	ldi	r22, 0x96	; 150
+     ad2:	70 e0       	ldi	r23, 0x00	; 0
+     ad4:	80 e0       	ldi	r24, 0x00	; 0
+     ad6:	90 e0       	ldi	r25, 0x00	; 0
+     ad8:	0e 94 11 02 	call	0x422	; 0x422 <delay>
+     adc:	68 e4       	ldi	r22, 0x48	; 72
+     ade:	70 e0       	ldi	r23, 0x00	; 0
+     ae0:	80 e0       	ldi	r24, 0x00	; 0
+     ae2:	90 e0       	ldi	r25, 0x00	; 0
+     ae4:	24 e6       	ldi	r18, 0x64	; 100
+     ae6:	30 e0       	ldi	r19, 0x00	; 0
+     ae8:	40 e0       	ldi	r20, 0x00	; 0
+     aea:	50 e0       	ldi	r21, 0x00	; 0
+     aec:	0e 94 b2 00 	call	0x164	; 0x164 <play>
+	delay(75);play(INT_PER_SEC/500,100);
+     af0:	6b e4       	ldi	r22, 0x4B	; 75
+     af2:	70 e0       	ldi	r23, 0x00	; 0
+     af4:	80 e0       	ldi	r24, 0x00	; 0
+     af6:	90 e0       	ldi	r25, 0x00	; 0
+     af8:	0e 94 11 02 	call	0x422	; 0x422 <delay>
+     afc:	6e e3       	ldi	r22, 0x3E	; 62
+     afe:	70 e0       	ldi	r23, 0x00	; 0
+     b00:	80 e0       	ldi	r24, 0x00	; 0
+     b02:	90 e0       	ldi	r25, 0x00	; 0
+     b04:	24 e6       	ldi	r18, 0x64	; 100
+     b06:	30 e0       	ldi	r19, 0x00	; 0
+     b08:	40 e0       	ldi	r20, 0x00	; 0
+     b0a:	50 e0       	ldi	r21, 0x00	; 0
+     b0c:	0e 94 b2 00 	call	0x164	; 0x164 <play>
+	delay(50);play(INT_PER_SEC/570,100);
+     b10:	62 e3       	ldi	r22, 0x32	; 50
+     b12:	70 e0       	ldi	r23, 0x00	; 0
+     b14:	80 e0       	ldi	r24, 0x00	; 0
+     b16:	90 e0       	ldi	r25, 0x00	; 0
+     b18:	0e 94 11 02 	call	0x422	; 0x422 <delay>
+     b1c:	66 e3       	ldi	r22, 0x36	; 54
+     b1e:	70 e0       	ldi	r23, 0x00	; 0
+     b20:	80 e0       	ldi	r24, 0x00	; 0
+     b22:	90 e0       	ldi	r25, 0x00	; 0
+     b24:	24 e6       	ldi	r18, 0x64	; 100
+     b26:	30 e0       	ldi	r19, 0x00	; 0
+     b28:	40 e0       	ldi	r20, 0x00	; 0
+     b2a:	50 e0       	ldi	r21, 0x00	; 0
+     b2c:	0e 94 b2 00 	call	0x164	; 0x164 <play>
+	delay(110);play(INT_PER_SEC/500,100);
+     b30:	6e e6       	ldi	r22, 0x6E	; 110
+     b32:	70 e0       	ldi	r23, 0x00	; 0
+     b34:	80 e0       	ldi	r24, 0x00	; 0
+     b36:	90 e0       	ldi	r25, 0x00	; 0
+     b38:	0e 94 11 02 	call	0x422	; 0x422 <delay>
+     b3c:	6e e3       	ldi	r22, 0x3E	; 62
+     b3e:	70 e0       	ldi	r23, 0x00	; 0
+     b40:	80 e0       	ldi	r24, 0x00	; 0
+     b42:	90 e0       	ldi	r25, 0x00	; 0
+     b44:	24 e6       	ldi	r18, 0x64	; 100
+     b46:	30 e0       	ldi	r19, 0x00	; 0
+     b48:	40 e0       	ldi	r20, 0x00	; 0
+     b4a:	50 e0       	ldi	r21, 0x00	; 0
+     b4c:	0e 94 b2 00 	call	0x164	; 0x164 <play>
+	delay(150);play(INT_PER_SEC/760,100);
+     b50:	66 e9       	ldi	r22, 0x96	; 150
+     b52:	70 e0       	ldi	r23, 0x00	; 0
+     b54:	80 e0       	ldi	r24, 0x00	; 0
+     b56:	90 e0       	ldi	r25, 0x00	; 0
+     b58:	0e 94 11 02 	call	0x422	; 0x422 <delay>
+     b5c:	69 e2       	ldi	r22, 0x29	; 41
+     b5e:	70 e0       	ldi	r23, 0x00	; 0
+     b60:	80 e0       	ldi	r24, 0x00	; 0
+     b62:	90 e0       	ldi	r25, 0x00	; 0
+     b64:	24 e6       	ldi	r18, 0x64	; 100
+     b66:	30 e0       	ldi	r19, 0x00	; 0
+     b68:	40 e0       	ldi	r20, 0x00	; 0
+     b6a:	50 e0       	ldi	r21, 0x00	; 0
+     b6c:	0e 94 b2 00 	call	0x164	; 0x164 <play>
+	delay(50);play(INT_PER_SEC/720,100);
+     b70:	62 e3       	ldi	r22, 0x32	; 50
+     b72:	70 e0       	ldi	r23, 0x00	; 0
+     b74:	80 e0       	ldi	r24, 0x00	; 0
+     b76:	90 e0       	ldi	r25, 0x00	; 0
+     b78:	0e 94 11 02 	call	0x422	; 0x422 <delay>
+     b7c:	6b e2       	ldi	r22, 0x2B	; 43
+     b7e:	70 e0       	ldi	r23, 0x00	; 0
+     b80:	80 e0       	ldi	r24, 0x00	; 0
+     b82:	90 e0       	ldi	r25, 0x00	; 0
+     b84:	24 e6       	ldi	r18, 0x64	; 100
+     b86:	30 e0       	ldi	r19, 0x00	; 0
+     b88:	40 e0       	ldi	r20, 0x00	; 0
+     b8a:	50 e0       	ldi	r21, 0x00	; 0
+     b8c:	0e 94 b2 00 	call	0x164	; 0x164 <play>
+	delay(75);play(INT_PER_SEC/680,100);
+     b90:	6b e4       	ldi	r22, 0x4B	; 75
+     b92:	70 e0       	ldi	r23, 0x00	; 0
+     b94:	80 e0       	ldi	r24, 0x00	; 0
+     b96:	90 e0       	ldi	r25, 0x00	; 0
+     b98:	0e 94 11 02 	call	0x422	; 0x422 <delay>
+     b9c:	6d e2       	ldi	r22, 0x2D	; 45
+     b9e:	70 e0       	ldi	r23, 0x00	; 0
+     ba0:	80 e0       	ldi	r24, 0x00	; 0
+     ba2:	90 e0       	ldi	r25, 0x00	; 0
+     ba4:	24 e6       	ldi	r18, 0x64	; 100
+     ba6:	30 e0       	ldi	r19, 0x00	; 0
+     ba8:	40 e0       	ldi	r20, 0x00	; 0
+     baa:	50 e0       	ldi	r21, 0x00	; 0
+     bac:	0e 94 b2 00 	call	0x164	; 0x164 <play>
+	delay(75);play(INT_PER_SEC/620,150);
+     bb0:	6b e4       	ldi	r22, 0x4B	; 75
+     bb2:	70 e0       	ldi	r23, 0x00	; 0
+     bb4:	80 e0       	ldi	r24, 0x00	; 0
+     bb6:	90 e0       	ldi	r25, 0x00	; 0
+     bb8:	0e 94 11 02 	call	0x422	; 0x422 <delay>
+     bbc:	62 e3       	ldi	r22, 0x32	; 50
+     bbe:	70 e0       	ldi	r23, 0x00	; 0
+     bc0:	80 e0       	ldi	r24, 0x00	; 0
+     bc2:	90 e0       	ldi	r25, 0x00	; 0
+     bc4:	26 e9       	ldi	r18, 0x96	; 150
+     bc6:	30 e0       	ldi	r19, 0x00	; 0
+     bc8:	40 e0       	ldi	r20, 0x00	; 0
+     bca:	50 e0       	ldi	r21, 0x00	; 0
+     bcc:	0e 94 b2 00 	call	0x164	; 0x164 <play>
+	delay(150);play(INT_PER_SEC/650,200);
+     bd0:	66 e9       	ldi	r22, 0x96	; 150
+     bd2:	70 e0       	ldi	r23, 0x00	; 0
+     bd4:	80 e0       	ldi	r24, 0x00	; 0
+     bd6:	90 e0       	ldi	r25, 0x00	; 0
+     bd8:	0e 94 11 02 	call	0x422	; 0x422 <delay>
+     bdc:	60 e3       	ldi	r22, 0x30	; 48
+     bde:	70 e0       	ldi	r23, 0x00	; 0
+     be0:	80 e0       	ldi	r24, 0x00	; 0
+     be2:	90 e0       	ldi	r25, 0x00	; 0
+     be4:	28 ec       	ldi	r18, 0xC8	; 200
+     be6:	30 e0       	ldi	r19, 0x00	; 0
+     be8:	40 e0       	ldi	r20, 0x00	; 0
+     bea:	50 e0       	ldi	r21, 0x00	; 0
+     bec:	0e 94 b2 00 	call	0x164	; 0x164 <play>
+	delay(150);play(INT_PER_SEC/1020,80);
+     bf0:	66 e9       	ldi	r22, 0x96	; 150
+     bf2:	70 e0       	ldi	r23, 0x00	; 0
+     bf4:	80 e0       	ldi	r24, 0x00	; 0
+     bf6:	90 e0       	ldi	r25, 0x00	; 0
+     bf8:	0e 94 11 02 	call	0x422	; 0x422 <delay>
+     bfc:	6e e1       	ldi	r22, 0x1E	; 30
+     bfe:	70 e0       	ldi	r23, 0x00	; 0
+     c00:	80 e0       	ldi	r24, 0x00	; 0
+     c02:	90 e0       	ldi	r25, 0x00	; 0
+     c04:	20 e5       	ldi	r18, 0x50	; 80
+     c06:	30 e0       	ldi	r19, 0x00	; 0
+     c08:	40 e0       	ldi	r20, 0x00	; 0
+     c0a:	50 e0       	ldi	r21, 0x00	; 0
+     c0c:	0e 94 b2 00 	call	0x164	; 0x164 <play>
+	delay(150);play(INT_PER_SEC/1020,80);
+     c10:	66 e9       	ldi	r22, 0x96	; 150
+     c12:	70 e0       	ldi	r23, 0x00	; 0
+     c14:	80 e0       	ldi	r24, 0x00	; 0
+     c16:	90 e0       	ldi	r25, 0x00	; 0
+     c18:	0e 94 11 02 	call	0x422	; 0x422 <delay>
+     c1c:	6e e1       	ldi	r22, 0x1E	; 30
+     c1e:	70 e0       	ldi	r23, 0x00	; 0
+     c20:	80 e0       	ldi	r24, 0x00	; 0
+     c22:	90 e0       	ldi	r25, 0x00	; 0
+     c24:	20 e5       	ldi	r18, 0x50	; 80
+     c26:	30 e0       	ldi	r19, 0x00	; 0
+     c28:	40 e0       	ldi	r20, 0x00	; 0
+     c2a:	50 e0       	ldi	r21, 0x00	; 0
+     c2c:	0e 94 b2 00 	call	0x164	; 0x164 <play>
+	delay(75);play(INT_PER_SEC/1020,80);
+     c30:	6b e4       	ldi	r22, 0x4B	; 75
+     c32:	70 e0       	ldi	r23, 0x00	; 0
+     c34:	80 e0       	ldi	r24, 0x00	; 0
+     c36:	90 e0       	ldi	r25, 0x00	; 0
+     c38:	0e 94 11 02 	call	0x422	; 0x422 <delay>
+     c3c:	6e e1       	ldi	r22, 0x1E	; 30
+     c3e:	70 e0       	ldi	r23, 0x00	; 0
+     c40:	80 e0       	ldi	r24, 0x00	; 0
+     c42:	90 e0       	ldi	r25, 0x00	; 0
+     c44:	20 e5       	ldi	r18, 0x50	; 80
+     c46:	30 e0       	ldi	r19, 0x00	; 0
+     c48:	40 e0       	ldi	r20, 0x00	; 0
+     c4a:	50 e0       	ldi	r21, 0x00	; 0
+     c4c:	0e 94 b2 00 	call	0x164	; 0x164 <play>
+	delay(150);play(INT_PER_SEC/380,100);
+     c50:	66 e9       	ldi	r22, 0x96	; 150
+     c52:	70 e0       	ldi	r23, 0x00	; 0
+     c54:	80 e0       	ldi	r24, 0x00	; 0
+     c56:	90 e0       	ldi	r25, 0x00	; 0
+     c58:	0e 94 11 02 	call	0x422	; 0x422 <delay>
+     c5c:	62 e5       	ldi	r22, 0x52	; 82
+     c5e:	70 e0       	ldi	r23, 0x00	; 0
+     c60:	80 e0       	ldi	r24, 0x00	; 0
+     c62:	90 e0       	ldi	r25, 0x00	; 0
+     c64:	24 e6       	ldi	r18, 0x64	; 100
+     c66:	30 e0       	ldi	r19, 0x00	; 0
+     c68:	40 e0       	ldi	r20, 0x00	; 0
+     c6a:	50 e0       	ldi	r21, 0x00	; 0
+     c6c:	0e 94 b2 00 	call	0x164	; 0x164 <play>
+	delay(150);play(INT_PER_SEC/500,100);
+     c70:	66 e9       	ldi	r22, 0x96	; 150
+     c72:	70 e0       	ldi	r23, 0x00	; 0
+     c74:	80 e0       	ldi	r24, 0x00	; 0
+     c76:	90 e0       	ldi	r25, 0x00	; 0
+     c78:	0e 94 11 02 	call	0x422	; 0x422 <delay>
+     c7c:	6e e3       	ldi	r22, 0x3E	; 62
+     c7e:	70 e0       	ldi	r23, 0x00	; 0
+     c80:	80 e0       	ldi	r24, 0x00	; 0
+     c82:	90 e0       	ldi	r25, 0x00	; 0
+     c84:	24 e6       	ldi	r18, 0x64	; 100
+     c86:	30 e0       	ldi	r19, 0x00	; 0
+     c88:	40 e0       	ldi	r20, 0x00	; 0
+     c8a:	50 e0       	ldi	r21, 0x00	; 0
+     c8c:	0e 94 b2 00 	call	0x164	; 0x164 <play>
+	delay(150);play(INT_PER_SEC/760,100);
+     c90:	66 e9       	ldi	r22, 0x96	; 150
+     c92:	70 e0       	ldi	r23, 0x00	; 0
+     c94:	80 e0       	ldi	r24, 0x00	; 0
+     c96:	90 e0       	ldi	r25, 0x00	; 0
+     c98:	0e 94 11 02 	call	0x422	; 0x422 <delay>
+     c9c:	69 e2       	ldi	r22, 0x29	; 41
+     c9e:	70 e0       	ldi	r23, 0x00	; 0
+     ca0:	80 e0       	ldi	r24, 0x00	; 0
+     ca2:	90 e0       	ldi	r25, 0x00	; 0
+     ca4:	24 e6       	ldi	r18, 0x64	; 100
+     ca6:	30 e0       	ldi	r19, 0x00	; 0
+     ca8:	40 e0       	ldi	r20, 0x00	; 0
+     caa:	50 e0       	ldi	r21, 0x00	; 0
+     cac:	0e 94 b2 00 	call	0x164	; 0x164 <play>
+	delay(50);play(INT_PER_SEC/720,100);
+     cb0:	62 e3       	ldi	r22, 0x32	; 50
+     cb2:	70 e0       	ldi	r23, 0x00	; 0
+     cb4:	80 e0       	ldi	r24, 0x00	; 0
+     cb6:	90 e0       	ldi	r25, 0x00	; 0
+     cb8:	0e 94 11 02 	call	0x422	; 0x422 <delay>
+     cbc:	6b e2       	ldi	r22, 0x2B	; 43
+     cbe:	70 e0       	ldi	r23, 0x00	; 0
+     cc0:	80 e0       	ldi	r24, 0x00	; 0
+     cc2:	90 e0       	ldi	r25, 0x00	; 0
+     cc4:	24 e6       	ldi	r18, 0x64	; 100
+     cc6:	30 e0       	ldi	r19, 0x00	; 0
+     cc8:	40 e0       	ldi	r20, 0x00	; 0
+     cca:	50 e0       	ldi	r21, 0x00	; 0
+     ccc:	0e 94 b2 00 	call	0x164	; 0x164 <play>
+	delay(75);play(INT_PER_SEC/680,100);
+     cd0:	6b e4       	ldi	r22, 0x4B	; 75
+     cd2:	70 e0       	ldi	r23, 0x00	; 0
+     cd4:	80 e0       	ldi	r24, 0x00	; 0
+     cd6:	90 e0       	ldi	r25, 0x00	; 0
+     cd8:	0e 94 11 02 	call	0x422	; 0x422 <delay>
+     cdc:	6d e2       	ldi	r22, 0x2D	; 45
+     cde:	70 e0       	ldi	r23, 0x00	; 0
+     ce0:	80 e0       	ldi	r24, 0x00	; 0
+     ce2:	90 e0       	ldi	r25, 0x00	; 0
+     ce4:	24 e6       	ldi	r18, 0x64	; 100
+     ce6:	30 e0       	ldi	r19, 0x00	; 0
+     ce8:	40 e0       	ldi	r20, 0x00	; 0
+     cea:	50 e0       	ldi	r21, 0x00	; 0
+     cec:	0e 94 b2 00 	call	0x164	; 0x164 <play>
+	delay(75);play(INT_PER_SEC/620,150);
+     cf0:	6b e4       	ldi	r22, 0x4B	; 75
+     cf2:	70 e0       	ldi	r23, 0x00	; 0
+     cf4:	80 e0       	ldi	r24, 0x00	; 0
+     cf6:	90 e0       	ldi	r25, 0x00	; 0
+     cf8:	0e 94 11 02 	call	0x422	; 0x422 <delay>
+     cfc:	62 e3       	ldi	r22, 0x32	; 50
+     cfe:	70 e0       	ldi	r23, 0x00	; 0
+     d00:	80 e0       	ldi	r24, 0x00	; 0
+     d02:	90 e0       	ldi	r25, 0x00	; 0
+     d04:	26 e9       	ldi	r18, 0x96	; 150
+     d06:	30 e0       	ldi	r19, 0x00	; 0
+     d08:	40 e0       	ldi	r20, 0x00	; 0
+     d0a:	50 e0       	ldi	r21, 0x00	; 0
+     d0c:	0e 94 b2 00 	call	0x164	; 0x164 <play>
+	delay(150);play(INT_PER_SEC/650,150);
+     d10:	66 e9       	ldi	r22, 0x96	; 150
+     d12:	70 e0       	ldi	r23, 0x00	; 0
+     d14:	80 e0       	ldi	r24, 0x00	; 0
+     d16:	90 e0       	ldi	r25, 0x00	; 0
+     d18:	0e 94 11 02 	call	0x422	; 0x422 <delay>
+     d1c:	60 e3       	ldi	r22, 0x30	; 48
+     d1e:	70 e0       	ldi	r23, 0x00	; 0
+     d20:	80 e0       	ldi	r24, 0x00	; 0
+     d22:	90 e0       	ldi	r25, 0x00	; 0
+     d24:	26 e9       	ldi	r18, 0x96	; 150
+     d26:	30 e0       	ldi	r19, 0x00	; 0
+     d28:	40 e0       	ldi	r20, 0x00	; 0
+     d2a:	50 e0       	ldi	r21, 0x00	; 0
+     d2c:	0e 94 b2 00 	call	0x164	; 0x164 <play>
+	delay(150);play(INT_PER_SEC/380,100);
+     d30:	66 e9       	ldi	r22, 0x96	; 150
+     d32:	70 e0       	ldi	r23, 0x00	; 0
+     d34:	80 e0       	ldi	r24, 0x00	; 0
+     d36:	90 e0       	ldi	r25, 0x00	; 0
+     d38:	0e 94 11 02 	call	0x422	; 0x422 <delay>
+     d3c:	62 e5       	ldi	r22, 0x52	; 82
+     d3e:	70 e0       	ldi	r23, 0x00	; 0
+     d40:	80 e0       	ldi	r24, 0x00	; 0
+     d42:	90 e0       	ldi	r25, 0x00	; 0
+     d44:	24 e6       	ldi	r18, 0x64	; 100
+     d46:	30 e0       	ldi	r19, 0x00	; 0
+     d48:	40 e0       	ldi	r20, 0x00	; 0
+     d4a:	50 e0       	ldi	r21, 0x00	; 0
+     d4c:	0e 94 b2 00 	call	0x164	; 0x164 <play>
+	delay(75);play(INT_PER_SEC/430,100);
+     d50:	6b e4       	ldi	r22, 0x4B	; 75
+     d52:	70 e0       	ldi	r23, 0x00	; 0
+     d54:	80 e0       	ldi	r24, 0x00	; 0
+     d56:	90 e0       	ldi	r25, 0x00	; 0
+     d58:	0e 94 11 02 	call	0x422	; 0x422 <delay>
+     d5c:	68 e4       	ldi	r22, 0x48	; 72
+     d5e:	70 e0       	ldi	r23, 0x00	; 0
+     d60:	80 e0       	ldi	r24, 0x00	; 0
+     d62:	90 e0       	ldi	r25, 0x00	; 0
+     d64:	24 e6       	ldi	r18, 0x64	; 100
+     d66:	30 e0       	ldi	r19, 0x00	; 0
+     d68:	40 e0       	ldi	r20, 0x00	; 0
+     d6a:	50 e0       	ldi	r21, 0x00	; 0
+     d6c:	0e 94 b2 00 	call	0x164	; 0x164 <play>
+	delay(75);play(INT_PER_SEC/500,100);
+     d70:	6b e4       	ldi	r22, 0x4B	; 75
+     d72:	70 e0       	ldi	r23, 0x00	; 0
+     d74:	80 e0       	ldi	r24, 0x00	; 0
+     d76:	90 e0       	ldi	r25, 0x00	; 0
+     d78:	0e 94 11 02 	call	0x422	; 0x422 <delay>
+     d7c:	6e e3       	ldi	r22, 0x3E	; 62
+     d7e:	70 e0       	ldi	r23, 0x00	; 0
+     d80:	80 e0       	ldi	r24, 0x00	; 0
+     d82:	90 e0       	ldi	r25, 0x00	; 0
+     d84:	24 e6       	ldi	r18, 0x64	; 100
+     d86:	30 e0       	ldi	r19, 0x00	; 0
+     d88:	40 e0       	ldi	r20, 0x00	; 0
+     d8a:	50 e0       	ldi	r21, 0x00	; 0
+     d8c:	0e 94 b2 00 	call	0x164	; 0x164 <play>
+	delay(150);play(INT_PER_SEC/430,100);
+     d90:	66 e9       	ldi	r22, 0x96	; 150
+     d92:	70 e0       	ldi	r23, 0x00	; 0
+     d94:	80 e0       	ldi	r24, 0x00	; 0
+     d96:	90 e0       	ldi	r25, 0x00	; 0
+     d98:	0e 94 11 02 	call	0x422	; 0x422 <delay>
+     d9c:	68 e4       	ldi	r22, 0x48	; 72
+     d9e:	70 e0       	ldi	r23, 0x00	; 0
+     da0:	80 e0       	ldi	r24, 0x00	; 0
+     da2:	90 e0       	ldi	r25, 0x00	; 0
+     da4:	24 e6       	ldi	r18, 0x64	; 100
+     da6:	30 e0       	ldi	r19, 0x00	; 0
+     da8:	40 e0       	ldi	r20, 0x00	; 0
+     daa:	50 e0       	ldi	r21, 0x00	; 0
+     dac:	0e 94 b2 00 	call	0x164	; 0x164 <play>
+	delay(75);play(INT_PER_SEC/500,100);
+     db0:	6b e4       	ldi	r22, 0x4B	; 75
+     db2:	70 e0       	ldi	r23, 0x00	; 0
+     db4:	80 e0       	ldi	r24, 0x00	; 0
+     db6:	90 e0       	ldi	r25, 0x00	; 0
+     db8:	0e 94 11 02 	call	0x422	; 0x422 <delay>
+     dbc:	6e e3       	ldi	r22, 0x3E	; 62
+     dbe:	70 e0       	ldi	r23, 0x00	; 0
+     dc0:	80 e0       	ldi	r24, 0x00	; 0
+     dc2:	90 e0       	ldi	r25, 0x00	; 0
+     dc4:	24 e6       	ldi	r18, 0x64	; 100
+     dc6:	30 e0       	ldi	r19, 0x00	; 0
+     dc8:	40 e0       	ldi	r20, 0x00	; 0
+     dca:	50 e0       	ldi	r21, 0x00	; 0
+     dcc:	0e 94 b2 00 	call	0x164	; 0x164 <play>
+	delay(50);play(INT_PER_SEC/570,100);
+     dd0:	62 e3       	ldi	r22, 0x32	; 50
+     dd2:	70 e0       	ldi	r23, 0x00	; 0
+     dd4:	80 e0       	ldi	r24, 0x00	; 0
+     dd6:	90 e0       	ldi	r25, 0x00	; 0
+     dd8:	0e 94 11 02 	call	0x422	; 0x422 <delay>
+     ddc:	66 e3       	ldi	r22, 0x36	; 54
+     dde:	70 e0       	ldi	r23, 0x00	; 0
+     de0:	80 e0       	ldi	r24, 0x00	; 0
+     de2:	90 e0       	ldi	r25, 0x00	; 0
+     de4:	24 e6       	ldi	r18, 0x64	; 100
+     de6:	30 e0       	ldi	r19, 0x00	; 0
+     de8:	40 e0       	ldi	r20, 0x00	; 0
+     dea:	50 e0       	ldi	r21, 0x00	; 0
+     dec:	0e 94 b2 00 	call	0x164	; 0x164 <play>
+	delay(110);play(INT_PER_SEC/500,100);
+     df0:	6e e6       	ldi	r22, 0x6E	; 110
+     df2:	70 e0       	ldi	r23, 0x00	; 0
+     df4:	80 e0       	ldi	r24, 0x00	; 0
+     df6:	90 e0       	ldi	r25, 0x00	; 0
+     df8:	0e 94 11 02 	call	0x422	; 0x422 <delay>
+     dfc:	6e e3       	ldi	r22, 0x3E	; 62
+     dfe:	70 e0       	ldi	r23, 0x00	; 0
+     e00:	80 e0       	ldi	r24, 0x00	; 0
+     e02:	90 e0       	ldi	r25, 0x00	; 0
+     e04:	24 e6       	ldi	r18, 0x64	; 100
+     e06:	30 e0       	ldi	r19, 0x00	; 0
+     e08:	40 e0       	ldi	r20, 0x00	; 0
+     e0a:	50 e0       	ldi	r21, 0x00	; 0
+     e0c:	0e 94 b2 00 	call	0x164	; 0x164 <play>
+	delay(150);play(INT_PER_SEC/760,100);
+     e10:	66 e9       	ldi	r22, 0x96	; 150
+     e12:	70 e0       	ldi	r23, 0x00	; 0
+     e14:	80 e0       	ldi	r24, 0x00	; 0
+     e16:	90 e0       	ldi	r25, 0x00	; 0
+     e18:	0e 94 11 02 	call	0x422	; 0x422 <delay>
+     e1c:	69 e2       	ldi	r22, 0x29	; 41
+     e1e:	70 e0       	ldi	r23, 0x00	; 0
+     e20:	80 e0       	ldi	r24, 0x00	; 0
+     e22:	90 e0       	ldi	r25, 0x00	; 0
+     e24:	24 e6       	ldi	r18, 0x64	; 100
+     e26:	30 e0       	ldi	r19, 0x00	; 0
+     e28:	40 e0       	ldi	r20, 0x00	; 0
+     e2a:	50 e0       	ldi	r21, 0x00	; 0
+     e2c:	0e 94 b2 00 	call	0x164	; 0x164 <play>
+	delay(50);play(INT_PER_SEC/720,100);
+     e30:	62 e3       	ldi	r22, 0x32	; 50
+     e32:	70 e0       	ldi	r23, 0x00	; 0
+     e34:	80 e0       	ldi	r24, 0x00	; 0
+     e36:	90 e0       	ldi	r25, 0x00	; 0
+     e38:	0e 94 11 02 	call	0x422	; 0x422 <delay>
+     e3c:	6b e2       	ldi	r22, 0x2B	; 43
+     e3e:	70 e0       	ldi	r23, 0x00	; 0
+     e40:	80 e0       	ldi	r24, 0x00	; 0
+     e42:	90 e0       	ldi	r25, 0x00	; 0
+     e44:	24 e6       	ldi	r18, 0x64	; 100
+     e46:	30 e0       	ldi	r19, 0x00	; 0
+     e48:	40 e0       	ldi	r20, 0x00	; 0
+     e4a:	50 e0       	ldi	r21, 0x00	; 0
+     e4c:	0e 94 b2 00 	call	0x164	; 0x164 <play>
+	delay(75);play(INT_PER_SEC/680,100);
+     e50:	6b e4       	ldi	r22, 0x4B	; 75
+     e52:	70 e0       	ldi	r23, 0x00	; 0
+     e54:	80 e0       	ldi	r24, 0x00	; 0
+     e56:	90 e0       	ldi	r25, 0x00	; 0
+     e58:	0e 94 11 02 	call	0x422	; 0x422 <delay>
+     e5c:	6d e2       	ldi	r22, 0x2D	; 45
+     e5e:	70 e0       	ldi	r23, 0x00	; 0
+     e60:	80 e0       	ldi	r24, 0x00	; 0
+     e62:	90 e0       	ldi	r25, 0x00	; 0
+     e64:	24 e6       	ldi	r18, 0x64	; 100
+     e66:	30 e0       	ldi	r19, 0x00	; 0
+     e68:	40 e0       	ldi	r20, 0x00	; 0
+     e6a:	50 e0       	ldi	r21, 0x00	; 0
+     e6c:	0e 94 b2 00 	call	0x164	; 0x164 <play>
+	delay(75);play(INT_PER_SEC/620,150);
+     e70:	6b e4       	ldi	r22, 0x4B	; 75
+     e72:	70 e0       	ldi	r23, 0x00	; 0
+     e74:	80 e0       	ldi	r24, 0x00	; 0
+     e76:	90 e0       	ldi	r25, 0x00	; 0
+     e78:	0e 94 11 02 	call	0x422	; 0x422 <delay>
+     e7c:	62 e3       	ldi	r22, 0x32	; 50
+     e7e:	70 e0       	ldi	r23, 0x00	; 0
+     e80:	80 e0       	ldi	r24, 0x00	; 0
+     e82:	90 e0       	ldi	r25, 0x00	; 0
+     e84:	26 e9       	ldi	r18, 0x96	; 150
+     e86:	30 e0       	ldi	r19, 0x00	; 0
+     e88:	40 e0       	ldi	r20, 0x00	; 0
+     e8a:	50 e0       	ldi	r21, 0x00	; 0
+     e8c:	0e 94 b2 00 	call	0x164	; 0x164 <play>
+	delay(150);play(INT_PER_SEC/650,200);
+     e90:	66 e9       	ldi	r22, 0x96	; 150
+     e92:	70 e0       	ldi	r23, 0x00	; 0
+     e94:	80 e0       	ldi	r24, 0x00	; 0
+     e96:	90 e0       	ldi	r25, 0x00	; 0
+     e98:	0e 94 11 02 	call	0x422	; 0x422 <delay>
+     e9c:	60 e3       	ldi	r22, 0x30	; 48
+     e9e:	70 e0       	ldi	r23, 0x00	; 0
+     ea0:	80 e0       	ldi	r24, 0x00	; 0
+     ea2:	90 e0       	ldi	r25, 0x00	; 0
+     ea4:	28 ec       	ldi	r18, 0xC8	; 200
+     ea6:	30 e0       	ldi	r19, 0x00	; 0
+     ea8:	40 e0       	ldi	r20, 0x00	; 0
+     eaa:	50 e0       	ldi	r21, 0x00	; 0
+     eac:	0e 94 b2 00 	call	0x164	; 0x164 <play>
+	delay(150);play(INT_PER_SEC/1020,80);
+     eb0:	66 e9       	ldi	r22, 0x96	; 150
+     eb2:	70 e0       	ldi	r23, 0x00	; 0
+     eb4:	80 e0       	ldi	r24, 0x00	; 0
+     eb6:	90 e0       	ldi	r25, 0x00	; 0
+     eb8:	0e 94 11 02 	call	0x422	; 0x422 <delay>
+     ebc:	6e e1       	ldi	r22, 0x1E	; 30
+     ebe:	70 e0       	ldi	r23, 0x00	; 0
+     ec0:	80 e0       	ldi	r24, 0x00	; 0
+     ec2:	90 e0       	ldi	r25, 0x00	; 0
+     ec4:	20 e5       	ldi	r18, 0x50	; 80
+     ec6:	30 e0       	ldi	r19, 0x00	; 0
+     ec8:	40 e0       	ldi	r20, 0x00	; 0
+     eca:	50 e0       	ldi	r21, 0x00	; 0
+     ecc:	0e 94 b2 00 	call	0x164	; 0x164 <play>
+	delay(150);play(INT_PER_SEC/1020,80);
+     ed0:	66 e9       	ldi	r22, 0x96	; 150
+     ed2:	70 e0       	ldi	r23, 0x00	; 0
+     ed4:	80 e0       	ldi	r24, 0x00	; 0
+     ed6:	90 e0       	ldi	r25, 0x00	; 0
+     ed8:	0e 94 11 02 	call	0x422	; 0x422 <delay>
+     edc:	6e e1       	ldi	r22, 0x1E	; 30
+     ede:	70 e0       	ldi	r23, 0x00	; 0
+     ee0:	80 e0       	ldi	r24, 0x00	; 0
+     ee2:	90 e0       	ldi	r25, 0x00	; 0
+     ee4:	20 e5       	ldi	r18, 0x50	; 80
+     ee6:	30 e0       	ldi	r19, 0x00	; 0
+     ee8:	40 e0       	ldi	r20, 0x00	; 0
+     eea:	50 e0       	ldi	r21, 0x00	; 0
+     eec:	0e 94 b2 00 	call	0x164	; 0x164 <play>
+	delay(75);play(INT_PER_SEC/1020,80);
+     ef0:	6b e4       	ldi	r22, 0x4B	; 75
+     ef2:	70 e0       	ldi	r23, 0x00	; 0
+     ef4:	80 e0       	ldi	r24, 0x00	; 0
+     ef6:	90 e0       	ldi	r25, 0x00	; 0
+     ef8:	0e 94 11 02 	call	0x422	; 0x422 <delay>
+     efc:	6e e1       	ldi	r22, 0x1E	; 30
+     efe:	70 e0       	ldi	r23, 0x00	; 0
+     f00:	80 e0       	ldi	r24, 0x00	; 0
+     f02:	90 e0       	ldi	r25, 0x00	; 0
+     f04:	20 e5       	ldi	r18, 0x50	; 80
+     f06:	30 e0       	ldi	r19, 0x00	; 0
+     f08:	40 e0       	ldi	r20, 0x00	; 0
+     f0a:	50 e0       	ldi	r21, 0x00	; 0
+     f0c:	0e 94 b2 00 	call	0x164	; 0x164 <play>
+	delay(150);play(INT_PER_SEC/380,100);
+     f10:	66 e9       	ldi	r22, 0x96	; 150
+     f12:	70 e0       	ldi	r23, 0x00	; 0
+     f14:	80 e0       	ldi	r24, 0x00	; 0
+     f16:	90 e0       	ldi	r25, 0x00	; 0
+     f18:	0e 94 11 02 	call	0x422	; 0x422 <delay>
+     f1c:	62 e5       	ldi	r22, 0x52	; 82
+     f1e:	70 e0       	ldi	r23, 0x00	; 0
+     f20:	80 e0       	ldi	r24, 0x00	; 0
+     f22:	90 e0       	ldi	r25, 0x00	; 0
+     f24:	24 e6       	ldi	r18, 0x64	; 100
+     f26:	30 e0       	ldi	r19, 0x00	; 0
+     f28:	40 e0       	ldi	r20, 0x00	; 0
+     f2a:	50 e0       	ldi	r21, 0x00	; 0
+     f2c:	0e 94 b2 00 	call	0x164	; 0x164 <play>
+	delay(150);play(INT_PER_SEC/500,100);
+     f30:	66 e9       	ldi	r22, 0x96	; 150
+     f32:	70 e0       	ldi	r23, 0x00	; 0
+     f34:	80 e0       	ldi	r24, 0x00	; 0
+     f36:	90 e0       	ldi	r25, 0x00	; 0
+     f38:	0e 94 11 02 	call	0x422	; 0x422 <delay>
+     f3c:	6e e3       	ldi	r22, 0x3E	; 62
+     f3e:	70 e0       	ldi	r23, 0x00	; 0
+     f40:	80 e0       	ldi	r24, 0x00	; 0
+     f42:	90 e0       	ldi	r25, 0x00	; 0
+     f44:	24 e6       	ldi	r18, 0x64	; 100
+     f46:	30 e0       	ldi	r19, 0x00	; 0
+     f48:	40 e0       	ldi	r20, 0x00	; 0
+     f4a:	50 e0       	ldi	r21, 0x00	; 0
+     f4c:	0e 94 b2 00 	call	0x164	; 0x164 <play>
+	delay(150);play(INT_PER_SEC/760,100);
+     f50:	66 e9       	ldi	r22, 0x96	; 150
+     f52:	70 e0       	ldi	r23, 0x00	; 0
+     f54:	80 e0       	ldi	r24, 0x00	; 0
+     f56:	90 e0       	ldi	r25, 0x00	; 0
+     f58:	0e 94 11 02 	call	0x422	; 0x422 <delay>
+     f5c:	69 e2       	ldi	r22, 0x29	; 41
+     f5e:	70 e0       	ldi	r23, 0x00	; 0
+     f60:	80 e0       	ldi	r24, 0x00	; 0
+     f62:	90 e0       	ldi	r25, 0x00	; 0
+     f64:	24 e6       	ldi	r18, 0x64	; 100
+     f66:	30 e0       	ldi	r19, 0x00	; 0
+     f68:	40 e0       	ldi	r20, 0x00	; 0
+     f6a:	50 e0       	ldi	r21, 0x00	; 0
+     f6c:	0e 94 b2 00 	call	0x164	; 0x164 <play>
+	delay(50);play(INT_PER_SEC/720,100);
+     f70:	62 e3       	ldi	r22, 0x32	; 50
+     f72:	70 e0       	ldi	r23, 0x00	; 0
+     f74:	80 e0       	ldi	r24, 0x00	; 0
+     f76:	90 e0       	ldi	r25, 0x00	; 0
+     f78:	0e 94 11 02 	call	0x422	; 0x422 <delay>
+     f7c:	6b e2       	ldi	r22, 0x2B	; 43
+     f7e:	70 e0       	ldi	r23, 0x00	; 0
+     f80:	80 e0       	ldi	r24, 0x00	; 0
+     f82:	90 e0       	ldi	r25, 0x00	; 0
+     f84:	24 e6       	ldi	r18, 0x64	; 100
+     f86:	30 e0       	ldi	r19, 0x00	; 0
+     f88:	40 e0       	ldi	r20, 0x00	; 0
+     f8a:	50 e0       	ldi	r21, 0x00	; 0
+     f8c:	0e 94 b2 00 	call	0x164	; 0x164 <play>
+	delay(75);play(INT_PER_SEC/680,100);
+     f90:	6b e4       	ldi	r22, 0x4B	; 75
+     f92:	70 e0       	ldi	r23, 0x00	; 0
+     f94:	80 e0       	ldi	r24, 0x00	; 0
+     f96:	90 e0       	ldi	r25, 0x00	; 0
+     f98:	0e 94 11 02 	call	0x422	; 0x422 <delay>
+     f9c:	6d e2       	ldi	r22, 0x2D	; 45
+     f9e:	70 e0       	ldi	r23, 0x00	; 0
+     fa0:	80 e0       	ldi	r24, 0x00	; 0
+     fa2:	90 e0       	ldi	r25, 0x00	; 0
+     fa4:	24 e6       	ldi	r18, 0x64	; 100
+     fa6:	30 e0       	ldi	r19, 0x00	; 0
+     fa8:	40 e0       	ldi	r20, 0x00	; 0
+     faa:	50 e0       	ldi	r21, 0x00	; 0
+     fac:	0e 94 b2 00 	call	0x164	; 0x164 <play>
+	delay(75);play(INT_PER_SEC/620,150);
+     fb0:	6b e4       	ldi	r22, 0x4B	; 75
+     fb2:	70 e0       	ldi	r23, 0x00	; 0
+     fb4:	80 e0       	ldi	r24, 0x00	; 0
+     fb6:	90 e0       	ldi	r25, 0x00	; 0
+     fb8:	0e 94 11 02 	call	0x422	; 0x422 <delay>
+     fbc:	62 e3       	ldi	r22, 0x32	; 50
+     fbe:	70 e0       	ldi	r23, 0x00	; 0
+     fc0:	80 e0       	ldi	r24, 0x00	; 0
+     fc2:	90 e0       	ldi	r25, 0x00	; 0
+     fc4:	26 e9       	ldi	r18, 0x96	; 150
+     fc6:	30 e0       	ldi	r19, 0x00	; 0
+     fc8:	40 e0       	ldi	r20, 0x00	; 0
+     fca:	50 e0       	ldi	r21, 0x00	; 0
+     fcc:	0e 94 b2 00 	call	0x164	; 0x164 <play>
+	delay(150);play(INT_PER_SEC/650,150);
+     fd0:	66 e9       	ldi	r22, 0x96	; 150
+     fd2:	70 e0       	ldi	r23, 0x00	; 0
+     fd4:	80 e0       	ldi	r24, 0x00	; 0
+     fd6:	90 e0       	ldi	r25, 0x00	; 0
+     fd8:	0e 94 11 02 	call	0x422	; 0x422 <delay>
+     fdc:	60 e3       	ldi	r22, 0x30	; 48
+     fde:	70 e0       	ldi	r23, 0x00	; 0
+     fe0:	80 e0       	ldi	r24, 0x00	; 0
+     fe2:	90 e0       	ldi	r25, 0x00	; 0
+     fe4:	26 e9       	ldi	r18, 0x96	; 150
+     fe6:	30 e0       	ldi	r19, 0x00	; 0
+     fe8:	40 e0       	ldi	r20, 0x00	; 0
+     fea:	50 e0       	ldi	r21, 0x00	; 0
+     fec:	0e 94 b2 00 	call	0x164	; 0x164 <play>
+	delay(150);play(INT_PER_SEC/380,100);
+     ff0:	66 e9       	ldi	r22, 0x96	; 150
+     ff2:	70 e0       	ldi	r23, 0x00	; 0
+     ff4:	80 e0       	ldi	r24, 0x00	; 0
+     ff6:	90 e0       	ldi	r25, 0x00	; 0
+     ff8:	0e 94 11 02 	call	0x422	; 0x422 <delay>
+     ffc:	62 e5       	ldi	r22, 0x52	; 82
+     ffe:	70 e0       	ldi	r23, 0x00	; 0
+    1000:	80 e0       	ldi	r24, 0x00	; 0
+    1002:	90 e0       	ldi	r25, 0x00	; 0
+    1004:	24 e6       	ldi	r18, 0x64	; 100
+    1006:	30 e0       	ldi	r19, 0x00	; 0
+    1008:	40 e0       	ldi	r20, 0x00	; 0
+    100a:	50 e0       	ldi	r21, 0x00	; 0
+    100c:	0e 94 b2 00 	call	0x164	; 0x164 <play>
+	delay(75);play(INT_PER_SEC/430,100);
+    1010:	6b e4       	ldi	r22, 0x4B	; 75
+    1012:	70 e0       	ldi	r23, 0x00	; 0
+    1014:	80 e0       	ldi	r24, 0x00	; 0
+    1016:	90 e0       	ldi	r25, 0x00	; 0
+    1018:	0e 94 11 02 	call	0x422	; 0x422 <delay>
+    101c:	68 e4       	ldi	r22, 0x48	; 72
+    101e:	70 e0       	ldi	r23, 0x00	; 0
+    1020:	80 e0       	ldi	r24, 0x00	; 0
+    1022:	90 e0       	ldi	r25, 0x00	; 0
+    1024:	24 e6       	ldi	r18, 0x64	; 100
+    1026:	30 e0       	ldi	r19, 0x00	; 0
+    1028:	40 e0       	ldi	r20, 0x00	; 0
+    102a:	50 e0       	ldi	r21, 0x00	; 0
+    102c:	0e 94 b2 00 	call	0x164	; 0x164 <play>
+	delay(75);play(INT_PER_SEC/500,100);
+    1030:	6b e4       	ldi	r22, 0x4B	; 75
+    1032:	70 e0       	ldi	r23, 0x00	; 0
+    1034:	80 e0       	ldi	r24, 0x00	; 0
+    1036:	90 e0       	ldi	r25, 0x00	; 0
+    1038:	0e 94 11 02 	call	0x422	; 0x422 <delay>
+    103c:	6e e3       	ldi	r22, 0x3E	; 62
+    103e:	70 e0       	ldi	r23, 0x00	; 0
+    1040:	80 e0       	ldi	r24, 0x00	; 0
+    1042:	90 e0       	ldi	r25, 0x00	; 0
+    1044:	24 e6       	ldi	r18, 0x64	; 100
+    1046:	30 e0       	ldi	r19, 0x00	; 0
+    1048:	40 e0       	ldi	r20, 0x00	; 0
+    104a:	50 e0       	ldi	r21, 0x00	; 0
+    104c:	0e 94 b2 00 	call	0x164	; 0x164 <play>
+	delay(150);play(INT_PER_SEC/430,100);
+    1050:	66 e9       	ldi	r22, 0x96	; 150
+    1052:	70 e0       	ldi	r23, 0x00	; 0
+    1054:	80 e0       	ldi	r24, 0x00	; 0
+    1056:	90 e0       	ldi	r25, 0x00	; 0
+    1058:	0e 94 11 02 	call	0x422	; 0x422 <delay>
+    105c:	68 e4       	ldi	r22, 0x48	; 72
+    105e:	70 e0       	ldi	r23, 0x00	; 0
+    1060:	80 e0       	ldi	r24, 0x00	; 0
+    1062:	90 e0       	ldi	r25, 0x00	; 0
+    1064:	24 e6       	ldi	r18, 0x64	; 100
+    1066:	30 e0       	ldi	r19, 0x00	; 0
+    1068:	40 e0       	ldi	r20, 0x00	; 0
+    106a:	50 e0       	ldi	r21, 0x00	; 0
+    106c:	0e 94 b2 00 	call	0x164	; 0x164 <play>
+	delay(75);play(INT_PER_SEC/500,100);
+    1070:	6b e4       	ldi	r22, 0x4B	; 75
+    1072:	70 e0       	ldi	r23, 0x00	; 0
+    1074:	80 e0       	ldi	r24, 0x00	; 0
+    1076:	90 e0       	ldi	r25, 0x00	; 0
+    1078:	0e 94 11 02 	call	0x422	; 0x422 <delay>
+    107c:	6e e3       	ldi	r22, 0x3E	; 62
+    107e:	70 e0       	ldi	r23, 0x00	; 0
+    1080:	80 e0       	ldi	r24, 0x00	; 0
+    1082:	90 e0       	ldi	r25, 0x00	; 0
+    1084:	24 e6       	ldi	r18, 0x64	; 100
+    1086:	30 e0       	ldi	r19, 0x00	; 0
+    1088:	40 e0       	ldi	r20, 0x00	; 0
+    108a:	50 e0       	ldi	r21, 0x00	; 0
+    108c:	0e 94 b2 00 	call	0x164	; 0x164 <play>
+	delay(50);play(INT_PER_SEC/570,100);
+    1090:	62 e3       	ldi	r22, 0x32	; 50
+    1092:	70 e0       	ldi	r23, 0x00	; 0
+    1094:	80 e0       	ldi	r24, 0x00	; 0
+    1096:	90 e0       	ldi	r25, 0x00	; 0
+    1098:	0e 94 11 02 	call	0x422	; 0x422 <delay>
+    109c:	66 e3       	ldi	r22, 0x36	; 54
+    109e:	70 e0       	ldi	r23, 0x00	; 0
+    10a0:	80 e0       	ldi	r24, 0x00	; 0
+    10a2:	90 e0       	ldi	r25, 0x00	; 0
+    10a4:	24 e6       	ldi	r18, 0x64	; 100
+    10a6:	30 e0       	ldi	r19, 0x00	; 0
+    10a8:	40 e0       	ldi	r20, 0x00	; 0
+    10aa:	50 e0       	ldi	r21, 0x00	; 0
+    10ac:	0e 94 b2 00 	call	0x164	; 0x164 <play>
+	delay(210);play(INT_PER_SEC/585,100);
+    10b0:	62 ed       	ldi	r22, 0xD2	; 210
+    10b2:	70 e0       	ldi	r23, 0x00	; 0
+    10b4:	80 e0       	ldi	r24, 0x00	; 0
+    10b6:	90 e0       	ldi	r25, 0x00	; 0
+    10b8:	0e 94 11 02 	call	0x422	; 0x422 <delay>
+    10bc:	65 e3       	ldi	r22, 0x35	; 53
+    10be:	70 e0       	ldi	r23, 0x00	; 0
+    10c0:	80 e0       	ldi	r24, 0x00	; 0
+    10c2:	90 e0       	ldi	r25, 0x00	; 0
+    10c4:	24 e6       	ldi	r18, 0x64	; 100
+    10c6:	30 e0       	ldi	r19, 0x00	; 0
+    10c8:	40 e0       	ldi	r20, 0x00	; 0
+    10ca:	50 e0       	ldi	r21, 0x00	; 0
+    10cc:	0e 94 b2 00 	call	0x164	; 0x164 <play>
+	delay(275);play(INT_PER_SEC/550,100);
+    10d0:	63 e1       	ldi	r22, 0x13	; 19
+    10d2:	71 e0       	ldi	r23, 0x01	; 1
+    10d4:	80 e0       	ldi	r24, 0x00	; 0
+    10d6:	90 e0       	ldi	r25, 0x00	; 0
+    10d8:	0e 94 11 02 	call	0x422	; 0x422 <delay>
+    10dc:	68 e3       	ldi	r22, 0x38	; 56
+    10de:	70 e0       	ldi	r23, 0x00	; 0
+    10e0:	80 e0       	ldi	r24, 0x00	; 0
+    10e2:	90 e0       	ldi	r25, 0x00	; 0
+    10e4:	24 e6       	ldi	r18, 0x64	; 100
+    10e6:	30 e0       	ldi	r19, 0x00	; 0
+    10e8:	40 e0       	ldi	r20, 0x00	; 0
+    10ea:	50 e0       	ldi	r21, 0x00	; 0
+    10ec:	0e 94 b2 00 	call	0x164	; 0x164 <play>
+	delay(210);play(INT_PER_SEC/500,100);
+    10f0:	62 ed       	ldi	r22, 0xD2	; 210
+    10f2:	70 e0       	ldi	r23, 0x00	; 0
+    10f4:	80 e0       	ldi	r24, 0x00	; 0
+    10f6:	90 e0       	ldi	r25, 0x00	; 0
+    10f8:	0e 94 11 02 	call	0x422	; 0x422 <delay>
+    10fc:	6e e3       	ldi	r22, 0x3E	; 62
+    10fe:	70 e0       	ldi	r23, 0x00	; 0
+    1100:	80 e0       	ldi	r24, 0x00	; 0
+    1102:	90 e0       	ldi	r25, 0x00	; 0
+    1104:	24 e6       	ldi	r18, 0x64	; 100
+    1106:	30 e0       	ldi	r19, 0x00	; 0
+    1108:	40 e0       	ldi	r20, 0x00	; 0
+    110a:	50 e0       	ldi	r21, 0x00	; 0
+    110c:	0e 94 b2 00 	call	0x164	; 0x164 <play>
+	delay(180);play(INT_PER_SEC/380,100);
+    1110:	64 eb       	ldi	r22, 0xB4	; 180
+    1112:	70 e0       	ldi	r23, 0x00	; 0
+    1114:	80 e0       	ldi	r24, 0x00	; 0
+    1116:	90 e0       	ldi	r25, 0x00	; 0
+    1118:	0e 94 11 02 	call	0x422	; 0x422 <delay>
+    111c:	62 e5       	ldi	r22, 0x52	; 82
+    111e:	70 e0       	ldi	r23, 0x00	; 0
+    1120:	80 e0       	ldi	r24, 0x00	; 0
+    1122:	90 e0       	ldi	r25, 0x00	; 0
+    1124:	24 e6       	ldi	r18, 0x64	; 100
+    1126:	30 e0       	ldi	r19, 0x00	; 0
+    1128:	40 e0       	ldi	r20, 0x00	; 0
+    112a:	50 e0       	ldi	r21, 0x00	; 0
+    112c:	0e 94 b2 00 	call	0x164	; 0x164 <play>
+	delay(150);play(INT_PER_SEC/500,100);
+    1130:	66 e9       	ldi	r22, 0x96	; 150
+    1132:	70 e0       	ldi	r23, 0x00	; 0
+    1134:	80 e0       	ldi	r24, 0x00	; 0
+    1136:	90 e0       	ldi	r25, 0x00	; 0
+    1138:	0e 94 11 02 	call	0x422	; 0x422 <delay>
+    113c:	6e e3       	ldi	r22, 0x3E	; 62
+    113e:	70 e0       	ldi	r23, 0x00	; 0
+    1140:	80 e0       	ldi	r24, 0x00	; 0
+    1142:	90 e0       	ldi	r25, 0x00	; 0
+    1144:	24 e6       	ldi	r18, 0x64	; 100
+    1146:	30 e0       	ldi	r19, 0x00	; 0
+    1148:	40 e0       	ldi	r20, 0x00	; 0
+    114a:	50 e0       	ldi	r21, 0x00	; 0
+    114c:	0e 94 b2 00 	call	0x164	; 0x164 <play>
+	delay(150);play(INT_PER_SEC/500,100);
+    1150:	66 e9       	ldi	r22, 0x96	; 150
+    1152:	70 e0       	ldi	r23, 0x00	; 0
+    1154:	80 e0       	ldi	r24, 0x00	; 0
+    1156:	90 e0       	ldi	r25, 0x00	; 0
+    1158:	0e 94 11 02 	call	0x422	; 0x422 <delay>
+    115c:	6e e3       	ldi	r22, 0x3E	; 62
+    115e:	70 e0       	ldi	r23, 0x00	; 0
+    1160:	80 e0       	ldi	r24, 0x00	; 0
+    1162:	90 e0       	ldi	r25, 0x00	; 0
+    1164:	24 e6       	ldi	r18, 0x64	; 100
+    1166:	30 e0       	ldi	r19, 0x00	; 0
+    1168:	40 e0       	ldi	r20, 0x00	; 0
+    116a:	50 e0       	ldi	r21, 0x00	; 0
+    116c:	0e 94 b2 00 	call	0x164	; 0x164 <play>
+	delay(75);play(INT_PER_SEC/500,100);
+    1170:	6b e4       	ldi	r22, 0x4B	; 75
+    1172:	70 e0       	ldi	r23, 0x00	; 0
+    1174:	80 e0       	ldi	r24, 0x00	; 0
+    1176:	90 e0       	ldi	r25, 0x00	; 0
+    1178:	0e 94 11 02 	call	0x422	; 0x422 <delay>
+    117c:	6e e3       	ldi	r22, 0x3E	; 62
+    117e:	70 e0       	ldi	r23, 0x00	; 0
+    1180:	80 e0       	ldi	r24, 0x00	; 0
+    1182:	90 e0       	ldi	r25, 0x00	; 0
+    1184:	24 e6       	ldi	r18, 0x64	; 100
+    1186:	30 e0       	ldi	r19, 0x00	; 0
+    1188:	40 e0       	ldi	r20, 0x00	; 0
+    118a:	50 e0       	ldi	r21, 0x00	; 0
+    118c:	0e 94 b2 00 	call	0x164	; 0x164 <play>
+	delay(150);play(INT_PER_SEC/500,60);
+    1190:	66 e9       	ldi	r22, 0x96	; 150
+    1192:	70 e0       	ldi	r23, 0x00	; 0
+    1194:	80 e0       	ldi	r24, 0x00	; 0
+    1196:	90 e0       	ldi	r25, 0x00	; 0
+    1198:	0e 94 11 02 	call	0x422	; 0x422 <delay>
+    119c:	6e e3       	ldi	r22, 0x3E	; 62
+    119e:	70 e0       	ldi	r23, 0x00	; 0
+    11a0:	80 e0       	ldi	r24, 0x00	; 0
+    11a2:	90 e0       	ldi	r25, 0x00	; 0
+    11a4:	2c e3       	ldi	r18, 0x3C	; 60
+    11a6:	30 e0       	ldi	r19, 0x00	; 0
+    11a8:	40 e0       	ldi	r20, 0x00	; 0
+    11aa:	50 e0       	ldi	r21, 0x00	; 0
+    11ac:	0e 94 b2 00 	call	0x164	; 0x164 <play>
+	delay(75);play(INT_PER_SEC/500,80);
+    11b0:	6b e4       	ldi	r22, 0x4B	; 75
+    11b2:	70 e0       	ldi	r23, 0x00	; 0
+    11b4:	80 e0       	ldi	r24, 0x00	; 0
+    11b6:	90 e0       	ldi	r25, 0x00	; 0
+    11b8:	0e 94 11 02 	call	0x422	; 0x422 <delay>
+    11bc:	6e e3       	ldi	r22, 0x3E	; 62
+    11be:	70 e0       	ldi	r23, 0x00	; 0
+    11c0:	80 e0       	ldi	r24, 0x00	; 0
+    11c2:	90 e0       	ldi	r25, 0x00	; 0
+    11c4:	20 e5       	ldi	r18, 0x50	; 80
+    11c6:	30 e0       	ldi	r19, 0x00	; 0
+    11c8:	40 e0       	ldi	r20, 0x00	; 0
+    11ca:	50 e0       	ldi	r21, 0x00	; 0
+    11cc:	0e 94 b2 00 	call	0x164	; 0x164 <play>
+	delay(150);play(INT_PER_SEC/500,60);
+    11d0:	66 e9       	ldi	r22, 0x96	; 150
+    11d2:	70 e0       	ldi	r23, 0x00	; 0
+    11d4:	80 e0       	ldi	r24, 0x00	; 0
+    11d6:	90 e0       	ldi	r25, 0x00	; 0
+    11d8:	0e 94 11 02 	call	0x422	; 0x422 <delay>
+    11dc:	6e e3       	ldi	r22, 0x3E	; 62
+    11de:	70 e0       	ldi	r23, 0x00	; 0
+    11e0:	80 e0       	ldi	r24, 0x00	; 0
+    11e2:	90 e0       	ldi	r25, 0x00	; 0
+    11e4:	2c e3       	ldi	r18, 0x3C	; 60
+    11e6:	30 e0       	ldi	r19, 0x00	; 0
+    11e8:	40 e0       	ldi	r20, 0x00	; 0
+    11ea:	50 e0       	ldi	r21, 0x00	; 0
+    11ec:	0e 94 b2 00 	call	0x164	; 0x164 <play>
+	delay(175);play(INT_PER_SEC/500,80);
+    11f0:	6f ea       	ldi	r22, 0xAF	; 175
+    11f2:	70 e0       	ldi	r23, 0x00	; 0
+    11f4:	80 e0       	ldi	r24, 0x00	; 0
+    11f6:	90 e0       	ldi	r25, 0x00	; 0
+    11f8:	0e 94 11 02 	call	0x422	; 0x422 <delay>
+    11fc:	6e e3       	ldi	r22, 0x3E	; 62
+    11fe:	70 e0       	ldi	r23, 0x00	; 0
+    1200:	80 e0       	ldi	r24, 0x00	; 0
+    1202:	90 e0       	ldi	r25, 0x00	; 0
+    1204:	20 e5       	ldi	r18, 0x50	; 80
+    1206:	30 e0       	ldi	r19, 0x00	; 0
+    1208:	40 e0       	ldi	r20, 0x00	; 0
+    120a:	50 e0       	ldi	r21, 0x00	; 0
+    120c:	0e 94 b2 00 	call	0x164	; 0x164 <play>
+	delay(75);play(INT_PER_SEC/580,80);
+    1210:	6b e4       	ldi	r22, 0x4B	; 75
+    1212:	70 e0       	ldi	r23, 0x00	; 0
+    1214:	80 e0       	ldi	r24, 0x00	; 0
+    1216:	90 e0       	ldi	r25, 0x00	; 0
+    1218:	0e 94 11 02 	call	0x422	; 0x422 <delay>
+    121c:	65 e3       	ldi	r22, 0x35	; 53
+    121e:	70 e0       	ldi	r23, 0x00	; 0
+    1220:	80 e0       	ldi	r24, 0x00	; 0
+    1222:	90 e0       	ldi	r25, 0x00	; 0
+    1224:	20 e5       	ldi	r18, 0x50	; 80
+    1226:	30 e0       	ldi	r19, 0x00	; 0
+    1228:	40 e0       	ldi	r20, 0x00	; 0
+    122a:	50 e0       	ldi	r21, 0x00	; 0
+    122c:	0e 94 b2 00 	call	0x164	; 0x164 <play>
+	delay(175);play(INT_PER_SEC/660,80);
+    1230:	6f ea       	ldi	r22, 0xAF	; 175
+    1232:	70 e0       	ldi	r23, 0x00	; 0
+    1234:	80 e0       	ldi	r24, 0x00	; 0
+    1236:	90 e0       	ldi	r25, 0x00	; 0
+    1238:	0e 94 11 02 	call	0x422	; 0x422 <delay>
+    123c:	6f e2       	ldi	r22, 0x2F	; 47
+    123e:	70 e0       	ldi	r23, 0x00	; 0
+    1240:	80 e0       	ldi	r24, 0x00	; 0
+    1242:	90 e0       	ldi	r25, 0x00	; 0
+    1244:	20 e5       	ldi	r18, 0x50	; 80
+    1246:	30 e0       	ldi	r19, 0x00	; 0
+    1248:	40 e0       	ldi	r20, 0x00	; 0
+    124a:	50 e0       	ldi	r21, 0x00	; 0
+    124c:	0e 94 b2 00 	call	0x164	; 0x164 <play>
+	delay(75);play(INT_PER_SEC/500,80);
+    1250:	6b e4       	ldi	r22, 0x4B	; 75
+    1252:	70 e0       	ldi	r23, 0x00	; 0
+    1254:	80 e0       	ldi	r24, 0x00	; 0
+    1256:	90 e0       	ldi	r25, 0x00	; 0
+    1258:	0e 94 11 02 	call	0x422	; 0x422 <delay>
+    125c:	6e e3       	ldi	r22, 0x3E	; 62
+    125e:	70 e0       	ldi	r23, 0x00	; 0
+    1260:	80 e0       	ldi	r24, 0x00	; 0
+    1262:	90 e0       	ldi	r25, 0x00	; 0
+    1264:	20 e5       	ldi	r18, 0x50	; 80
+    1266:	30 e0       	ldi	r19, 0x00	; 0
+    1268:	40 e0       	ldi	r20, 0x00	; 0
+    126a:	50 e0       	ldi	r21, 0x00	; 0
+    126c:	0e 94 b2 00 	call	0x164	; 0x164 <play>
+	delay(150);play(INT_PER_SEC/430,80);
+    1270:	66 e9       	ldi	r22, 0x96	; 150
+    1272:	70 e0       	ldi	r23, 0x00	; 0
+    1274:	80 e0       	ldi	r24, 0x00	; 0
+    1276:	90 e0       	ldi	r25, 0x00	; 0
+    1278:	0e 94 11 02 	call	0x422	; 0x422 <delay>
+    127c:	68 e4       	ldi	r22, 0x48	; 72
+    127e:	70 e0       	ldi	r23, 0x00	; 0
+    1280:	80 e0       	ldi	r24, 0x00	; 0
+    1282:	90 e0       	ldi	r25, 0x00	; 0
+    1284:	20 e5       	ldi	r18, 0x50	; 80
+    1286:	30 e0       	ldi	r19, 0x00	; 0
+    1288:	40 e0       	ldi	r20, 0x00	; 0
+    128a:	50 e0       	ldi	r21, 0x00	; 0
+    128c:	0e 94 b2 00 	call	0x164	; 0x164 <play>
+	delay(75);play(INT_PER_SEC/380,80);
+    1290:	6b e4       	ldi	r22, 0x4B	; 75
+    1292:	70 e0       	ldi	r23, 0x00	; 0
+    1294:	80 e0       	ldi	r24, 0x00	; 0
+    1296:	90 e0       	ldi	r25, 0x00	; 0
+    1298:	0e 94 11 02 	call	0x422	; 0x422 <delay>
+    129c:	62 e5       	ldi	r22, 0x52	; 82
+    129e:	70 e0       	ldi	r23, 0x00	; 0
+    12a0:	80 e0       	ldi	r24, 0x00	; 0
+    12a2:	90 e0       	ldi	r25, 0x00	; 0
+    12a4:	20 e5       	ldi	r18, 0x50	; 80
+    12a6:	30 e0       	ldi	r19, 0x00	; 0
+    12a8:	40 e0       	ldi	r20, 0x00	; 0
+    12aa:	50 e0       	ldi	r21, 0x00	; 0
+    12ac:	0e 94 b2 00 	call	0x164	; 0x164 <play>
+	delay(300);play(INT_PER_SEC/500,60);
+    12b0:	6c e2       	ldi	r22, 0x2C	; 44
+    12b2:	71 e0       	ldi	r23, 0x01	; 1
+    12b4:	80 e0       	ldi	r24, 0x00	; 0
+    12b6:	90 e0       	ldi	r25, 0x00	; 0
+    12b8:	0e 94 11 02 	call	0x422	; 0x422 <delay>
+    12bc:	6e e3       	ldi	r22, 0x3E	; 62
+    12be:	70 e0       	ldi	r23, 0x00	; 0
+    12c0:	80 e0       	ldi	r24, 0x00	; 0
+    12c2:	90 e0       	ldi	r25, 0x00	; 0
+    12c4:	2c e3       	ldi	r18, 0x3C	; 60
+    12c6:	30 e0       	ldi	r19, 0x00	; 0
+    12c8:	40 e0       	ldi	r20, 0x00	; 0
+    12ca:	50 e0       	ldi	r21, 0x00	; 0
+    12cc:	0e 94 b2 00 	call	0x164	; 0x164 <play>
+	delay(75);play(INT_PER_SEC/500,80);
+    12d0:	6b e4       	ldi	r22, 0x4B	; 75
+    12d2:	70 e0       	ldi	r23, 0x00	; 0
+    12d4:	80 e0       	ldi	r24, 0x00	; 0
+    12d6:	90 e0       	ldi	r25, 0x00	; 0
+    12d8:	0e 94 11 02 	call	0x422	; 0x422 <delay>
+    12dc:	6e e3       	ldi	r22, 0x3E	; 62
+    12de:	70 e0       	ldi	r23, 0x00	; 0
+    12e0:	80 e0       	ldi	r24, 0x00	; 0
+    12e2:	90 e0       	ldi	r25, 0x00	; 0
+    12e4:	20 e5       	ldi	r18, 0x50	; 80
+    12e6:	30 e0       	ldi	r19, 0x00	; 0
+    12e8:	40 e0       	ldi	r20, 0x00	; 0
+    12ea:	50 e0       	ldi	r21, 0x00	; 0
+    12ec:	0e 94 b2 00 	call	0x164	; 0x164 <play>
+	delay(150);play(INT_PER_SEC/500,60);
+    12f0:	66 e9       	ldi	r22, 0x96	; 150
+    12f2:	70 e0       	ldi	r23, 0x00	; 0
+    12f4:	80 e0       	ldi	r24, 0x00	; 0
+    12f6:	90 e0       	ldi	r25, 0x00	; 0
+    12f8:	0e 94 11 02 	call	0x422	; 0x422 <delay>
+    12fc:	6e e3       	ldi	r22, 0x3E	; 62
+    12fe:	70 e0       	ldi	r23, 0x00	; 0
+    1300:	80 e0       	ldi	r24, 0x00	; 0
+    1302:	90 e0       	ldi	r25, 0x00	; 0
+    1304:	2c e3       	ldi	r18, 0x3C	; 60
+    1306:	30 e0       	ldi	r19, 0x00	; 0
+    1308:	40 e0       	ldi	r20, 0x00	; 0
+    130a:	50 e0       	ldi	r21, 0x00	; 0
+    130c:	0e 94 b2 00 	call	0x164	; 0x164 <play>
+	delay(175);play(INT_PER_SEC/500,80);
+    1310:	6f ea       	ldi	r22, 0xAF	; 175
+    1312:	70 e0       	ldi	r23, 0x00	; 0
+    1314:	80 e0       	ldi	r24, 0x00	; 0
+    1316:	90 e0       	ldi	r25, 0x00	; 0
+    1318:	0e 94 11 02 	call	0x422	; 0x422 <delay>
+    131c:	6e e3       	ldi	r22, 0x3E	; 62
+    131e:	70 e0       	ldi	r23, 0x00	; 0
+    1320:	80 e0       	ldi	r24, 0x00	; 0
+    1322:	90 e0       	ldi	r25, 0x00	; 0
+    1324:	20 e5       	ldi	r18, 0x50	; 80
+    1326:	30 e0       	ldi	r19, 0x00	; 0
+    1328:	40 e0       	ldi	r20, 0x00	; 0
+    132a:	50 e0       	ldi	r21, 0x00	; 0
+    132c:	0e 94 b2 00 	call	0x164	; 0x164 <play>
+	delay(75);play(INT_PER_SEC/580,80);
+    1330:	6b e4       	ldi	r22, 0x4B	; 75
+    1332:	70 e0       	ldi	r23, 0x00	; 0
+    1334:	80 e0       	ldi	r24, 0x00	; 0
+    1336:	90 e0       	ldi	r25, 0x00	; 0
+    1338:	0e 94 11 02 	call	0x422	; 0x422 <delay>
+    133c:	65 e3       	ldi	r22, 0x35	; 53
+    133e:	70 e0       	ldi	r23, 0x00	; 0
+    1340:	80 e0       	ldi	r24, 0x00	; 0
+    1342:	90 e0       	ldi	r25, 0x00	; 0
+    1344:	20 e5       	ldi	r18, 0x50	; 80
+    1346:	30 e0       	ldi	r19, 0x00	; 0
+    1348:	40 e0       	ldi	r20, 0x00	; 0
+    134a:	50 e0       	ldi	r21, 0x00	; 0
+    134c:	0e 94 b2 00 	call	0x164	; 0x164 <play>
+	delay(75);play(INT_PER_SEC/660,80);
+    1350:	6b e4       	ldi	r22, 0x4B	; 75
+    1352:	70 e0       	ldi	r23, 0x00	; 0
+    1354:	80 e0       	ldi	r24, 0x00	; 0
+    1356:	90 e0       	ldi	r25, 0x00	; 0
+    1358:	0e 94 11 02 	call	0x422	; 0x422 <delay>
+    135c:	6f e2       	ldi	r22, 0x2F	; 47
+    135e:	70 e0       	ldi	r23, 0x00	; 0
+    1360:	80 e0       	ldi	r24, 0x00	; 0
+    1362:	90 e0       	ldi	r25, 0x00	; 0
+    1364:	20 e5       	ldi	r18, 0x50	; 80
+    1366:	30 e0       	ldi	r19, 0x00	; 0
+    1368:	40 e0       	ldi	r20, 0x00	; 0
+    136a:	50 e0       	ldi	r21, 0x00	; 0
+    136c:	0e 94 b2 00 	call	0x164	; 0x164 <play>
+	delay(225);play(INT_PER_SEC/870,80);
+    1370:	61 ee       	ldi	r22, 0xE1	; 225
+    1372:	70 e0       	ldi	r23, 0x00	; 0
+    1374:	80 e0       	ldi	r24, 0x00	; 0
+    1376:	90 e0       	ldi	r25, 0x00	; 0
+    1378:	0e 94 11 02 	call	0x422	; 0x422 <delay>
+    137c:	63 e2       	ldi	r22, 0x23	; 35
+    137e:	70 e0       	ldi	r23, 0x00	; 0
+    1380:	80 e0       	ldi	r24, 0x00	; 0
+    1382:	90 e0       	ldi	r25, 0x00	; 0
+    1384:	20 e5       	ldi	r18, 0x50	; 80
+    1386:	30 e0       	ldi	r19, 0x00	; 0
+    1388:	40 e0       	ldi	r20, 0x00	; 0
+    138a:	50 e0       	ldi	r21, 0x00	; 0
+    138c:	0e 94 b2 00 	call	0x164	; 0x164 <play>
+	delay(162);play(INT_PER_SEC/760,80);
+    1390:	62 ea       	ldi	r22, 0xA2	; 162
+    1392:	70 e0       	ldi	r23, 0x00	; 0
+    1394:	80 e0       	ldi	r24, 0x00	; 0
+    1396:	90 e0       	ldi	r25, 0x00	; 0
+    1398:	0e 94 11 02 	call	0x422	; 0x422 <delay>
+    139c:	69 e2       	ldi	r22, 0x29	; 41
+    139e:	70 e0       	ldi	r23, 0x00	; 0
+    13a0:	80 e0       	ldi	r24, 0x00	; 0
+    13a2:	90 e0       	ldi	r25, 0x00	; 0
+    13a4:	20 e5       	ldi	r18, 0x50	; 80
+    13a6:	30 e0       	ldi	r19, 0x00	; 0
+    13a8:	40 e0       	ldi	r20, 0x00	; 0
+    13aa:	50 e0       	ldi	r21, 0x00	; 0
+    13ac:	0e 94 b2 00 	call	0x164	; 0x164 <play>
+	delay(300);play(INT_PER_SEC/500,60);
+    13b0:	6c e2       	ldi	r22, 0x2C	; 44
+    13b2:	71 e0       	ldi	r23, 0x01	; 1
+    13b4:	80 e0       	ldi	r24, 0x00	; 0
+    13b6:	90 e0       	ldi	r25, 0x00	; 0
+    13b8:	0e 94 11 02 	call	0x422	; 0x422 <delay>
+    13bc:	6e e3       	ldi	r22, 0x3E	; 62
+    13be:	70 e0       	ldi	r23, 0x00	; 0
+    13c0:	80 e0       	ldi	r24, 0x00	; 0
+    13c2:	90 e0       	ldi	r25, 0x00	; 0
+    13c4:	2c e3       	ldi	r18, 0x3C	; 60
+    13c6:	30 e0       	ldi	r19, 0x00	; 0
+    13c8:	40 e0       	ldi	r20, 0x00	; 0
+    13ca:	50 e0       	ldi	r21, 0x00	; 0
+    13cc:	0e 94 b2 00 	call	0x164	; 0x164 <play>
+	delay(75);play(INT_PER_SEC/500,80);
+    13d0:	6b e4       	ldi	r22, 0x4B	; 75
+    13d2:	70 e0       	ldi	r23, 0x00	; 0
+    13d4:	80 e0       	ldi	r24, 0x00	; 0
+    13d6:	90 e0       	ldi	r25, 0x00	; 0
+    13d8:	0e 94 11 02 	call	0x422	; 0x422 <delay>
+    13dc:	6e e3       	ldi	r22, 0x3E	; 62
+    13de:	70 e0       	ldi	r23, 0x00	; 0
+    13e0:	80 e0       	ldi	r24, 0x00	; 0
+    13e2:	90 e0       	ldi	r25, 0x00	; 0
+    13e4:	20 e5       	ldi	r18, 0x50	; 80
+    13e6:	30 e0       	ldi	r19, 0x00	; 0
+    13e8:	40 e0       	ldi	r20, 0x00	; 0
+    13ea:	50 e0       	ldi	r21, 0x00	; 0
+    13ec:	0e 94 b2 00 	call	0x164	; 0x164 <play>
+	delay(150);play(INT_PER_SEC/500,60);
+    13f0:	66 e9       	ldi	r22, 0x96	; 150
+    13f2:	70 e0       	ldi	r23, 0x00	; 0
+    13f4:	80 e0       	ldi	r24, 0x00	; 0
+    13f6:	90 e0       	ldi	r25, 0x00	; 0
+    13f8:	0e 94 11 02 	call	0x422	; 0x422 <delay>
+    13fc:	6e e3       	ldi	r22, 0x3E	; 62
+    13fe:	70 e0       	ldi	r23, 0x00	; 0
+    1400:	80 e0       	ldi	r24, 0x00	; 0
+    1402:	90 e0       	ldi	r25, 0x00	; 0
+    1404:	2c e3       	ldi	r18, 0x3C	; 60
+    1406:	30 e0       	ldi	r19, 0x00	; 0
+    1408:	40 e0       	ldi	r20, 0x00	; 0
+    140a:	50 e0       	ldi	r21, 0x00	; 0
+    140c:	0e 94 b2 00 	call	0x164	; 0x164 <play>
+	delay(175);play(INT_PER_SEC/500,80);
+    1410:	6f ea       	ldi	r22, 0xAF	; 175
+    1412:	70 e0       	ldi	r23, 0x00	; 0
+    1414:	80 e0       	ldi	r24, 0x00	; 0
+    1416:	90 e0       	ldi	r25, 0x00	; 0
+    1418:	0e 94 11 02 	call	0x422	; 0x422 <delay>
+    141c:	6e e3       	ldi	r22, 0x3E	; 62
+    141e:	70 e0       	ldi	r23, 0x00	; 0
+    1420:	80 e0       	ldi	r24, 0x00	; 0
+    1422:	90 e0       	ldi	r25, 0x00	; 0
+    1424:	20 e5       	ldi	r18, 0x50	; 80
+    1426:	30 e0       	ldi	r19, 0x00	; 0
+    1428:	40 e0       	ldi	r20, 0x00	; 0
+    142a:	50 e0       	ldi	r21, 0x00	; 0
+    142c:	0e 94 b2 00 	call	0x164	; 0x164 <play>
+	delay(75);play(INT_PER_SEC/580,80);
+    1430:	6b e4       	ldi	r22, 0x4B	; 75
+    1432:	70 e0       	ldi	r23, 0x00	; 0
+    1434:	80 e0       	ldi	r24, 0x00	; 0
+    1436:	90 e0       	ldi	r25, 0x00	; 0
+    1438:	0e 94 11 02 	call	0x422	; 0x422 <delay>
+    143c:	65 e3       	ldi	r22, 0x35	; 53
+    143e:	70 e0       	ldi	r23, 0x00	; 0
+    1440:	80 e0       	ldi	r24, 0x00	; 0
+    1442:	90 e0       	ldi	r25, 0x00	; 0
+    1444:	20 e5       	ldi	r18, 0x50	; 80
+    1446:	30 e0       	ldi	r19, 0x00	; 0
+    1448:	40 e0       	ldi	r20, 0x00	; 0
+    144a:	50 e0       	ldi	r21, 0x00	; 0
+    144c:	0e 94 b2 00 	call	0x164	; 0x164 <play>
+	delay(175);play(INT_PER_SEC/660,80);
+    1450:	6f ea       	ldi	r22, 0xAF	; 175
+    1452:	70 e0       	ldi	r23, 0x00	; 0
+    1454:	80 e0       	ldi	r24, 0x00	; 0
+    1456:	90 e0       	ldi	r25, 0x00	; 0
+    1458:	0e 94 11 02 	call	0x422	; 0x422 <delay>
+    145c:	6f e2       	ldi	r22, 0x2F	; 47
+    145e:	70 e0       	ldi	r23, 0x00	; 0
+    1460:	80 e0       	ldi	r24, 0x00	; 0
+    1462:	90 e0       	ldi	r25, 0x00	; 0
+    1464:	20 e5       	ldi	r18, 0x50	; 80
+    1466:	30 e0       	ldi	r19, 0x00	; 0
+    1468:	40 e0       	ldi	r20, 0x00	; 0
+    146a:	50 e0       	ldi	r21, 0x00	; 0
+    146c:	0e 94 b2 00 	call	0x164	; 0x164 <play>
+	delay(75);play(INT_PER_SEC/500,80);
+    1470:	6b e4       	ldi	r22, 0x4B	; 75
+    1472:	70 e0       	ldi	r23, 0x00	; 0
+    1474:	80 e0       	ldi	r24, 0x00	; 0
+    1476:	90 e0       	ldi	r25, 0x00	; 0
+    1478:	0e 94 11 02 	call	0x422	; 0x422 <delay>
+    147c:	6e e3       	ldi	r22, 0x3E	; 62
+    147e:	70 e0       	ldi	r23, 0x00	; 0
+    1480:	80 e0       	ldi	r24, 0x00	; 0
+    1482:	90 e0       	ldi	r25, 0x00	; 0
+    1484:	20 e5       	ldi	r18, 0x50	; 80
+    1486:	30 e0       	ldi	r19, 0x00	; 0
+    1488:	40 e0       	ldi	r20, 0x00	; 0
+    148a:	50 e0       	ldi	r21, 0x00	; 0
+    148c:	0e 94 b2 00 	call	0x164	; 0x164 <play>
+	delay(150);play(INT_PER_SEC/430,80);
+    1490:	66 e9       	ldi	r22, 0x96	; 150
+    1492:	70 e0       	ldi	r23, 0x00	; 0
+    1494:	80 e0       	ldi	r24, 0x00	; 0
+    1496:	90 e0       	ldi	r25, 0x00	; 0
+    1498:	0e 94 11 02 	call	0x422	; 0x422 <delay>
+    149c:	68 e4       	ldi	r22, 0x48	; 72
+    149e:	70 e0       	ldi	r23, 0x00	; 0
+    14a0:	80 e0       	ldi	r24, 0x00	; 0
+    14a2:	90 e0       	ldi	r25, 0x00	; 0
+    14a4:	20 e5       	ldi	r18, 0x50	; 80
+    14a6:	30 e0       	ldi	r19, 0x00	; 0
+    14a8:	40 e0       	ldi	r20, 0x00	; 0
+    14aa:	50 e0       	ldi	r21, 0x00	; 0
+    14ac:	0e 94 b2 00 	call	0x164	; 0x164 <play>
+	delay(75);play(INT_PER_SEC/380,80);
+    14b0:	6b e4       	ldi	r22, 0x4B	; 75
+    14b2:	70 e0       	ldi	r23, 0x00	; 0
+    14b4:	80 e0       	ldi	r24, 0x00	; 0
+    14b6:	90 e0       	ldi	r25, 0x00	; 0
+    14b8:	0e 94 11 02 	call	0x422	; 0x422 <delay>
+    14bc:	62 e5       	ldi	r22, 0x52	; 82
+    14be:	70 e0       	ldi	r23, 0x00	; 0
+    14c0:	80 e0       	ldi	r24, 0x00	; 0
+    14c2:	90 e0       	ldi	r25, 0x00	; 0
+    14c4:	20 e5       	ldi	r18, 0x50	; 80
+    14c6:	30 e0       	ldi	r19, 0x00	; 0
+    14c8:	40 e0       	ldi	r20, 0x00	; 0
+    14ca:	50 e0       	ldi	r21, 0x00	; 0
+    14cc:	0e 94 b2 00 	call	0x164	; 0x164 <play>
+	delay(300);play(INT_PER_SEC/660,100);
+    14d0:	6c e2       	ldi	r22, 0x2C	; 44
+    14d2:	71 e0       	ldi	r23, 0x01	; 1
+    14d4:	80 e0       	ldi	r24, 0x00	; 0
+    14d6:	90 e0       	ldi	r25, 0x00	; 0
+    14d8:	0e 94 11 02 	call	0x422	; 0x422 <delay>
+    14dc:	6f e2       	ldi	r22, 0x2F	; 47
+    14de:	70 e0       	ldi	r23, 0x00	; 0
+    14e0:	80 e0       	ldi	r24, 0x00	; 0
+    14e2:	90 e0       	ldi	r25, 0x00	; 0
+    14e4:	24 e6       	ldi	r18, 0x64	; 100
+    14e6:	30 e0       	ldi	r19, 0x00	; 0
+    14e8:	40 e0       	ldi	r20, 0x00	; 0
+    14ea:	50 e0       	ldi	r21, 0x00	; 0
+    14ec:	0e 94 b2 00 	call	0x164	; 0x164 <play>
+	delay(75);play(INT_PER_SEC/660,100);
+    14f0:	6b e4       	ldi	r22, 0x4B	; 75
+    14f2:	70 e0       	ldi	r23, 0x00	; 0
+    14f4:	80 e0       	ldi	r24, 0x00	; 0
+    14f6:	90 e0       	ldi	r25, 0x00	; 0
+    14f8:	0e 94 11 02 	call	0x422	; 0x422 <delay>
+    14fc:	6f e2       	ldi	r22, 0x2F	; 47
+    14fe:	70 e0       	ldi	r23, 0x00	; 0
+    1500:	80 e0       	ldi	r24, 0x00	; 0
+    1502:	90 e0       	ldi	r25, 0x00	; 0
+    1504:	24 e6       	ldi	r18, 0x64	; 100
+    1506:	30 e0       	ldi	r19, 0x00	; 0
+    1508:	40 e0       	ldi	r20, 0x00	; 0
+    150a:	50 e0       	ldi	r21, 0x00	; 0
+    150c:	0e 94 b2 00 	call	0x164	; 0x164 <play>
+	delay(150);play(INT_PER_SEC/660,100);
+    1510:	66 e9       	ldi	r22, 0x96	; 150
+    1512:	70 e0       	ldi	r23, 0x00	; 0
+    1514:	80 e0       	ldi	r24, 0x00	; 0
+    1516:	90 e0       	ldi	r25, 0x00	; 0
+    1518:	0e 94 11 02 	call	0x422	; 0x422 <delay>
+    151c:	6f e2       	ldi	r22, 0x2F	; 47
+    151e:	70 e0       	ldi	r23, 0x00	; 0
+    1520:	80 e0       	ldi	r24, 0x00	; 0
+    1522:	90 e0       	ldi	r25, 0x00	; 0
+    1524:	24 e6       	ldi	r18, 0x64	; 100
+    1526:	30 e0       	ldi	r19, 0x00	; 0
+    1528:	40 e0       	ldi	r20, 0x00	; 0
+    152a:	50 e0       	ldi	r21, 0x00	; 0
+    152c:	0e 94 b2 00 	call	0x164	; 0x164 <play>
+	delay(150);play(INT_PER_SEC/510,100);
+    1530:	66 e9       	ldi	r22, 0x96	; 150
+    1532:	70 e0       	ldi	r23, 0x00	; 0
+    1534:	80 e0       	ldi	r24, 0x00	; 0
+    1536:	90 e0       	ldi	r25, 0x00	; 0
+    1538:	0e 94 11 02 	call	0x422	; 0x422 <delay>
+    153c:	6d e3       	ldi	r22, 0x3D	; 61
+    153e:	70 e0       	ldi	r23, 0x00	; 0
+    1540:	80 e0       	ldi	r24, 0x00	; 0
+    1542:	90 e0       	ldi	r25, 0x00	; 0
+    1544:	24 e6       	ldi	r18, 0x64	; 100
+    1546:	30 e0       	ldi	r19, 0x00	; 0
+    1548:	40 e0       	ldi	r20, 0x00	; 0
+    154a:	50 e0       	ldi	r21, 0x00	; 0
+    154c:	0e 94 b2 00 	call	0x164	; 0x164 <play>
+	delay(50);play(INT_PER_SEC/660,100);
+    1550:	62 e3       	ldi	r22, 0x32	; 50
+    1552:	70 e0       	ldi	r23, 0x00	; 0
+    1554:	80 e0       	ldi	r24, 0x00	; 0
+    1556:	90 e0       	ldi	r25, 0x00	; 0
+    1558:	0e 94 11 02 	call	0x422	; 0x422 <delay>
+    155c:	6f e2       	ldi	r22, 0x2F	; 47
+    155e:	70 e0       	ldi	r23, 0x00	; 0
+    1560:	80 e0       	ldi	r24, 0x00	; 0
+    1562:	90 e0       	ldi	r25, 0x00	; 0
+    1564:	24 e6       	ldi	r18, 0x64	; 100
+    1566:	30 e0       	ldi	r19, 0x00	; 0
+    1568:	40 e0       	ldi	r20, 0x00	; 0
+    156a:	50 e0       	ldi	r21, 0x00	; 0
+    156c:	0e 94 b2 00 	call	0x164	; 0x164 <play>
+	delay(150);play(INT_PER_SEC/770,100);
+    1570:	66 e9       	ldi	r22, 0x96	; 150
+    1572:	70 e0       	ldi	r23, 0x00	; 0
+    1574:	80 e0       	ldi	r24, 0x00	; 0
+    1576:	90 e0       	ldi	r25, 0x00	; 0
+    1578:	0e 94 11 02 	call	0x422	; 0x422 <delay>
+    157c:	68 e2       	ldi	r22, 0x28	; 40
+    157e:	70 e0       	ldi	r23, 0x00	; 0
+    1580:	80 e0       	ldi	r24, 0x00	; 0
+    1582:	90 e0       	ldi	r25, 0x00	; 0
+    1584:	24 e6       	ldi	r18, 0x64	; 100
+    1586:	30 e0       	ldi	r19, 0x00	; 0
+    1588:	40 e0       	ldi	r20, 0x00	; 0
+    158a:	50 e0       	ldi	r21, 0x00	; 0
+    158c:	0e 94 b2 00 	call	0x164	; 0x164 <play>
+	delay(225);play(INT_PER_SEC/380,100);
+    1590:	61 ee       	ldi	r22, 0xE1	; 225
+    1592:	70 e0       	ldi	r23, 0x00	; 0
+    1594:	80 e0       	ldi	r24, 0x00	; 0
+    1596:	90 e0       	ldi	r25, 0x00	; 0
+    1598:	0e 94 11 02 	call	0x422	; 0x422 <delay>
+    159c:	62 e5       	ldi	r22, 0x52	; 82
+    159e:	70 e0       	ldi	r23, 0x00	; 0
+    15a0:	80 e0       	ldi	r24, 0x00	; 0
+    15a2:	90 e0       	ldi	r25, 0x00	; 0
+    15a4:	24 e6       	ldi	r18, 0x64	; 100
+    15a6:	30 e0       	ldi	r19, 0x00	; 0
+    15a8:	40 e0       	ldi	r20, 0x00	; 0
+    15aa:	50 e0       	ldi	r21, 0x00	; 0
+    15ac:	0e 94 b2 00 	call	0x164	; 0x164 <play>
+	//tells the user it is over and delays it a little before going to the top again
+	delay(1000);
+    15b0:	68 ee       	ldi	r22, 0xE8	; 232
+    15b2:	73 e0       	ldi	r23, 0x03	; 3
+    15b4:	80 e0       	ldi	r24, 0x00	; 0
+    15b6:	90 e0       	ldi	r25, 0x00	; 0
+    15b8:	0e 94 11 02 	call	0x422	; 0x422 <delay>
+	play(INT_PER_SEC/440,200);
+    15bc:	67 e4       	ldi	r22, 0x47	; 71
+    15be:	70 e0       	ldi	r23, 0x00	; 0
+    15c0:	80 e0       	ldi	r24, 0x00	; 0
+    15c2:	90 e0       	ldi	r25, 0x00	; 0
+    15c4:	28 ec       	ldi	r18, 0xC8	; 200
+    15c6:	30 e0       	ldi	r19, 0x00	; 0
+    15c8:	40 e0       	ldi	r20, 0x00	; 0
+    15ca:	50 e0       	ldi	r21, 0x00	; 0
+    15cc:	0e 94 b2 00 	call	0x164	; 0x164 <play>
+	delay(200);
+    15d0:	68 ec       	ldi	r22, 0xC8	; 200
+    15d2:	70 e0       	ldi	r23, 0x00	; 0
+    15d4:	80 e0       	ldi	r24, 0x00	; 0
+    15d6:	90 e0       	ldi	r25, 0x00	; 0
+    15d8:	0e 94 11 02 	call	0x422	; 0x422 <delay>
+	delay(200);
+    15dc:	68 ec       	ldi	r22, 0xC8	; 200
+    15de:	70 e0       	ldi	r23, 0x00	; 0
+    15e0:	80 e0       	ldi	r24, 0x00	; 0
+    15e2:	90 e0       	ldi	r25, 0x00	; 0
+    15e4:	0e 94 11 02 	call	0x422	; 0x422 <delay>
+	play(INT_PER_SEC/440,400);
+    15e8:	67 e4       	ldi	r22, 0x47	; 71
+    15ea:	70 e0       	ldi	r23, 0x00	; 0
+    15ec:	80 e0       	ldi	r24, 0x00	; 0
+    15ee:	90 e0       	ldi	r25, 0x00	; 0
+    15f0:	20 e9       	ldi	r18, 0x90	; 144
+    15f2:	31 e0       	ldi	r19, 0x01	; 1
+    15f4:	40 e0       	ldi	r20, 0x00	; 0
+    15f6:	50 e0       	ldi	r21, 0x00	; 0
+    15f8:	0e 94 b2 00 	call	0x164	; 0x164 <play>
+	delay(200);
+    15fc:	68 ec       	ldi	r22, 0xC8	; 200
+    15fe:	70 e0       	ldi	r23, 0x00	; 0
+    1600:	80 e0       	ldi	r24, 0x00	; 0
+    1602:	90 e0       	ldi	r25, 0x00	; 0
+    1604:	0e 94 11 02 	call	0x422	; 0x422 <delay>
+	delay(200);
+    1608:	68 ec       	ldi	r22, 0xC8	; 200
+    160a:	70 e0       	ldi	r23, 0x00	; 0
+    160c:	80 e0       	ldi	r24, 0x00	; 0
+    160e:	90 e0       	ldi	r25, 0x00	; 0
+    1610:	0e 94 11 02 	call	0x422	; 0x422 <delay>
+	delay(5000);
+    1614:	68 e8       	ldi	r22, 0x88	; 136
+    1616:	73 e1       	ldi	r23, 0x13	; 19
+    1618:	80 e0       	ldi	r24, 0x00	; 0
+    161a:	90 e0       	ldi	r25, 0x00	; 0
+    161c:	0e 94 11 02 	call	0x422	; 0x422 <delay>
+    1620:	08 95       	ret
+
+00001622 <_exit>:
+    1622:	f8 94       	cli
+
+00001624 <__stop_program>:
+    1624:	ff cf       	rjmp	.-2      	; 0x1624 <__stop_program>

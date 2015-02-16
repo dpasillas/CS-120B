@@ -1,0 +1,1266 @@
+
+dpasi001_lab9_part1.elf:     file format elf32-avr
+
+Sections:
+Idx Name          Size      VMA       LMA       File off  Algn
+  0 .text         0000077e  00000000  00000000  00000094  2**1
+                  CONTENTS, ALLOC, LOAD, READONLY, CODE
+  1 .data         0000000a  00800060  0000077e  00000812  2**0
+                  CONTENTS, ALLOC, LOAD, DATA
+  2 .bss          0000000b  0080006a  0080006a  0000081c  2**0
+                  ALLOC
+  3 .stab         000006cc  00000000  00000000  0000081c  2**2
+                  CONTENTS, READONLY, DEBUGGING
+  4 .stabstr      00000085  00000000  00000000  00000ee8  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  5 .debug_aranges 000000c8  00000000  00000000  00000f70  2**3
+                  CONTENTS, READONLY, DEBUGGING
+  6 .debug_info   00000ad2  00000000  00000000  00001038  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  7 .debug_abbrev 00000343  00000000  00000000  00001b0a  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  8 .debug_line   00000602  00000000  00000000  00001e4d  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  9 .debug_frame  000001ec  00000000  00000000  00002450  2**2
+                  CONTENTS, READONLY, DEBUGGING
+ 10 .debug_str    000002f8  00000000  00000000  0000263c  2**0
+                  CONTENTS, READONLY, DEBUGGING
+ 11 .debug_loc    000007a0  00000000  00000000  00002934  2**0
+                  CONTENTS, READONLY, DEBUGGING
+ 12 .debug_ranges 00000018  00000000  00000000  000030d4  2**0
+                  CONTENTS, READONLY, DEBUGGING
+
+Disassembly of section .text:
+
+00000000 <__vectors>:
+   0:	0c 94 2a 00 	jmp	0x54	; 0x54 <__ctors_end>
+   4:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+   8:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+   c:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+  10:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+  14:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+  18:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+  1c:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+  20:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+  24:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+  28:	0c 94 80 00 	jmp	0x100	; 0x100 <__vector_10>
+  2c:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+  30:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+  34:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+  38:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+  3c:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+  40:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+  44:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+  48:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+  4c:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+  50:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+
+00000054 <__ctors_end>:
+  54:	11 24       	eor	r1, r1
+  56:	1f be       	out	0x3f, r1	; 63
+  58:	cf e5       	ldi	r28, 0x5F	; 95
+  5a:	d8 e0       	ldi	r29, 0x08	; 8
+  5c:	de bf       	out	0x3e, r29	; 62
+  5e:	cd bf       	out	0x3d, r28	; 61
+
+00000060 <__do_copy_data>:
+  60:	10 e0       	ldi	r17, 0x00	; 0
+  62:	a0 e6       	ldi	r26, 0x60	; 96
+  64:	b0 e0       	ldi	r27, 0x00	; 0
+  66:	ee e7       	ldi	r30, 0x7E	; 126
+  68:	f7 e0       	ldi	r31, 0x07	; 7
+  6a:	02 c0       	rjmp	.+4      	; 0x70 <__do_copy_data+0x10>
+  6c:	05 90       	lpm	r0, Z+
+  6e:	0d 92       	st	X+, r0
+  70:	aa 36       	cpi	r26, 0x6A	; 106
+  72:	b1 07       	cpc	r27, r17
+  74:	d9 f7       	brne	.-10     	; 0x6c <__do_copy_data+0xc>
+
+00000076 <__do_clear_bss>:
+  76:	10 e0       	ldi	r17, 0x00	; 0
+  78:	aa e6       	ldi	r26, 0x6A	; 106
+  7a:	b0 e0       	ldi	r27, 0x00	; 0
+  7c:	01 c0       	rjmp	.+2      	; 0x80 <.do_clear_bss_start>
+
+0000007e <.do_clear_bss_loop>:
+  7e:	1d 92       	st	X+, r1
+
+00000080 <.do_clear_bss_start>:
+  80:	a5 37       	cpi	r26, 0x75	; 117
+  82:	b1 07       	cpc	r27, r17
+  84:	e1 f7       	brne	.-8      	; 0x7e <.do_clear_bss_loop>
+  86:	0e 94 3d 02 	call	0x47a	; 0x47a <main>
+  8a:	0c 94 bd 03 	jmp	0x77a	; 0x77a <_exit>
+
+0000008e <__bad_interrupt>:
+  8e:	0c 94 00 00 	jmp	0	; 0x0 <__vectors>
+
+00000092 <TimerSet>:
+// Internal variables for mapping AVR's ISR to our cleaner TimerISR model.
+unsigned long _avr_timer_M = 1; // Start count from here, down to 0. Default 1ms
+unsigned long _avr_timer_cntcurr = 0; // Current internal count of 1ms ticks
+
+// Set TimerISR() to tick every M ms
+void TimerSet(unsigned long M) {
+  92:	dc 01       	movw	r26, r24
+  94:	cb 01       	movw	r24, r22
+	_avr_timer_M = M;
+  96:	80 93 60 00 	sts	0x0060, r24
+  9a:	90 93 61 00 	sts	0x0061, r25
+  9e:	a0 93 62 00 	sts	0x0062, r26
+  a2:	b0 93 63 00 	sts	0x0063, r27
+	_avr_timer_cntcurr = _avr_timer_M;
+  a6:	80 93 6b 00 	sts	0x006B, r24
+  aa:	90 93 6c 00 	sts	0x006C, r25
+  ae:	a0 93 6d 00 	sts	0x006D, r26
+  b2:	b0 93 6e 00 	sts	0x006E, r27
+}
+  b6:	08 95       	ret
+
+000000b8 <TimerSetMS>:
+
+void TimerSetMS(unsigned long M)
+{
+	TimerSet(TICKS_PER_MS * M);
+  b8:	0e 94 49 00 	call	0x92	; 0x92 <TimerSet>
+}
+  bc:	08 95       	ret
+
+000000be <TimerOn>:
+
+void TimerOn() {
+	// AVR timer/counter controller register TCCR0
+	TCCR0 	= 0x0B;	// bit3bit6=10: CTC mode (clear timer on compare)
+  be:	8b e0       	ldi	r24, 0x0B	; 11
+  c0:	83 bf       	out	0x33, r24	; 51
+					// 00001011: 0x0B
+					// SO, 8 MHz clock or 8,000,000 /64 = 125,000 ticks/s
+					// Thus, TCNT0 register will count at 125,000 ticks/s
+
+	// AVR output compare register OCR0.
+	OCR0 	= 125 / TICKS_PER_MS;	// Timer interrupt will be generated when TCNT0==OCR0
+  c2:	8d e7       	ldi	r24, 0x7D	; 125
+  c4:	8c bf       	out	0x3c, r24	; 60
+					// We want a 1 ms tick. 0.001 s * 125,000 ticks/s = 125
+					// So when TCNT0 register equals 125,
+					// 1 ms has passed. Thus, we compare to 125.
+					// AVR timer interrupt mask register
+
+	TIMSK 	= 0x02; // bit1: OCIE0 -- enables compare match interrupt
+  c6:	82 e0       	ldi	r24, 0x02	; 2
+  c8:	89 bf       	out	0x39, r24	; 57
+
+	//Initialize avr counter
+	TCNT0 = 0;
+  ca:	12 be       	out	0x32, r1	; 50
+
+	// TimerISR will be called every _avr_timer_cntcurr milliseconds
+	_avr_timer_cntcurr = _avr_timer_M;
+  cc:	80 91 60 00 	lds	r24, 0x0060
+  d0:	90 91 61 00 	lds	r25, 0x0061
+  d4:	a0 91 62 00 	lds	r26, 0x0062
+  d8:	b0 91 63 00 	lds	r27, 0x0063
+  dc:	80 93 6b 00 	sts	0x006B, r24
+  e0:	90 93 6c 00 	sts	0x006C, r25
+  e4:	a0 93 6d 00 	sts	0x006D, r26
+  e8:	b0 93 6e 00 	sts	0x006E, r27
+
+	//Enable global interrupts
+	SREG |= 0x80;	// 0x80: 1000000
+  ec:	8f b7       	in	r24, 0x3f	; 63
+  ee:	80 68       	ori	r24, 0x80	; 128
+  f0:	8f bf       	out	0x3f, r24	; 63
+}
+  f2:	08 95       	ret
+
+000000f4 <TimerOff>:
+
+void TimerOff() {
+	TCCR0 	= 0x00; // bit2bit1bit0=000: timer off
+  f4:	13 be       	out	0x33, r1	; 51
+}
+  f6:	08 95       	ret
+
+000000f8 <TimerISR>:
+
+void TimerISR() {
+	TimerFlag = 1;
+  f8:	81 e0       	ldi	r24, 0x01	; 1
+  fa:	80 93 6f 00 	sts	0x006F, r24
+}
+  fe:	08 95       	ret
+
+00000100 <__vector_10>:
+
+// In our approach, the C programmer does not touch this ISR, but rather TimerISR()
+ISR(TIMER0_COMP_vect)
+{
+ 100:	1f 92       	push	r1
+ 102:	0f 92       	push	r0
+ 104:	0f b6       	in	r0, 0x3f	; 63
+ 106:	0f 92       	push	r0
+ 108:	11 24       	eor	r1, r1
+ 10a:	2f 93       	push	r18
+ 10c:	3f 93       	push	r19
+ 10e:	4f 93       	push	r20
+ 110:	5f 93       	push	r21
+ 112:	6f 93       	push	r22
+ 114:	7f 93       	push	r23
+ 116:	8f 93       	push	r24
+ 118:	9f 93       	push	r25
+ 11a:	af 93       	push	r26
+ 11c:	bf 93       	push	r27
+ 11e:	ef 93       	push	r30
+ 120:	ff 93       	push	r31
+	// CPU automatically calls when TCNT0 == OCR0 (every 1 ms per TimerOn settings)
+	--_avr_timer_cntcurr; 			// Count down to 0 rather than up to TOP
+ 122:	80 91 6b 00 	lds	r24, 0x006B
+ 126:	90 91 6c 00 	lds	r25, 0x006C
+ 12a:	a0 91 6d 00 	lds	r26, 0x006D
+ 12e:	b0 91 6e 00 	lds	r27, 0x006E
+ 132:	01 97       	sbiw	r24, 0x01	; 1
+ 134:	a1 09       	sbc	r26, r1
+ 136:	b1 09       	sbc	r27, r1
+ 138:	80 93 6b 00 	sts	0x006B, r24
+ 13c:	90 93 6c 00 	sts	0x006C, r25
+ 140:	a0 93 6d 00 	sts	0x006D, r26
+ 144:	b0 93 6e 00 	sts	0x006E, r27
+	if (_avr_timer_cntcurr == 0) { 	// results in a more efficient compare
+ 148:	00 97       	sbiw	r24, 0x00	; 0
+ 14a:	a1 05       	cpc	r26, r1
+ 14c:	b1 05       	cpc	r27, r1
+ 14e:	91 f4       	brne	.+36     	; 0x174 <__vector_10+0x74>
+		TimerISR(); 				// Call the ISR that the user uses
+ 150:	0e 94 7c 00 	call	0xf8	; 0xf8 <TimerISR>
+		_avr_timer_cntcurr = _avr_timer_M;
+ 154:	80 91 60 00 	lds	r24, 0x0060
+ 158:	90 91 61 00 	lds	r25, 0x0061
+ 15c:	a0 91 62 00 	lds	r26, 0x0062
+ 160:	b0 91 63 00 	lds	r27, 0x0063
+ 164:	80 93 6b 00 	sts	0x006B, r24
+ 168:	90 93 6c 00 	sts	0x006C, r25
+ 16c:	a0 93 6d 00 	sts	0x006D, r26
+ 170:	b0 93 6e 00 	sts	0x006E, r27
+	}
+}
+ 174:	ff 91       	pop	r31
+ 176:	ef 91       	pop	r30
+ 178:	bf 91       	pop	r27
+ 17a:	af 91       	pop	r26
+ 17c:	9f 91       	pop	r25
+ 17e:	8f 91       	pop	r24
+ 180:	7f 91       	pop	r23
+ 182:	6f 91       	pop	r22
+ 184:	5f 91       	pop	r21
+ 186:	4f 91       	pop	r20
+ 188:	3f 91       	pop	r19
+ 18a:	2f 91       	pop	r18
+ 18c:	0f 90       	pop	r0
+ 18e:	0f be       	out	0x3f, r0	; 63
+ 190:	0f 90       	pop	r0
+ 192:	1f 90       	pop	r1
+ 194:	18 95       	reti
+
+00000196 <QueueInit>:
+////////////////////////////////////////////////////////////////////////////////
+//Functionality - Allocates space and initializes a queue
+//Parameter: Positive integer for the size of queue (0~255)
+//Returns: Reference to a queue
+Queue QueueInit(unsigned char size) 
+{
+ 196:	0f 93       	push	r16
+ 198:	1f 93       	push	r17
+ 19a:	cf 93       	push	r28
+ 19c:	df 93       	push	r29
+ 19e:	08 2f       	mov	r16, r24
+	Queue Q 		= malloc (sizeof(struct _Queue));
+ 1a0:	86 e0       	ldi	r24, 0x06	; 6
+ 1a2:	90 e0       	ldi	r25, 0x00	; 0
+ 1a4:	0e 94 8e 02 	call	0x51c	; 0x51c <malloc>
+ 1a8:	19 2f       	mov	r17, r25
+ 1aa:	c8 2f       	mov	r28, r24
+ 1ac:	d9 2f       	mov	r29, r25
+	Q->buffer 		= malloc (size * sizeof(unsigned char));
+ 1ae:	80 2f       	mov	r24, r16
+ 1b0:	90 e0       	ldi	r25, 0x00	; 0
+ 1b2:	0e 94 8e 02 	call	0x51c	; 0x51c <malloc>
+ 1b6:	88 83       	st	Y, r24
+ 1b8:	99 83       	std	Y+1, r25	; 0x01
+	Q->front 		= 0;
+ 1ba:	1a 82       	std	Y+2, r1	; 0x02
+	Q->back			= 0;
+ 1bc:	1b 82       	std	Y+3, r1	; 0x03
+	Q->num_objects	= 0;
+ 1be:	1c 82       	std	Y+4, r1	; 0x04
+	Q->capacity		= size;
+ 1c0:	0d 83       	std	Y+5, r16	; 0x05
+	
+	return Q;
+}
+ 1c2:	8c 2f       	mov	r24, r28
+ 1c4:	91 2f       	mov	r25, r17
+ 1c6:	df 91       	pop	r29
+ 1c8:	cf 91       	pop	r28
+ 1ca:	1f 91       	pop	r17
+ 1cc:	0f 91       	pop	r16
+ 1ce:	08 95       	ret
+
+000001d0 <QueueIsEmpty>:
+//Functionality - Checks if queue is empty
+//Parameter: None
+//Returns: 1 if empty else 0
+unsigned char QueueIsEmpty(Queue Q) 
+{
+	return (Q->num_objects == 0);
+ 1d0:	21 e0       	ldi	r18, 0x01	; 1
+ 1d2:	fc 01       	movw	r30, r24
+ 1d4:	84 81       	ldd	r24, Z+4	; 0x04
+ 1d6:	81 11       	cpse	r24, r1
+ 1d8:	20 e0       	ldi	r18, 0x00	; 0
+}
+ 1da:	82 2f       	mov	r24, r18
+ 1dc:	08 95       	ret
+
+000001de <QueueIsFull>:
+////////////////////////////////////////////////////////////////////////////////
+//Functionality - Checks if queue is full
+//Parameter: None
+//Returns: 1 if full else 0
+unsigned char QueueIsFull(Queue Q) 
+{
+ 1de:	fc 01       	movw	r30, r24
+	return (Q->num_objects == Q->capacity);
+ 1e0:	81 e0       	ldi	r24, 0x01	; 1
+ 1e2:	24 81       	ldd	r18, Z+4	; 0x04
+ 1e4:	95 81       	ldd	r25, Z+5	; 0x05
+ 1e6:	29 13       	cpse	r18, r25
+ 1e8:	80 e0       	ldi	r24, 0x00	; 0
+}
+ 1ea:	08 95       	ret
+
+000001ec <QueueMakeEmpty>:
+////////////////////////////////////////////////////////////////////////////////
+//Functionality - Flushes the queue
+//Parameter: None
+//Returns: None
+void QueueMakeEmpty(Queue Q)
+{
+ 1ec:	fc 01       	movw	r30, r24
+	Q->front 		= 0;
+ 1ee:	12 82       	std	Z+2, r1	; 0x02
+	Q->back 		= 0;
+ 1f0:	13 82       	std	Z+3, r1	; 0x03
+	Q->num_objects	= 0;
+ 1f2:	14 82       	std	Z+4, r1	; 0x04
+}
+ 1f4:	08 95       	ret
+
+000001f6 <QueueEnqueue>:
+////////////////////////////////////////////////////////////////////////////////
+//Functionality - Push a character onto back of queue
+//Parameter: Takes a single unsigned char value
+//Returns: 1 if full else 0
+unsigned char QueueEnqueue(Queue Q, unsigned char value) 
+{
+ 1f6:	fc 01       	movw	r30, r24
+	if(Q->num_objects < Q->capacity)	// If queue is not full
+ 1f8:	94 81       	ldd	r25, Z+4	; 0x04
+ 1fa:	85 81       	ldd	r24, Z+5	; 0x05
+ 1fc:	98 17       	cp	r25, r24
+ 1fe:	88 f4       	brcc	.+34     	; 0x222 <QueueEnqueue+0x2c>
+	{
+		Q->buffer[Q->back] = value;		// Place data into correct location
+ 200:	83 81       	ldd	r24, Z+3	; 0x03
+ 202:	a0 81       	ld	r26, Z
+ 204:	b1 81       	ldd	r27, Z+1	; 0x01
+ 206:	a8 0f       	add	r26, r24
+ 208:	b1 1d       	adc	r27, r1
+ 20a:	6c 93       	st	X, r22
+		Q->back++;						// Increment back counter
+ 20c:	83 81       	ldd	r24, Z+3	; 0x03
+ 20e:	8f 5f       	subi	r24, 0xFF	; 255
+		Q->back %= Q->capacity;			// Modulate according to queue capacity
+ 210:	65 81       	ldd	r22, Z+5	; 0x05
+ 212:	0e 94 82 02 	call	0x504	; 0x504 <__udivmodqi4>
+ 216:	93 83       	std	Z+3, r25	; 0x03
+		Q->num_objects++;				// Increment number of objects
+ 218:	84 81       	ldd	r24, Z+4	; 0x04
+ 21a:	8f 5f       	subi	r24, 0xFF	; 255
+ 21c:	84 83       	std	Z+4, r24	; 0x04
+		return 0;						// Return queue is not full (0)
+ 21e:	80 e0       	ldi	r24, 0x00	; 0
+ 220:	08 95       	ret
+	}
+	return 1;							// Else return queue is full (1)
+ 222:	81 e0       	ldi	r24, 0x01	; 1
+}
+ 224:	08 95       	ret
+
+00000226 <QueueDequeue>:
+////////////////////////////////////////////////////////////////////////////////
+//Functionality - Pop first character from front of queue
+//Parameter: None
+//Returns: Unsigned char from queue else null character
+unsigned char QueueDequeue(Queue Q) 
+{
+ 226:	fc 01       	movw	r30, r24
+	if(Q->num_objects > 0)				// If queue is not empty
+ 228:	84 81       	ldd	r24, Z+4	; 0x04
+ 22a:	88 23       	and	r24, r24
+ 22c:	89 f0       	breq	.+34     	; 0x250 <QueueDequeue+0x2a>
+	{									// Retrieve data from correct location
+		unsigned char tmp = Q->buffer[Q->front];	
+ 22e:	82 81       	ldd	r24, Z+2	; 0x02
+ 230:	a0 81       	ld	r26, Z
+ 232:	b1 81       	ldd	r27, Z+1	; 0x01
+ 234:	a8 0f       	add	r26, r24
+ 236:	b1 1d       	adc	r27, r1
+ 238:	2c 91       	ld	r18, X
+		Q->buffer[Q->front] = '\0';		// Clear location with null character
+ 23a:	1c 92       	st	X, r1
+		Q->front++;						// Increment front counter
+ 23c:	82 81       	ldd	r24, Z+2	; 0x02
+ 23e:	8f 5f       	subi	r24, 0xFF	; 255
+		Q->front %= Q->capacity;		// Modulate according to queue capacity
+ 240:	65 81       	ldd	r22, Z+5	; 0x05
+ 242:	0e 94 82 02 	call	0x504	; 0x504 <__udivmodqi4>
+ 246:	92 83       	std	Z+2, r25	; 0x02
+		Q->num_objects--;				// Decrement number of objects
+ 248:	84 81       	ldd	r24, Z+4	; 0x04
+ 24a:	81 50       	subi	r24, 0x01	; 1
+ 24c:	84 83       	std	Z+4, r24	; 0x04
+		return tmp;						// Return data
+ 24e:	01 c0       	rjmp	.+2      	; 0x252 <QueueDequeue+0x2c>
+	}
+	return '\0';						// Else return null to indicate empty
+ 250:	20 e0       	ldi	r18, 0x00	; 0
+}
+ 252:	82 2f       	mov	r24, r18
+ 254:	08 95       	ret
+
+00000256 <SetBit>:
+//Functionality - Sets bit on a PORTx
+//Parameter: Takes in a uChar for a PORTx, the pin number and the binary value 
+//Returns: The new value of the PORTx
+unsigned char SetBit(unsigned char pin, unsigned char number, unsigned char bin_value) 
+{
+	return (bin_value ? pin | (0x01 << number) : pin & ~(0x01 << number));
+ 256:	44 23       	and	r20, r20
+ 258:	51 f0       	breq	.+20     	; 0x26e <SetBit+0x18>
+ 25a:	41 e0       	ldi	r20, 0x01	; 1
+ 25c:	50 e0       	ldi	r21, 0x00	; 0
+ 25e:	9a 01       	movw	r18, r20
+ 260:	02 c0       	rjmp	.+4      	; 0x266 <SetBit+0x10>
+ 262:	22 0f       	add	r18, r18
+ 264:	33 1f       	adc	r19, r19
+ 266:	6a 95       	dec	r22
+ 268:	e2 f7       	brpl	.-8      	; 0x262 <SetBit+0xc>
+ 26a:	82 2b       	or	r24, r18
+ 26c:	08 95       	ret
+ 26e:	21 e0       	ldi	r18, 0x01	; 1
+ 270:	30 e0       	ldi	r19, 0x00	; 0
+ 272:	a9 01       	movw	r20, r18
+ 274:	02 c0       	rjmp	.+4      	; 0x27a <SetBit+0x24>
+ 276:	44 0f       	add	r20, r20
+ 278:	55 1f       	adc	r21, r21
+ 27a:	6a 95       	dec	r22
+ 27c:	e2 f7       	brpl	.-8      	; 0x276 <SetBit+0x20>
+ 27e:	ba 01       	movw	r22, r20
+ 280:	60 95       	com	r22
+ 282:	86 23       	and	r24, r22
+}
+ 284:	08 95       	ret
+
+00000286 <GetBit>:
+//Functionality - Gets bit from a PINx
+//Parameter: Takes in a uChar for a PINx and the pin number
+//Returns: The value of the PINx
+unsigned char GetBit(unsigned char port, unsigned char number) 
+{
+	return ( port & (0x01 << number) );
+ 286:	21 e0       	ldi	r18, 0x01	; 1
+ 288:	30 e0       	ldi	r19, 0x00	; 0
+ 28a:	a9 01       	movw	r20, r18
+ 28c:	02 c0       	rjmp	.+4      	; 0x292 <GetBit+0xc>
+ 28e:	44 0f       	add	r20, r20
+ 290:	55 1f       	adc	r21, r21
+ 292:	6a 95       	dec	r22
+ 294:	e2 f7       	brpl	.-8      	; 0x28e <GetBit+0x8>
+}
+ 296:	84 23       	and	r24, r20
+ 298:	08 95       	ret
+
+0000029a <GetKeypadKey>:
+//Parameter: None
+//Returns: A keypad button press else '\0'
+unsigned char GetKeypadKey() {
+
+	// Check keys in col 1
+	KEYPADPORT = SetBit(0xFF,COL1,0); // Set Px4 to 0; others 1
+ 29a:	8f ef       	ldi	r24, 0xFF	; 255
+ 29c:	64 e0       	ldi	r22, 0x04	; 4
+ 29e:	40 e0       	ldi	r20, 0x00	; 0
+ 2a0:	0e 94 2b 01 	call	0x256	; 0x256 <SetBit>
+ 2a4:	85 bb       	out	0x15, r24	; 21
+	asm("nop"); // add a delay to allow PORTx to stabilize before checking
+ 2a6:	00 00       	nop
+	if ( GetBit(~KEYPADPIN,ROW1) ) { return '1'; }
+ 2a8:	83 b3       	in	r24, 0x13	; 19
+ 2aa:	80 95       	com	r24
+ 2ac:	60 e0       	ldi	r22, 0x00	; 0
+ 2ae:	0e 94 43 01 	call	0x286	; 0x286 <GetBit>
+ 2b2:	88 23       	and	r24, r24
+ 2b4:	09 f0       	breq	.+2      	; 0x2b8 <GetKeypadKey+0x1e>
+ 2b6:	8a c0       	rjmp	.+276    	; 0x3cc <GetKeypadKey+0x132>
+	if ( GetBit(~KEYPADPIN,ROW2) ) { return '4'; }
+ 2b8:	83 b3       	in	r24, 0x13	; 19
+ 2ba:	80 95       	com	r24
+ 2bc:	61 e0       	ldi	r22, 0x01	; 1
+ 2be:	0e 94 43 01 	call	0x286	; 0x286 <GetBit>
+ 2c2:	88 23       	and	r24, r24
+ 2c4:	09 f0       	breq	.+2      	; 0x2c8 <GetKeypadKey+0x2e>
+ 2c6:	84 c0       	rjmp	.+264    	; 0x3d0 <GetKeypadKey+0x136>
+	if ( GetBit(~KEYPADPIN,ROW3) ) { return '7'; }
+ 2c8:	83 b3       	in	r24, 0x13	; 19
+ 2ca:	80 95       	com	r24
+ 2cc:	62 e0       	ldi	r22, 0x02	; 2
+ 2ce:	0e 94 43 01 	call	0x286	; 0x286 <GetBit>
+ 2d2:	88 23       	and	r24, r24
+ 2d4:	09 f0       	breq	.+2      	; 0x2d8 <GetKeypadKey+0x3e>
+ 2d6:	7e c0       	rjmp	.+252    	; 0x3d4 <GetKeypadKey+0x13a>
+	if ( GetBit(~KEYPADPIN,ROW4) ) { return '*'; }
+ 2d8:	83 b3       	in	r24, 0x13	; 19
+ 2da:	80 95       	com	r24
+ 2dc:	63 e0       	ldi	r22, 0x03	; 3
+ 2de:	0e 94 43 01 	call	0x286	; 0x286 <GetBit>
+ 2e2:	88 23       	and	r24, r24
+ 2e4:	09 f0       	breq	.+2      	; 0x2e8 <GetKeypadKey+0x4e>
+ 2e6:	78 c0       	rjmp	.+240    	; 0x3d8 <GetKeypadKey+0x13e>
+
+	// Check keys in col 2
+	KEYPADPORT = SetBit(0xFF,COL2,0); // Set Px5 to 0; others 1
+ 2e8:	8f ef       	ldi	r24, 0xFF	; 255
+ 2ea:	65 e0       	ldi	r22, 0x05	; 5
+ 2ec:	40 e0       	ldi	r20, 0x00	; 0
+ 2ee:	0e 94 2b 01 	call	0x256	; 0x256 <SetBit>
+ 2f2:	85 bb       	out	0x15, r24	; 21
+	asm("nop"); // add a delay to allow PORTx to stabilize before checking
+ 2f4:	00 00       	nop
+	if ( GetBit(~KEYPADPIN,ROW1) ) { return '2'; }
+ 2f6:	83 b3       	in	r24, 0x13	; 19
+ 2f8:	80 95       	com	r24
+ 2fa:	60 e0       	ldi	r22, 0x00	; 0
+ 2fc:	0e 94 43 01 	call	0x286	; 0x286 <GetBit>
+ 300:	88 23       	and	r24, r24
+ 302:	09 f0       	breq	.+2      	; 0x306 <GetKeypadKey+0x6c>
+ 304:	6b c0       	rjmp	.+214    	; 0x3dc <GetKeypadKey+0x142>
+	if ( GetBit(~KEYPADPIN,ROW2) ) { return '5'; }
+ 306:	83 b3       	in	r24, 0x13	; 19
+ 308:	80 95       	com	r24
+ 30a:	61 e0       	ldi	r22, 0x01	; 1
+ 30c:	0e 94 43 01 	call	0x286	; 0x286 <GetBit>
+ 310:	88 23       	and	r24, r24
+ 312:	09 f0       	breq	.+2      	; 0x316 <GetKeypadKey+0x7c>
+ 314:	65 c0       	rjmp	.+202    	; 0x3e0 <GetKeypadKey+0x146>
+	if ( GetBit(~KEYPADPIN,ROW3) ) { return '8'; }
+ 316:	83 b3       	in	r24, 0x13	; 19
+ 318:	80 95       	com	r24
+ 31a:	62 e0       	ldi	r22, 0x02	; 2
+ 31c:	0e 94 43 01 	call	0x286	; 0x286 <GetBit>
+ 320:	88 23       	and	r24, r24
+ 322:	09 f0       	breq	.+2      	; 0x326 <GetKeypadKey+0x8c>
+ 324:	5f c0       	rjmp	.+190    	; 0x3e4 <GetKeypadKey+0x14a>
+	if ( GetBit(~KEYPADPIN,ROW4) ) { return '0'; }
+ 326:	83 b3       	in	r24, 0x13	; 19
+ 328:	80 95       	com	r24
+ 32a:	63 e0       	ldi	r22, 0x03	; 3
+ 32c:	0e 94 43 01 	call	0x286	; 0x286 <GetBit>
+ 330:	88 23       	and	r24, r24
+ 332:	09 f0       	breq	.+2      	; 0x336 <GetKeypadKey+0x9c>
+ 334:	59 c0       	rjmp	.+178    	; 0x3e8 <GetKeypadKey+0x14e>
+
+	// Check keys in col 3
+	KEYPADPORT = SetBit(0xFF,COL3,0); // Set Px6 to 0; others 1
+ 336:	8f ef       	ldi	r24, 0xFF	; 255
+ 338:	66 e0       	ldi	r22, 0x06	; 6
+ 33a:	40 e0       	ldi	r20, 0x00	; 0
+ 33c:	0e 94 2b 01 	call	0x256	; 0x256 <SetBit>
+ 340:	85 bb       	out	0x15, r24	; 21
+	asm("nop"); // add a delay to allow PORTx to stabilize before checking
+ 342:	00 00       	nop
+	if ( GetBit(~KEYPADPIN,ROW1) ) { return '3'; }
+ 344:	83 b3       	in	r24, 0x13	; 19
+ 346:	80 95       	com	r24
+ 348:	60 e0       	ldi	r22, 0x00	; 0
+ 34a:	0e 94 43 01 	call	0x286	; 0x286 <GetBit>
+ 34e:	88 23       	and	r24, r24
+ 350:	09 f0       	breq	.+2      	; 0x354 <GetKeypadKey+0xba>
+ 352:	4c c0       	rjmp	.+152    	; 0x3ec <GetKeypadKey+0x152>
+	if ( GetBit(~KEYPADPIN,ROW2) ) { return '6'; }
+ 354:	83 b3       	in	r24, 0x13	; 19
+ 356:	80 95       	com	r24
+ 358:	61 e0       	ldi	r22, 0x01	; 1
+ 35a:	0e 94 43 01 	call	0x286	; 0x286 <GetBit>
+ 35e:	88 23       	and	r24, r24
+ 360:	09 f0       	breq	.+2      	; 0x364 <GetKeypadKey+0xca>
+ 362:	46 c0       	rjmp	.+140    	; 0x3f0 <GetKeypadKey+0x156>
+	if ( GetBit(~KEYPADPIN,ROW3) ) { return '9'; }
+ 364:	83 b3       	in	r24, 0x13	; 19
+ 366:	80 95       	com	r24
+ 368:	62 e0       	ldi	r22, 0x02	; 2
+ 36a:	0e 94 43 01 	call	0x286	; 0x286 <GetBit>
+ 36e:	88 23       	and	r24, r24
+ 370:	09 f0       	breq	.+2      	; 0x374 <GetKeypadKey+0xda>
+ 372:	40 c0       	rjmp	.+128    	; 0x3f4 <GetKeypadKey+0x15a>
+	if ( GetBit(~KEYPADPIN,ROW4) ) { return '#'; }
+ 374:	83 b3       	in	r24, 0x13	; 19
+ 376:	80 95       	com	r24
+ 378:	63 e0       	ldi	r22, 0x03	; 3
+ 37a:	0e 94 43 01 	call	0x286	; 0x286 <GetBit>
+ 37e:	88 23       	and	r24, r24
+ 380:	d9 f5       	brne	.+118    	; 0x3f8 <GetKeypadKey+0x15e>
+
+	// Check keys in col 4
+	KEYPADPORT = SetBit(0xFF,COL4,0); // Set Px7 to 0; others 1
+ 382:	8f ef       	ldi	r24, 0xFF	; 255
+ 384:	67 e0       	ldi	r22, 0x07	; 7
+ 386:	40 e0       	ldi	r20, 0x00	; 0
+ 388:	0e 94 2b 01 	call	0x256	; 0x256 <SetBit>
+ 38c:	85 bb       	out	0x15, r24	; 21
+	asm("nop"); // add a delay to allow PORTx to stabilize before checking
+ 38e:	00 00       	nop
+	if (GetBit(~KEYPADPIN,ROW1) ) { return 'A'; }
+ 390:	83 b3       	in	r24, 0x13	; 19
+ 392:	80 95       	com	r24
+ 394:	60 e0       	ldi	r22, 0x00	; 0
+ 396:	0e 94 43 01 	call	0x286	; 0x286 <GetBit>
+ 39a:	88 23       	and	r24, r24
+ 39c:	79 f5       	brne	.+94     	; 0x3fc <GetKeypadKey+0x162>
+	if (GetBit(~KEYPADPIN,ROW2) ) { return 'B'; }
+ 39e:	83 b3       	in	r24, 0x13	; 19
+ 3a0:	80 95       	com	r24
+ 3a2:	61 e0       	ldi	r22, 0x01	; 1
+ 3a4:	0e 94 43 01 	call	0x286	; 0x286 <GetBit>
+ 3a8:	88 23       	and	r24, r24
+ 3aa:	51 f5       	brne	.+84     	; 0x400 <GetKeypadKey+0x166>
+	if (GetBit(~KEYPADPIN,ROW3) ) { return 'C'; }
+ 3ac:	83 b3       	in	r24, 0x13	; 19
+ 3ae:	80 95       	com	r24
+ 3b0:	62 e0       	ldi	r22, 0x02	; 2
+ 3b2:	0e 94 43 01 	call	0x286	; 0x286 <GetBit>
+ 3b6:	88 23       	and	r24, r24
+ 3b8:	29 f5       	brne	.+74     	; 0x404 <GetKeypadKey+0x16a>
+	if (GetBit(~KEYPADPIN,ROW4) ) { return 'D'; }
+ 3ba:	83 b3       	in	r24, 0x13	; 19
+ 3bc:	80 95       	com	r24
+ 3be:	63 e0       	ldi	r22, 0x03	; 3
+ 3c0:	0e 94 43 01 	call	0x286	; 0x286 <GetBit>
+ 3c4:	88 23       	and	r24, r24
+ 3c6:	01 f1       	breq	.+64     	; 0x408 <GetKeypadKey+0x16e>
+ 3c8:	84 e4       	ldi	r24, 0x44	; 68
+ 3ca:	08 95       	ret
+unsigned char GetKeypadKey() {
+
+	// Check keys in col 1
+	KEYPADPORT = SetBit(0xFF,COL1,0); // Set Px4 to 0; others 1
+	asm("nop"); // add a delay to allow PORTx to stabilize before checking
+	if ( GetBit(~KEYPADPIN,ROW1) ) { return '1'; }
+ 3cc:	81 e3       	ldi	r24, 0x31	; 49
+ 3ce:	08 95       	ret
+	if ( GetBit(~KEYPADPIN,ROW2) ) { return '4'; }
+ 3d0:	84 e3       	ldi	r24, 0x34	; 52
+ 3d2:	08 95       	ret
+	if ( GetBit(~KEYPADPIN,ROW3) ) { return '7'; }
+ 3d4:	87 e3       	ldi	r24, 0x37	; 55
+ 3d6:	08 95       	ret
+	if ( GetBit(~KEYPADPIN,ROW4) ) { return '*'; }
+ 3d8:	8a e2       	ldi	r24, 0x2A	; 42
+ 3da:	08 95       	ret
+
+	// Check keys in col 2
+	KEYPADPORT = SetBit(0xFF,COL2,0); // Set Px5 to 0; others 1
+	asm("nop"); // add a delay to allow PORTx to stabilize before checking
+	if ( GetBit(~KEYPADPIN,ROW1) ) { return '2'; }
+ 3dc:	82 e3       	ldi	r24, 0x32	; 50
+ 3de:	08 95       	ret
+	if ( GetBit(~KEYPADPIN,ROW2) ) { return '5'; }
+ 3e0:	85 e3       	ldi	r24, 0x35	; 53
+ 3e2:	08 95       	ret
+	if ( GetBit(~KEYPADPIN,ROW3) ) { return '8'; }
+ 3e4:	88 e3       	ldi	r24, 0x38	; 56
+ 3e6:	08 95       	ret
+	if ( GetBit(~KEYPADPIN,ROW4) ) { return '0'; }
+ 3e8:	80 e3       	ldi	r24, 0x30	; 48
+ 3ea:	08 95       	ret
+
+	// Check keys in col 3
+	KEYPADPORT = SetBit(0xFF,COL3,0); // Set Px6 to 0; others 1
+	asm("nop"); // add a delay to allow PORTx to stabilize before checking
+	if ( GetBit(~KEYPADPIN,ROW1) ) { return '3'; }
+ 3ec:	83 e3       	ldi	r24, 0x33	; 51
+ 3ee:	08 95       	ret
+	if ( GetBit(~KEYPADPIN,ROW2) ) { return '6'; }
+ 3f0:	86 e3       	ldi	r24, 0x36	; 54
+ 3f2:	08 95       	ret
+	if ( GetBit(~KEYPADPIN,ROW3) ) { return '9'; }
+ 3f4:	89 e3       	ldi	r24, 0x39	; 57
+ 3f6:	08 95       	ret
+	if ( GetBit(~KEYPADPIN,ROW4) ) { return '#'; }
+ 3f8:	83 e2       	ldi	r24, 0x23	; 35
+ 3fa:	08 95       	ret
+
+	// Check keys in col 4
+	KEYPADPORT = SetBit(0xFF,COL4,0); // Set Px7 to 0; others 1
+	asm("nop"); // add a delay to allow PORTx to stabilize before checking
+	if (GetBit(~KEYPADPIN,ROW1) ) { return 'A'; }
+ 3fc:	81 e4       	ldi	r24, 0x41	; 65
+ 3fe:	08 95       	ret
+	if (GetBit(~KEYPADPIN,ROW2) ) { return 'B'; }
+ 400:	82 e4       	ldi	r24, 0x42	; 66
+ 402:	08 95       	ret
+	if (GetBit(~KEYPADPIN,ROW3) ) { return 'C'; }
+ 404:	83 e4       	ldi	r24, 0x43	; 67
+ 406:	08 95       	ret
+	if (GetBit(~KEYPADPIN,ROW4) ) { return 'D'; }
+	
+	return '\0';
+ 408:	80 e0       	ldi	r24, 0x00	; 0
+}
+ 40a:	08 95       	ret
+
+0000040c <keyTick>:
+
+uchar key = 0;
+
+enum {KEY_WAITING, KEY_PRESSED};
+uchar keyTick(uchar state)
+{
+ 40c:	cf 93       	push	r28
+	static uchar pushed = 0;
+	switch(state)
+ 40e:	88 23       	and	r24, r24
+ 410:	19 f0       	breq	.+6      	; 0x418 <keyTick+0xc>
+ 412:	81 30       	cpi	r24, 0x01	; 1
+ 414:	79 f4       	brne	.+30     	; 0x434 <keyTick+0x28>
+ 416:	07 c0       	rjmp	.+14     	; 0x426 <keyTick+0x1a>
+	{
+	case (uchar)-1: state = KEY_WAITING; break;
+	case KEY_WAITING: state = (pushed)?KEY_PRESSED:(KEY_WAITING); break;
+ 418:	c1 e0       	ldi	r28, 0x01	; 1
+ 41a:	80 91 70 00 	lds	r24, 0x0070
+ 41e:	88 23       	and	r24, r24
+ 420:	51 f4       	brne	.+20     	; 0x436 <keyTick+0x2a>
+ 422:	c0 e0       	ldi	r28, 0x00	; 0
+ 424:	08 c0       	rjmp	.+16     	; 0x436 <keyTick+0x2a>
+	case KEY_PRESSED: state = (pushed)?KEY_PRESSED:(KEY_WAITING); break;
+ 426:	c1 e0       	ldi	r28, 0x01	; 1
+ 428:	80 91 70 00 	lds	r24, 0x0070
+ 42c:	88 23       	and	r24, r24
+ 42e:	19 f4       	brne	.+6      	; 0x436 <keyTick+0x2a>
+ 430:	c0 e0       	ldi	r28, 0x00	; 0
+ 432:	01 c0       	rjmp	.+2      	; 0x436 <keyTick+0x2a>
+uchar keyTick(uchar state)
+{
+	static uchar pushed = 0;
+	switch(state)
+	{
+	case (uchar)-1: state = KEY_WAITING; break;
+ 434:	c0 e0       	ldi	r28, 0x00	; 0
+	case KEY_WAITING: state = (pushed)?KEY_PRESSED:(KEY_WAITING); break;
+	case KEY_PRESSED: state = (pushed)?KEY_PRESSED:(KEY_WAITING); break;
+	default: state = KEY_WAITING;
+	}
+	
+	switch(state)
+ 436:	cc 23       	and	r28, r28
+ 438:	19 f0       	breq	.+6      	; 0x440 <keyTick+0x34>
+ 43a:	c1 30       	cpi	r28, 0x01	; 1
+ 43c:	71 f4       	brne	.+28     	; 0x45a <keyTick+0x4e>
+ 43e:	07 c0       	rjmp	.+14     	; 0x44e <keyTick+0x42>
+	{
+	case KEY_WAITING:
+		pushed = key = GetKeypadKey();
+ 440:	0e 94 4d 01 	call	0x29a	; 0x29a <GetKeypadKey>
+ 444:	80 93 6a 00 	sts	0x006A, r24
+ 448:	80 93 70 00 	sts	0x0070, r24
+		if(key == '*')
+		{
+			//LCD_write_str ^= 1;
+			//LCD_char_pos = ~PINA & 0x0F;
+			//key = 0;
+		} break;
+ 44c:	06 c0       	rjmp	.+12     	; 0x45a <keyTick+0x4e>
+	case KEY_PRESSED:
+	    pushed = GetKeypadKey();
+ 44e:	0e 94 4d 01 	call	0x29a	; 0x29a <GetKeypadKey>
+ 452:	80 93 70 00 	sts	0x0070, r24
+		key = 0;
+ 456:	10 92 6a 00 	sts	0x006A, r1
+		break;
+	default: break;
+	}
+	return state;
+}
+ 45a:	8c 2f       	mov	r24, r28
+ 45c:	cf 91       	pop	r28
+ 45e:	08 95       	ret
+
+00000460 <pwm_init>:
+	// setup Timer1 for Fast PWM mode, 16-bit
+	// COM1B1 -- for non-inverting output
+	// WGM13, WGM12, WGM11, WGM10 -- for Fast PWM with OCR1A as TOP value
+	// CS11 -- for CLK/8 prescaling
+	
+	OCR1A = 36864 / DIV;	// sets PWM to repeat pulse every 20.0ms
+ 460:	80 e0       	ldi	r24, 0x00	; 0
+ 462:	92 e1       	ldi	r25, 0x12	; 18
+ 464:	9b bd       	out	0x2b, r25	; 43
+ 466:	8a bd       	out	0x2a, r24	; 42
+	}
+	return state;
+}
+
+inline void pwm_set(uint16_t x) {
+	OCR1B = x;
+ 468:	89 e5       	ldi	r24, 0x59	; 89
+ 46a:	91 e0       	ldi	r25, 0x01	; 1
+ 46c:	99 bd       	out	0x29, r25	; 41
+ 46e:	88 bd       	out	0x28, r24	; 40
+	// WGM13, WGM12, WGM11, WGM10 -- for Fast PWM with OCR1A as TOP value
+	// CS11 -- for CLK/8 prescaling
+	
+	OCR1A = 36864 / DIV;	// sets PWM to repeat pulse every 20.0ms
+	pwm_set(PWM_START);
+	TCCR1A = (1<<COM1B1) | (1<<WGM11) | (1<<WGM10);
+ 470:	83 e2       	ldi	r24, 0x23	; 35
+ 472:	8f bd       	out	0x2f, r24	; 47
+	TCCR1B = (1<<WGM13) | (1<<WGM12) | (1<<CS11);
+ 474:	8a e1       	ldi	r24, 0x1A	; 26
+ 476:	8e bd       	out	0x2e, r24	; 46
+	// each count is 8/14745600 = 0.5425us.
+	// so 1.0ms = 1843.2
+	//    1.5ms = 2764.8
+	//    2.0ms = 3686.4
+	//   20.0ms = 36864
+}
+ 478:	08 95       	ret
+
+0000047a <main>:
+
+int main(void)
+{
+	DDRA = 0x00; PORTA = 0xFF;
+ 47a:	1a ba       	out	0x1a, r1	; 26
+ 47c:	8f ef       	ldi	r24, 0xFF	; 255
+ 47e:	8b bb       	out	0x1b, r24	; 27
+	DDRB = 0xFF; PORTB = 0x00;
+ 480:	87 bb       	out	0x17, r24	; 23
+ 482:	18 ba       	out	0x18, r1	; 24
+	DDRC = 0xF0; PORTC = 0x0F; // PC7..4 outputs init 0s, PC3..0 inputs init 1s
+ 484:	80 ef       	ldi	r24, 0xF0	; 240
+ 486:	84 bb       	out	0x14, r24	; 20
+ 488:	8f e0       	ldi	r24, 0x0F	; 15
+ 48a:	85 bb       	out	0x15, r24	; 21
+	TimerSetMS(1);
+ 48c:	61 e0       	ldi	r22, 0x01	; 1
+ 48e:	70 e0       	ldi	r23, 0x00	; 0
+ 490:	80 e0       	ldi	r24, 0x00	; 0
+ 492:	90 e0       	ldi	r25, 0x00	; 0
+ 494:	0e 94 5c 00 	call	0xb8	; 0xb8 <TimerSetMS>
+	TimerOn();
+ 498:	0e 94 5f 00 	call	0xbe	; 0xbe <TimerOn>
+	pwm_init();
+ 49c:	0e 94 30 02 	call	0x460	; 0x460 <pwm_init>
+	uint16_t pos = PWM_START;
+ 4a0:	c9 e5       	ldi	r28, 0x59	; 89
+ 4a2:	d1 e0       	ldi	r29, 0x01	; 1
+		pwm_set(pos);
+		keyTick(0);
+		if(key=='A') pos = PWM_MIN;//+= 25;
+		if(key=='B') pos = PWM_MAX;//-= 25;
+		if(key=='0') PORTB &= ~(1<<PB3);
+		if(key=='7') PORTB ^= (1<<PB3);
+ 4a4:	dd 24       	eor	r13, r13
+ 4a6:	68 94       	set
+ 4a8:	d3 f8       	bld	r13, 3
+	uint16_t pos = PWM_START;
+    while(1)
+    {
+		pwm_set(pos);
+		keyTick(0);
+		if(key=='A') pos = PWM_MIN;//+= 25;
+ 4aa:	02 ea       	ldi	r16, 0xA2	; 162
+ 4ac:	10 e0       	ldi	r17, 0x00	; 0
+		if(key=='B') pos = PWM_MAX;//-= 25;
+ 4ae:	0f 2e       	mov	r0, r31
+ 4b0:	fc e2       	ldi	r31, 0x2C	; 44
+ 4b2:	ef 2e       	mov	r14, r31
+ 4b4:	f2 e0       	ldi	r31, 0x02	; 2
+ 4b6:	ff 2e       	mov	r15, r31
+ 4b8:	f0 2d       	mov	r31, r0
+	}
+	return state;
+}
+
+inline void pwm_set(uint16_t x) {
+	OCR1B = x;
+ 4ba:	d9 bd       	out	0x29, r29	; 41
+ 4bc:	c8 bd       	out	0x28, r28	; 40
+	pwm_init();
+	uint16_t pos = PWM_START;
+    while(1)
+    {
+		pwm_set(pos);
+		keyTick(0);
+ 4be:	80 e0       	ldi	r24, 0x00	; 0
+ 4c0:	0e 94 06 02 	call	0x40c	; 0x40c <keyTick>
+		if(key=='A') pos = PWM_MIN;//+= 25;
+ 4c4:	80 91 6a 00 	lds	r24, 0x006A
+ 4c8:	81 34       	cpi	r24, 0x41	; 65
+ 4ca:	31 f0       	breq	.+12     	; 0x4d8 <main+0x5e>
+		if(key=='B') pos = PWM_MAX;//-= 25;
+ 4cc:	82 34       	cpi	r24, 0x42	; 66
+ 4ce:	69 f0       	breq	.+26     	; 0x4ea <main+0x70>
+		if(key=='0') PORTB &= ~(1<<PB3);
+ 4d0:	80 33       	cpi	r24, 0x30	; 48
+ 4d2:	19 f4       	brne	.+6      	; 0x4da <main+0x60>
+ 4d4:	c3 98       	cbi	0x18, 3	; 24
+ 4d6:	01 c0       	rjmp	.+2      	; 0x4da <main+0x60>
+	uint16_t pos = PWM_START;
+    while(1)
+    {
+		pwm_set(pos);
+		keyTick(0);
+		if(key=='A') pos = PWM_MIN;//+= 25;
+ 4d8:	e8 01       	movw	r28, r16
+		if(key=='B') pos = PWM_MAX;//-= 25;
+		if(key=='0') PORTB &= ~(1<<PB3);
+		if(key=='7') PORTB ^= (1<<PB3);
+ 4da:	80 91 6a 00 	lds	r24, 0x006A
+ 4de:	87 33       	cpi	r24, 0x37	; 55
+ 4e0:	29 f4       	brne	.+10     	; 0x4ec <main+0x72>
+ 4e2:	88 b3       	in	r24, 0x18	; 24
+ 4e4:	8d 25       	eor	r24, r13
+ 4e6:	88 bb       	out	0x18, r24	; 24
+ 4e8:	01 c0       	rjmp	.+2      	; 0x4ec <main+0x72>
+    while(1)
+    {
+		pwm_set(pos);
+		keyTick(0);
+		if(key=='A') pos = PWM_MIN;//+= 25;
+		if(key=='B') pos = PWM_MAX;//-= 25;
+ 4ea:	e7 01       	movw	r28, r14
+		if(key=='0') PORTB &= ~(1<<PB3);
+		if(key=='7') PORTB ^= (1<<PB3);
+		if(key=='1') PORTB |= (1<<PB3);
+ 4ec:	80 91 6a 00 	lds	r24, 0x006A
+ 4f0:	81 33       	cpi	r24, 0x31	; 49
+ 4f2:	09 f4       	brne	.+2      	; 0x4f6 <main+0x7c>
+ 4f4:	c3 9a       	sbi	0x18, 3	; 24
+        //TODO:: Please write your application code
+		//PORTB ^= 1;
+		while(!TimerFlag);
+ 4f6:	80 91 6f 00 	lds	r24, 0x006F
+ 4fa:	88 23       	and	r24, r24
+ 4fc:	e1 f3       	breq	.-8      	; 0x4f6 <main+0x7c>
+		TimerFlag = 0;
+ 4fe:	10 92 6f 00 	sts	0x006F, r1
+    }
+ 502:	db cf       	rjmp	.-74     	; 0x4ba <main+0x40>
+
+00000504 <__udivmodqi4>:
+ 504:	99 1b       	sub	r25, r25
+ 506:	79 e0       	ldi	r23, 0x09	; 9
+ 508:	04 c0       	rjmp	.+8      	; 0x512 <__udivmodqi4_ep>
+
+0000050a <__udivmodqi4_loop>:
+ 50a:	99 1f       	adc	r25, r25
+ 50c:	96 17       	cp	r25, r22
+ 50e:	08 f0       	brcs	.+2      	; 0x512 <__udivmodqi4_ep>
+ 510:	96 1b       	sub	r25, r22
+
+00000512 <__udivmodqi4_ep>:
+ 512:	88 1f       	adc	r24, r24
+ 514:	7a 95       	dec	r23
+ 516:	c9 f7       	brne	.-14     	; 0x50a <__udivmodqi4_loop>
+ 518:	80 95       	com	r24
+ 51a:	08 95       	ret
+
+0000051c <malloc>:
+ 51c:	cf 93       	push	r28
+ 51e:	df 93       	push	r29
+ 520:	ac 01       	movw	r20, r24
+ 522:	82 30       	cpi	r24, 0x02	; 2
+ 524:	91 05       	cpc	r25, r1
+ 526:	10 f4       	brcc	.+4      	; 0x52c <malloc+0x10>
+ 528:	42 e0       	ldi	r20, 0x02	; 2
+ 52a:	50 e0       	ldi	r21, 0x00	; 0
+ 52c:	e0 91 73 00 	lds	r30, 0x0073
+ 530:	f0 91 74 00 	lds	r31, 0x0074
+ 534:	20 e0       	ldi	r18, 0x00	; 0
+ 536:	30 e0       	ldi	r19, 0x00	; 0
+ 538:	a0 e0       	ldi	r26, 0x00	; 0
+ 53a:	b0 e0       	ldi	r27, 0x00	; 0
+ 53c:	24 c0       	rjmp	.+72     	; 0x586 <malloc+0x6a>
+ 53e:	80 81       	ld	r24, Z
+ 540:	91 81       	ldd	r25, Z+1	; 0x01
+ 542:	84 17       	cp	r24, r20
+ 544:	95 07       	cpc	r25, r21
+ 546:	d0 f0       	brcs	.+52     	; 0x57c <malloc+0x60>
+ 548:	84 17       	cp	r24, r20
+ 54a:	95 07       	cpc	r25, r21
+ 54c:	71 f4       	brne	.+28     	; 0x56a <malloc+0x4e>
+ 54e:	82 81       	ldd	r24, Z+2	; 0x02
+ 550:	93 81       	ldd	r25, Z+3	; 0x03
+ 552:	10 97       	sbiw	r26, 0x00	; 0
+ 554:	29 f0       	breq	.+10     	; 0x560 <malloc+0x44>
+ 556:	13 96       	adiw	r26, 0x03	; 3
+ 558:	9c 93       	st	X, r25
+ 55a:	8e 93       	st	-X, r24
+ 55c:	12 97       	sbiw	r26, 0x02	; 2
+ 55e:	2c c0       	rjmp	.+88     	; 0x5b8 <malloc+0x9c>
+ 560:	90 93 74 00 	sts	0x0074, r25
+ 564:	80 93 73 00 	sts	0x0073, r24
+ 568:	27 c0       	rjmp	.+78     	; 0x5b8 <malloc+0x9c>
+ 56a:	21 15       	cp	r18, r1
+ 56c:	31 05       	cpc	r19, r1
+ 56e:	19 f0       	breq	.+6      	; 0x576 <malloc+0x5a>
+ 570:	82 17       	cp	r24, r18
+ 572:	93 07       	cpc	r25, r19
+ 574:	18 f4       	brcc	.+6      	; 0x57c <malloc+0x60>
+ 576:	9c 01       	movw	r18, r24
+ 578:	bd 01       	movw	r22, r26
+ 57a:	ef 01       	movw	r28, r30
+ 57c:	92 81       	ldd	r25, Z+2	; 0x02
+ 57e:	83 81       	ldd	r24, Z+3	; 0x03
+ 580:	df 01       	movw	r26, r30
+ 582:	e9 2f       	mov	r30, r25
+ 584:	f8 2f       	mov	r31, r24
+ 586:	30 97       	sbiw	r30, 0x00	; 0
+ 588:	d1 f6       	brne	.-76     	; 0x53e <malloc+0x22>
+ 58a:	21 15       	cp	r18, r1
+ 58c:	31 05       	cpc	r19, r1
+ 58e:	f9 f0       	breq	.+62     	; 0x5ce <malloc+0xb2>
+ 590:	c9 01       	movw	r24, r18
+ 592:	84 1b       	sub	r24, r20
+ 594:	95 0b       	sbc	r25, r21
+ 596:	84 30       	cpi	r24, 0x04	; 4
+ 598:	91 05       	cpc	r25, r1
+ 59a:	80 f4       	brcc	.+32     	; 0x5bc <malloc+0xa0>
+ 59c:	8a 81       	ldd	r24, Y+2	; 0x02
+ 59e:	9b 81       	ldd	r25, Y+3	; 0x03
+ 5a0:	61 15       	cp	r22, r1
+ 5a2:	71 05       	cpc	r23, r1
+ 5a4:	21 f0       	breq	.+8      	; 0x5ae <malloc+0x92>
+ 5a6:	fb 01       	movw	r30, r22
+ 5a8:	93 83       	std	Z+3, r25	; 0x03
+ 5aa:	82 83       	std	Z+2, r24	; 0x02
+ 5ac:	04 c0       	rjmp	.+8      	; 0x5b6 <malloc+0x9a>
+ 5ae:	90 93 74 00 	sts	0x0074, r25
+ 5b2:	80 93 73 00 	sts	0x0073, r24
+ 5b6:	fe 01       	movw	r30, r28
+ 5b8:	32 96       	adiw	r30, 0x02	; 2
+ 5ba:	42 c0       	rjmp	.+132    	; 0x640 <malloc+0x124>
+ 5bc:	fe 01       	movw	r30, r28
+ 5be:	e8 0f       	add	r30, r24
+ 5c0:	f9 1f       	adc	r31, r25
+ 5c2:	41 93       	st	Z+, r20
+ 5c4:	51 93       	st	Z+, r21
+ 5c6:	02 97       	sbiw	r24, 0x02	; 2
+ 5c8:	99 83       	std	Y+1, r25	; 0x01
+ 5ca:	88 83       	st	Y, r24
+ 5cc:	39 c0       	rjmp	.+114    	; 0x640 <malloc+0x124>
+ 5ce:	80 91 71 00 	lds	r24, 0x0071
+ 5d2:	90 91 72 00 	lds	r25, 0x0072
+ 5d6:	00 97       	sbiw	r24, 0x00	; 0
+ 5d8:	41 f4       	brne	.+16     	; 0x5ea <malloc+0xce>
+ 5da:	80 91 66 00 	lds	r24, 0x0066
+ 5de:	90 91 67 00 	lds	r25, 0x0067
+ 5e2:	90 93 72 00 	sts	0x0072, r25
+ 5e6:	80 93 71 00 	sts	0x0071, r24
+ 5ea:	20 91 64 00 	lds	r18, 0x0064
+ 5ee:	30 91 65 00 	lds	r19, 0x0065
+ 5f2:	21 15       	cp	r18, r1
+ 5f4:	31 05       	cpc	r19, r1
+ 5f6:	41 f4       	brne	.+16     	; 0x608 <malloc+0xec>
+ 5f8:	2d b7       	in	r18, 0x3d	; 61
+ 5fa:	3e b7       	in	r19, 0x3e	; 62
+ 5fc:	80 91 68 00 	lds	r24, 0x0068
+ 600:	90 91 69 00 	lds	r25, 0x0069
+ 604:	28 1b       	sub	r18, r24
+ 606:	39 0b       	sbc	r19, r25
+ 608:	e0 91 71 00 	lds	r30, 0x0071
+ 60c:	f0 91 72 00 	lds	r31, 0x0072
+ 610:	e2 17       	cp	r30, r18
+ 612:	f3 07       	cpc	r31, r19
+ 614:	98 f4       	brcc	.+38     	; 0x63c <malloc+0x120>
+ 616:	2e 1b       	sub	r18, r30
+ 618:	3f 0b       	sbc	r19, r31
+ 61a:	24 17       	cp	r18, r20
+ 61c:	35 07       	cpc	r19, r21
+ 61e:	70 f0       	brcs	.+28     	; 0x63c <malloc+0x120>
+ 620:	ca 01       	movw	r24, r20
+ 622:	02 96       	adiw	r24, 0x02	; 2
+ 624:	28 17       	cp	r18, r24
+ 626:	39 07       	cpc	r19, r25
+ 628:	48 f0       	brcs	.+18     	; 0x63c <malloc+0x120>
+ 62a:	8e 0f       	add	r24, r30
+ 62c:	9f 1f       	adc	r25, r31
+ 62e:	90 93 72 00 	sts	0x0072, r25
+ 632:	80 93 71 00 	sts	0x0071, r24
+ 636:	41 93       	st	Z+, r20
+ 638:	51 93       	st	Z+, r21
+ 63a:	02 c0       	rjmp	.+4      	; 0x640 <malloc+0x124>
+ 63c:	e0 e0       	ldi	r30, 0x00	; 0
+ 63e:	f0 e0       	ldi	r31, 0x00	; 0
+ 640:	cf 01       	movw	r24, r30
+ 642:	df 91       	pop	r29
+ 644:	cf 91       	pop	r28
+ 646:	08 95       	ret
+
+00000648 <free>:
+ 648:	0f 93       	push	r16
+ 64a:	1f 93       	push	r17
+ 64c:	cf 93       	push	r28
+ 64e:	df 93       	push	r29
+ 650:	9c 01       	movw	r18, r24
+ 652:	00 97       	sbiw	r24, 0x00	; 0
+ 654:	09 f4       	brne	.+2      	; 0x658 <free+0x10>
+ 656:	8c c0       	rjmp	.+280    	; 0x770 <free+0x128>
+ 658:	dc 01       	movw	r26, r24
+ 65a:	12 97       	sbiw	r26, 0x02	; 2
+ 65c:	13 96       	adiw	r26, 0x03	; 3
+ 65e:	1c 92       	st	X, r1
+ 660:	1e 92       	st	-X, r1
+ 662:	12 97       	sbiw	r26, 0x02	; 2
+ 664:	60 91 73 00 	lds	r22, 0x0073
+ 668:	70 91 74 00 	lds	r23, 0x0074
+ 66c:	61 15       	cp	r22, r1
+ 66e:	71 05       	cpc	r23, r1
+ 670:	89 f4       	brne	.+34     	; 0x694 <free+0x4c>
+ 672:	8d 91       	ld	r24, X+
+ 674:	9c 91       	ld	r25, X
+ 676:	11 97       	sbiw	r26, 0x01	; 1
+ 678:	82 0f       	add	r24, r18
+ 67a:	93 1f       	adc	r25, r19
+ 67c:	20 91 71 00 	lds	r18, 0x0071
+ 680:	30 91 72 00 	lds	r19, 0x0072
+ 684:	28 17       	cp	r18, r24
+ 686:	39 07       	cpc	r19, r25
+ 688:	69 f5       	brne	.+90     	; 0x6e4 <free+0x9c>
+ 68a:	b0 93 72 00 	sts	0x0072, r27
+ 68e:	a0 93 71 00 	sts	0x0071, r26
+ 692:	6e c0       	rjmp	.+220    	; 0x770 <free+0x128>
+ 694:	fb 01       	movw	r30, r22
+ 696:	40 e0       	ldi	r20, 0x00	; 0
+ 698:	50 e0       	ldi	r21, 0x00	; 0
+ 69a:	01 c0       	rjmp	.+2      	; 0x69e <free+0x56>
+ 69c:	fc 01       	movw	r30, r24
+ 69e:	ea 17       	cp	r30, r26
+ 6a0:	fb 07       	cpc	r31, r27
+ 6a2:	30 f4       	brcc	.+12     	; 0x6b0 <free+0x68>
+ 6a4:	82 81       	ldd	r24, Z+2	; 0x02
+ 6a6:	93 81       	ldd	r25, Z+3	; 0x03
+ 6a8:	af 01       	movw	r20, r30
+ 6aa:	00 97       	sbiw	r24, 0x00	; 0
+ 6ac:	b9 f7       	brne	.-18     	; 0x69c <free+0x54>
+ 6ae:	1f c0       	rjmp	.+62     	; 0x6ee <free+0xa6>
+ 6b0:	e9 01       	movw	r28, r18
+ 6b2:	22 97       	sbiw	r28, 0x02	; 2
+ 6b4:	fb 83       	std	Y+3, r31	; 0x03
+ 6b6:	ea 83       	std	Y+2, r30	; 0x02
+ 6b8:	08 81       	ld	r16, Y
+ 6ba:	19 81       	ldd	r17, Y+1	; 0x01
+ 6bc:	c9 01       	movw	r24, r18
+ 6be:	80 0f       	add	r24, r16
+ 6c0:	91 1f       	adc	r25, r17
+ 6c2:	8e 17       	cp	r24, r30
+ 6c4:	9f 07       	cpc	r25, r31
+ 6c6:	59 f4       	brne	.+22     	; 0x6de <free+0x96>
+ 6c8:	80 81       	ld	r24, Z
+ 6ca:	91 81       	ldd	r25, Z+1	; 0x01
+ 6cc:	80 0f       	add	r24, r16
+ 6ce:	91 1f       	adc	r25, r17
+ 6d0:	02 96       	adiw	r24, 0x02	; 2
+ 6d2:	99 83       	std	Y+1, r25	; 0x01
+ 6d4:	88 83       	st	Y, r24
+ 6d6:	82 81       	ldd	r24, Z+2	; 0x02
+ 6d8:	93 81       	ldd	r25, Z+3	; 0x03
+ 6da:	9b 83       	std	Y+3, r25	; 0x03
+ 6dc:	8a 83       	std	Y+2, r24	; 0x02
+ 6de:	41 15       	cp	r20, r1
+ 6e0:	51 05       	cpc	r21, r1
+ 6e2:	29 f4       	brne	.+10     	; 0x6ee <free+0xa6>
+ 6e4:	b0 93 74 00 	sts	0x0074, r27
+ 6e8:	a0 93 73 00 	sts	0x0073, r26
+ 6ec:	41 c0       	rjmp	.+130    	; 0x770 <free+0x128>
+ 6ee:	fa 01       	movw	r30, r20
+ 6f0:	b3 83       	std	Z+3, r27	; 0x03
+ 6f2:	a2 83       	std	Z+2, r26	; 0x02
+ 6f4:	c1 91       	ld	r28, Z+
+ 6f6:	d1 91       	ld	r29, Z+
+ 6f8:	ec 0f       	add	r30, r28
+ 6fa:	fd 1f       	adc	r31, r29
+ 6fc:	ae 17       	cp	r26, r30
+ 6fe:	bf 07       	cpc	r27, r31
+ 700:	81 f4       	brne	.+32     	; 0x722 <free+0xda>
+ 702:	f9 01       	movw	r30, r18
+ 704:	92 91       	ld	r25, -Z
+ 706:	82 91       	ld	r24, -Z
+ 708:	8c 0f       	add	r24, r28
+ 70a:	9d 1f       	adc	r25, r29
+ 70c:	02 96       	adiw	r24, 0x02	; 2
+ 70e:	da 01       	movw	r26, r20
+ 710:	11 96       	adiw	r26, 0x01	; 1
+ 712:	9c 93       	st	X, r25
+ 714:	8e 93       	st	-X, r24
+ 716:	82 81       	ldd	r24, Z+2	; 0x02
+ 718:	93 81       	ldd	r25, Z+3	; 0x03
+ 71a:	13 96       	adiw	r26, 0x03	; 3
+ 71c:	9c 93       	st	X, r25
+ 71e:	8e 93       	st	-X, r24
+ 720:	12 97       	sbiw	r26, 0x02	; 2
+ 722:	e0 e0       	ldi	r30, 0x00	; 0
+ 724:	f0 e0       	ldi	r31, 0x00	; 0
+ 726:	02 c0       	rjmp	.+4      	; 0x72c <free+0xe4>
+ 728:	fb 01       	movw	r30, r22
+ 72a:	bc 01       	movw	r22, r24
+ 72c:	db 01       	movw	r26, r22
+ 72e:	12 96       	adiw	r26, 0x02	; 2
+ 730:	8d 91       	ld	r24, X+
+ 732:	9c 91       	ld	r25, X
+ 734:	13 97       	sbiw	r26, 0x03	; 3
+ 736:	00 97       	sbiw	r24, 0x00	; 0
+ 738:	b9 f7       	brne	.-18     	; 0x728 <free+0xe0>
+ 73a:	cb 01       	movw	r24, r22
+ 73c:	02 96       	adiw	r24, 0x02	; 2
+ 73e:	2d 91       	ld	r18, X+
+ 740:	3c 91       	ld	r19, X
+ 742:	11 97       	sbiw	r26, 0x01	; 1
+ 744:	82 0f       	add	r24, r18
+ 746:	93 1f       	adc	r25, r19
+ 748:	20 91 71 00 	lds	r18, 0x0071
+ 74c:	30 91 72 00 	lds	r19, 0x0072
+ 750:	28 17       	cp	r18, r24
+ 752:	39 07       	cpc	r19, r25
+ 754:	69 f4       	brne	.+26     	; 0x770 <free+0x128>
+ 756:	30 97       	sbiw	r30, 0x00	; 0
+ 758:	29 f4       	brne	.+10     	; 0x764 <free+0x11c>
+ 75a:	10 92 74 00 	sts	0x0074, r1
+ 75e:	10 92 73 00 	sts	0x0073, r1
+ 762:	02 c0       	rjmp	.+4      	; 0x768 <free+0x120>
+ 764:	13 82       	std	Z+3, r1	; 0x03
+ 766:	12 82       	std	Z+2, r1	; 0x02
+ 768:	70 93 72 00 	sts	0x0072, r23
+ 76c:	60 93 71 00 	sts	0x0071, r22
+ 770:	df 91       	pop	r29
+ 772:	cf 91       	pop	r28
+ 774:	1f 91       	pop	r17
+ 776:	0f 91       	pop	r16
+ 778:	08 95       	ret
+
+0000077a <_exit>:
+ 77a:	f8 94       	cli
+
+0000077c <__stop_program>:
+ 77c:	ff cf       	rjmp	.-2      	; 0x77c <__stop_program>
